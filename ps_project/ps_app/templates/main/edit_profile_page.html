@@ -7,109 +7,126 @@
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-white font-sans min-h-screen flex flex-col text-neutral-900">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#475569]">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <form method="POST" enctype="multipart/form-data" class="w-full max-w-5xl bg-black border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <form method="POST" enctype="multipart/form-data" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {% csrf_token %}
             
-            <div class="lg:col-span-5 bg-black p-8 flex flex-col items-center justify-between text-center border-b lg:border-b-0 lg:border-r border-neutral-800">
-                <div class="w-full space-y-6 my-auto">
-                    <div class="relative w-32 h-32 mx-auto group">
-                        <div class="absolute inset-0 bg-red-600 rounded-2xl rotate-6 opacity-20 group-hover:rotate-12 transition-transform"></div>
-                        <div class="relative w-32 h-32 rounded-2xl bg-neutral-900 border border-neutral-800 overflow-hidden flex items-center justify-center text-neutral-500 shadow-xl">
-                            {% if user.profile_picture %}
-                                <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="w-full h-full object-cover opacity-80">
-                            {% else %}
-                                <i data-lucide="user" class="w-12 h-12 text-neutral-500"></i>
-                            {% endif %}
-                            <label for="profile_picture" class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-bold">
-                                <i data-lucide="camera" class="w-5 h-5 text-red-500"></i>
-                                Change Photo
+            <div class="lg:col-span-4 bg-[#0B0F14] text-white p-6 sm:p-8 rounded-3xl border border-[#1F2937] shadow-xl flex flex-col items-center text-center space-y-6">
+                <div class="w-full space-y-6 my-auto flex flex-col items-center">
+                    
+                    <div class="relative w-36 h-36 group cursor-pointer">
+                        <div class="absolute inset-0 bg-[#F97316] rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity animate-pulse"></div>
+                        <div class="relative w-36 h-36 rounded-full bg-[#1F2937] border-2 border-[#F97316] overflow-hidden flex items-center justify-center text-[#475569] shadow-inner">
+                            
+                            <i id="default_avatar_icon" data-lucide="user" class="w-16 h-16 text-[#475569] {% if user.profile_picture %}hidden{% endif %}"></i>
+                            
+                            <img id="avatar_preview" src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% endif %}" alt="{{ user.username }}" class="w-full h-full object-cover {% if not user.profile_picture %}hidden{% endif %}">
+
+                            <label for="profile_picture" class="absolute inset-0 bg-black/75 flex flex-col items-center justify-center gap-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-bold">
+                                <i data-lucide="camera" class="w-6 h-6 text-[#F97316]"></i>
+                                <span>Change Photo</span>
                             </label>
+                            
                             <input type="file" id="profile_picture" name="profile_picture" class="hidden" accept="image/*">
                         </div>
                     </div>
 
-                    <div class="space-y-2">
+                    <div class="space-y-1">
                         <h1 class="text-2xl font-black tracking-tight text-white">Modify Profile</h1>
-                        <p class="text-sm font-mono text-neutral-500">Updating @{{ user.username|default:"dummy_creator" }}</p>
+                        <span class="inline-block bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/20 text-xs font-mono px-3 py-1 rounded-full font-bold">
+                            @{{ user.username|default:"dummy_creator" }}
+                        </span>
                     </div>
                 </div>
 
-                <div class="w-full space-y-2 pt-8 border-t border-neutral-800">
-                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-lg shadow-red-600/10">
+                <div class="w-full pt-6 border-t border-[#1F2937] space-y-3">
+                    <button type="submit" class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-md">
                         <i data-lucide="save" class="w-4 h-4"></i>
                         Save Changes
                     </button>
                     
-                    <a href="/profile/" class="w-full bg-neutral-900 hover:bg-neutral-800 text-neutral-200 font-bold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm border border-neutral-800">
-                        <i data-lucide="x" class="w-4 h-4"></i>
+                    <a href="/profile/" class="w-full bg-[#1A222D] hover:bg-[#25303F] text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm border border-[#374151]">
+                        <i data-lucide="x" class="w-4 h-4 text-[#F97316]"></i>
                         Cancel
                     </a>
                 </div>
             </div>
 
-            <div class="lg:col-span-7 bg-black p-8 lg:p-12 flex flex-col justify-center space-y-8">
-                <div>
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">Personal Registry</h2>
-                    <p class="text-xl font-extrabold text-white tracking-tight">Edit Parameters</p>
+            <div class="lg:col-span-8 bg-[#FFFFFF] border border-[#E2E8F0] p-6 sm:p-8 lg:p-10 rounded-3xl shadow-sm space-y-8">
+                <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-6">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Personal Registry</h2>
+                        <p class="text-2xl font-black text-[#111827] tracking-tight">Edit Account Parameters</p>
+                    </div>
+                    <div class="w-10 h-10 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex items-center justify-center text-[#111827]">
+                        <i data-lucide="sliders" class="w-5 h-5 text-[#F97316]"></i>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                        <label for="first_name" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">First Name</label>
-                        <input type="text" id="first_name" name="first_name" {% if data %}value="{{ data.first_name }}"{% else %}value="{{ user.first_name|default:'' }}" {% endif %}placeholder="Enter first name" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                    <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
+                        <label for="first_name" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">First Name</label>
+                        <input type="text" id="first_name" name="first_name" {% if data %}value="{{ data.first_name }}"{% else %}value="{{ user.first_name|default:'' }}"{% endif %} placeholder="Enter first name" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
                     </div>
 
-                    <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                        <label for="last_name" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" {% if data %}value="{{ data.last_name }}"{% else %}value="{{ user.last_name|default:'' }}" {% endif %}placeholder="Enter last name" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                    <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
+                        <label for="last_name" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" {% if data %}value="{{ data.last_name }}"{% else %}value="{{ user.last_name|default:'' }}"{% endif %} placeholder="Enter last name" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
                     </div>
 
-                    <div class="sm:col-span-2 bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-red-600 transition-colors">
+                    <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
-                            <label for="username" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Username</label>
-                            <input type="text" id="username" name="username" {% if data %}value="{{ data.username }}"{% else %}value="{{ user.username|default:'' }}" {% endif %}placeholder="Enter username" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                            <label for="username" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Username</label>
+                            <input type="text" id="username" name="username" {% if data %}value="{{ data.username }}"{% else %}value="{{ user.username|default:'' }}"{% endif %} placeholder="Enter username" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
                             {% if errors.username %}
-                                <p class="text-red-500 text-xs mt-1">{{ errors.username }}</p>
+                                <p class="text-red-500 text-xs mt-1 font-semibold">{{ errors.username }}</p>
                             {% endif %}
                         </div>
-                        <i data-lucide="user" class="w-5 h-5 text-neutral-600 shrink-0"></i>
+                        <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="user" class="w-5 h-5 text-[#F97316]"></i>
+                        </div>
                     </div>
 
-                    <div class="sm:col-span-2 bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-red-600 transition-colors">
+                    <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
-                            <label for="email" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Email Address</label>
-                            <input type="email" id="email" name="email" {% if data %}value="{{ data.email }}"{% else %}value="{{ user.email|default:'' }}" {% endif %}placeholder="Enter email address" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                            <label for="email" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" {% if data %}value="{{ data.email }}"{% else %}value="{{ user.email|default:'' }}"{% endif %} placeholder="Enter email address" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
                             {% if errors.email %}
-                                <p class="text-red-500 text-xs mt-1">{{ errors.email }}</p>
+                                <p class="text-red-500 text-xs mt-1 font-semibold">{{ errors.email }}</p>
                             {% endif %}
                         </div>
-                        <i data-lucide="mail" class="w-5 h-5 text-neutral-600 shrink-0"></i>
-                    </div>
-
-                    <div class="sm:col-span-2 bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-red-600 transition-colors">
-                        <div class="flex-grow">
-                            <label for="phone" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Phone Link</label>
-                            <input type="text" id="phone" name="phone" {% if data %}value="{{ data.phone }}"{% else %}value="{{ user.phone|default:'' }}" {% endif %}placeholder="Enter phone number" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                        <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="mail" class="w-5 h-5 text-[#F97316]"></i>
                         </div>
-                        <i data-lucide="smartphone" class="w-5 h-5 text-neutral-600 shrink-0"></i>
                     </div>
 
-                    <div class="sm:col-span-2 bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-start justify-between gap-4 focus-within:border-red-600 transition-colors">
+                    <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
-                            <label for="address" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Logistics Drop Terminal</label>
-                            <textarea id="address" name="address" rows="2" placeholder="Enter address" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700 resize-none leading-relaxed">{% if data %}{{ data.address }}{% else %}{{ user.address|default:'' }}{% endif %}</textarea>
+                            <label for="phone" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Phone</label>
+                            <input type="text" id="phone" name="phone" {% if data %}value="{{ data.phone }}"{% else %}value="{{ user.phone|default:'' }}"{% endif %} placeholder="Enter phone number" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
+                        </div>
+                        <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="smartphone" class="w-5 h-5 text-[#F97316]"></i>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-start justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
+                        <div class="flex-grow">
+                            <label for="address" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Address</label>
+                            <textarea id="address" name="address" rows="2" placeholder="Enter address" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400 resize-none leading-relaxed">{% if data %}{{ data.address }}{% else %}{{ user.address|default:'' }}{% endif %}</textarea>
                             {% if errors.address %}
-                                <p class="text-red-500 text-xs mt-1">{{ errors.address }}</p>
+                                <p class="text-red-500 text-xs mt-1 font-semibold">{{ errors.address }}</p>
                             {% endif %}
                         </div>
-                        <i data-lucide="map-pin" class="w-5 h-5 text-neutral-600 shrink-0 mt-0.5"></i>
+                        <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[#F97316]"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,6 +139,27 @@
     <script src="{% static 'js/lucide.min.js' %}"></script>
     <script>
         lucide.createIcons();
+
+        const profilePictureInput = document.getElementById('profile_picture');
+        const avatarPreview = document.getElementById('avatar_preview');
+        const defaultAvatarIcon = document.getElementById('default_avatar_icon');
+
+        if (profilePictureInput) {
+            profilePictureInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        avatarPreview.src = event.target.result;
+                        avatarPreview.classList.remove('hidden');
+                        if (defaultAvatarIcon) {
+                            defaultAvatarIcon.classList.add('hidden');
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
     </script>
 </body>
 </html>
