@@ -7,23 +7,23 @@
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-black text-neutral-100 font-sans min-h-screen flex flex-col">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#475569]">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 space-y-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         <div>
-            <h1 class="text-xs font-bold uppercase tracking-widest text-red-600 mb-1">Asset Discovery</h1>
-            <p class="text-2xl lg:text-3xl font-black tracking-tight text-white uppercase">Tactical Hardware Catalog</p>
+            <h1 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Asset Discovery</h1>
+            <p class="text-2xl lg:text-3xl font-black tracking-tight text-[#111827] uppercase">Tactical Hardware Catalog</p>
         </div>
 
-        <form method="GET" action="/products/" class="bg-neutral-950 border border-neutral-900 rounded-2xl p-5">
+        <form method="GET" action="/products/" class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-5 shadow-sm">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 items-end">
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Category Allocation</label>
-                    <select name="category" onchange="this.form.submit()" class="w-full bg-black border border-neutral-800 rounded-xl p-3 text-xs font-mono text-neutral-300 focus:outline-none focus:border-red-600">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Category Allocation</label>
+                    <select name="category" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="">All Categories</option>
                         <option value="cameras" {% if request.GET.category == 'cameras' %}selected{% endif %}>Camera Bodies</option>
                         <option value="lenses" {% if request.GET.category == 'lenses' %}selected{% endif %}>Lenses & Optics</option>
@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Manufacturer / Brand</label>
-                    <select name="brand" onchange="this.form.submit()" class="w-full bg-black border border-neutral-800 rounded-xl p-3 text-xs font-mono text-neutral-300 focus:outline-none focus:border-red-600">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Manufacturer / Brand</label>
+                    <select name="brand" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="all">All Brands</option>
                         {% for brand in brands %}
                             <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:"i" %}selected{% endif %}>{{ brand.name }}</option>
@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Condition Spec</label>
-                    <select name="condition" onchange="this.form.submit()" class="w-full bg-black border border-neutral-800 rounded-xl p-3 text-xs font-mono text-neutral-300 focus:outline-none focus:border-red-600">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Condition Spec</label>
+                    <select name="condition" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="all">Any Condition</option>
                         <option value="new" {% if request.GET.condition == 'new' %}selected{% endif %}>Brand New (Sealed)</option>
                         <option value="refurbished" {% if request.GET.condition == 'refurbished' %}selected{% endif %}>Factory Refurbished</option>
@@ -56,8 +56,8 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Price Range</label>
-                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-black border border-neutral-800 rounded-xl p-3 text-xs font-mono text-neutral-300 focus:outline-none focus:border-red-600">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Price Range</label>
+                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="all">Any Price</option>
                         <option value="0-999" {% if request.GET.price_range == '0-999' %}selected{% endif %}>Rs.0 - Rs.999</option>
                         <option value="1000-4999" {% if request.GET.price_range == '1000-4999' %}selected{% endif %}>Rs.1,000 - Rs.4,999</option>
@@ -68,8 +68,8 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Sort Matrix</label>
-                    <select name="sort" onchange="this.form.submit()" class="w-full bg-black border border-neutral-800 rounded-xl p-3 text-xs font-mono text-neutral-300 focus:outline-none focus:border-red-600">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Sort Matrix</label>
+                    <select name="sort" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="latest" {% if request.GET.sort == 'latest' %}selected{% endif %}>Latest System Logs</option>
                         <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
                         <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div>
-                    <a href="/products/" class="bg-black hover:bg-neutral-900 text-neutral-500 hover:text-red-500 font-mono text-[10px] uppercase tracking-widest border border-neutral-800 h-[46px] rounded-xl transition-all flex items-center justify-center w-full">
+                    <a href="/products/" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#F97316] font-mono font-bold text-[10px] uppercase tracking-widest border border-[#E2E8F0] h-[46px] rounded-xl transition-all flex items-center justify-center w-full">
                         Reset Matrix
                     </a>
                 </div>
@@ -90,56 +90,56 @@
             {% if products %}
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {% for product in products %}
-                        <div class="bg-black border border-neutral-800 rounded-2xl overflow-hidden shadow-xl hover:border-red-600/50 transition-all flex flex-col group relative">
+                        <div class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm hover:border-[#F97316]/50 transition-all flex flex-col group relative">
                             
                             <a href="/products/{{ product.id }}/" class="flex flex-col flex-grow">
-                                <div class="aspect-square w-full bg-neutral-950 flex items-center justify-center p-4 relative overflow-hidden border-b border-neutral-900">
+                                <div class="aspect-square w-full bg-[#F8FAFC] flex items-center justify-center p-4 relative overflow-hidden border-b border-[#E2E8F0]">
                                     {% if product.product_image %}
                                         <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     {% else %}
-                                        <div class="w-full h-full flex flex-col items-center justify-center bg-neutral-900/50 rounded-xl">
-                                            <i data-lucide="camera" class="w-10 h-10 text-neutral-700 group-hover:scale-110 group-hover:text-red-500 transition-all duration-300"></i>
-                                            <span class="text-[9px] uppercase tracking-widest text-neutral-600 font-bold mt-2">No Imagery</span>
+                                        <div class="w-full h-full flex flex-col items-center justify-center bg-[#E2E8F0]/50 rounded-xl">
+                                            <i data-lucide="camera" class="w-10 h-10 text-[#475569] group-hover:scale-110 group-hover:text-[#F97316] transition-all duration-300"></i>
+                                            <span class="text-[9px] uppercase tracking-widest text-[#475569] font-bold mt-2">No Imagery</span>
                                         </div>
                                     {% endif %}
-                                    <span class="absolute top-3 left-3 bg-neutral-900/80 border border-neutral-800 backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-neutral-400 px-2.5 py-1 rounded-md">
+                                    <span class="absolute top-3 left-3 bg-white/90 border border-[#E2E8F0] backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm">
                                         {{ product.get_category_display }}
                                     </span>
                                 </div>
 
                                 <div class="p-5 flex-grow space-y-4">
                                     <div class="space-y-1.5">
-                                        <h3 class="font-bold text-neutral-200 text-sm tracking-tight group-hover:text-red-500 transition-colors line-clamp-1">
+                                        <h3 class="font-bold text-[#111827] text-sm tracking-tight group-hover:text-[#F97316] transition-colors line-clamp-1">
                                             {{ product.name }}
                                         </h3>
-                                        <p class="text-[11px] text-neutral-500 font-medium leading-relaxed">
+                                        <p class="text-[11px] text-[#475569] font-medium leading-relaxed">
                                             {{ product.description|default:"No technical specifications logs available."|truncatewords:10 }}
                                         </p>
                                     </div>
                                 </div>
                             </a>
 
-                            <div class="p-5 pt-0 border-t border-neutral-900/0">
-                                <div class="flex items-center justify-between pt-3 border-t border-neutral-900">
+                            <div class="p-5 pt-0 border-t border-transparent">
+                                <div class="flex items-center justify-between pt-3 border-t border-[#E2E8F0]">
                                     <div class="flex flex-col">
-                                        <span class="text-[9px] uppercase font-bold tracking-wider text-neutral-600">Valuation</span>
-                                        <span class="text-base font-mono font-black text-white">Rs. {{ product.price|floatformat:2 }}</span>
+                                        <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569]">Valuation</span>
+                                        <span class="text-base font-mono font-black text-[#111827]">Rs. {{ product.price|floatformat:2 }}</span>
                                     </div>
 
                                     {% if user.is_authenticated and not user.is_staff %}
                                         {% if product.stock > 0 %}
-                                            <a href="/cart/add/{{ product.id }}/" class="bg-neutral-900 hover:bg-red-600 text-neutral-400 hover:text-white w-9 h-9 rounded-xl transition-all border border-neutral-800 hover:border-red-600 flex items-center justify-center shadow-lg hover:shadow-red-600/20 z-10">
+                                            <a href="/cart/add/{{ product.id }}/" class="bg-white hover:bg-[#F97316] text-[#111827] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm z-10">
                                                 <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                                             </a>
                                         {% else %}
                                             <p class="text-xs font-bold text-red-500 uppercase tracking-wider">Out of Stock</p>
                                         {% endif %}
                                     {% elif user.is_staff %}
-                                        <a href="/dashboard/admin/?section=product-management" class="bg-neutral-900 hover:bg-red-600 text-neutral-400 hover:text-white w-9 h-9 rounded-xl transition-all border border-neutral-800 hover:border-red-600 flex items-center justify-center shadow-lg hover:shadow-red-600/20 z-10">
+                                        <a href="/dashboard/admin/?section=product-management" class="bg-white hover:bg-[#F97316] text-[#111827] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm z-10">
                                             <i data-lucide="settings" class="w-4 h-4"></i>
                                         </a>
                                     {% else %}
-                                        <a href="/login/" class="bg-neutral-900 hover:bg-red-600 text-neutral-400 hover:text-white w-9 h-9 rounded-xl transition-all border border-neutral-800 hover:border-red-600 flex items-center justify-center shadow-lg hover:shadow-red-600/20 z-10">
+                                        <a href="/login/" class="bg-white hover:bg-[#F97316] text-[#111827] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm z-10">
                                             <i data-lucide="log-in" class="w-4 h-4"></i>
                                         </a>
                                     {% endif %}
@@ -149,13 +149,13 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="flex flex-col items-center justify-center text-center py-24 border border-dashed border-neutral-800 rounded-3xl bg-black">
-                    <div class="w-16 h-16 bg-neutral-900/50 rounded-2xl flex items-center justify-center border border-neutral-800 mb-4">
-                        <i data-lucide="shield-alert" class="w-7 h-7 text-neutral-600"></i>
+                <div class="flex flex-col items-center justify-center text-center py-24 border border-dashed border-[#E2E8F0] rounded-3xl bg-[#FFFFFF] shadow-sm">
+                    <div class="w-16 h-16 bg-[#F8FAFC] rounded-2xl flex items-center justify-center border border-[#E2E8F0] mb-4">
+                        <i data-lucide="shield-alert" class="w-7 h-7 text-[#F97316]"></i>
                     </div>
-                    <h3 class="text-neutral-200 font-bold text-base tracking-tight">No Matching Configurations</h3>
-                    <p class="text-xs text-neutral-500 mt-1 max-w-xs leading-relaxed mb-6">No assets match your current filter matrix guidelines. Reset filters to scan again.</p>
-                    <a href="/products/" class="bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 hover:border-red-600/50 text-neutral-300 hover:text-white font-black px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all">
+                    <h3 class="text-[#111827] font-bold text-base tracking-tight">No Matching Configurations</h3>
+                    <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">No assets match your current filter matrix guidelines. Reset filters to scan again.</p>
+                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-black px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md">
                         Reset Search Grid
                     </a>
                 </div>

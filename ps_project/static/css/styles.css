@@ -1543,6 +1543,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(254 202 202 / var(--tw-border-opacity));
 }
 
+.border-transparent {
+  border-color: transparent;
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1800,6 +1804,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-black\/75 {
   background-color: rgb(0 0 0 / 0.75);
+}
+
+.bg-\[\#E2E8F0\]\/50 {
+  background-color: rgb(226 232 240 / 0.5);
+}
+
+.bg-\[\#0B0F14\]\/80 {
+  background-color: rgb(11 15 20 / 0.8);
+}
+
+.bg-white\/90 {
+  background-color: rgb(255 255 255 / 0.9);
 }
 
 .bg-\[radial-gradient\(\#e5e7eb_1px\2c transparent_1px\)\] {
@@ -2934,6 +2950,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-\[\#FEE2E2\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#E2E8F0\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 .hover\:text-red-600:hover {
