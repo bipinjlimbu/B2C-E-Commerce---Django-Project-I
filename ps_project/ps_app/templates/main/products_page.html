@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace | PixelShot</title>
+    <title>Products | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
@@ -15,15 +15,15 @@
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         <div>
-            <h1 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Asset Discovery</h1>
-            <p class="text-2xl lg:text-3xl font-black tracking-tight text-[#111827] uppercase">Tactical Hardware Catalog</p>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Browse Catalog</h2>
+            <p class="text-2xl lg:text-3xl font-black tracking-tight text-[#111827] uppercase">All Products</p>
         </div>
 
         <form method="GET" action="/products/" class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-5 shadow-sm">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 items-end">
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Category Allocation</label>
-                    <select name="category" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Category</label>
+                    <select name="category" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="">All Categories</option>
                         <option value="cameras" {% if request.GET.category == 'cameras' %}selected{% endif %}>Camera Bodies</option>
                         <option value="lenses" {% if request.GET.category == 'lenses' %}selected{% endif %}>Lenses & Optics</option>
@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Manufacturer / Brand</label>
-                    <select name="brand" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Brand</label>
+                    <select name="brand" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="all">All Brands</option>
                         {% for brand in brands %}
                             <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:"i" %}selected{% endif %}>{{ brand.name }}</option>
@@ -46,18 +46,18 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Condition Spec</label>
-                    <select name="condition" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Condition</label>
+                    <select name="condition" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="all">Any Condition</option>
-                        <option value="new" {% if request.GET.condition == 'new' %}selected{% endif %}>Brand New (Sealed)</option>
-                        <option value="refurbished" {% if request.GET.condition == 'refurbished' %}selected{% endif %}>Factory Refurbished</option>
-                        <option value="open_box" {% if request.GET.condition == 'open_box' %}selected{% endif %}>Open Box / Mint</option>
+                        <option value="new" {% if request.GET.condition == 'new' %}selected{% endif %}>Brand New</option>
+                        <option value="refurbished" {% if request.GET.condition == 'refurbished' %}selected{% endif %}>Refurbished</option>
+                        <option value="open_box" {% if request.GET.condition == 'open_box' %}selected{% endif %}>Open Box</option>
                     </select>
                 </div>
 
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Price Range</label>
-                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
                         <option value="all">Any Price</option>
                         <option value="0-999" {% if request.GET.price_range == '0-999' %}selected{% endif %}>Rs.0 - Rs.999</option>
                         <option value="1000-4999" {% if request.GET.price_range == '1000-4999' %}selected{% endif %}>Rs.1,000 - Rs.4,999</option>
@@ -68,9 +68,9 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Sort Matrix</label>
-                    <select name="sort" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-mono font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
-                        <option value="latest" {% if request.GET.sort == 'latest' %}selected{% endif %}>Latest System Logs</option>
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Sort By</label>
+                    <select name="sort" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                        <option value="latest" {% if request.GET.sort == 'latest' %}selected{% endif %}>Newest First</option>
                         <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
                         <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
                         <option value="stock_asc" {% if request.GET.sort == 'stock_asc' %}selected{% endif %}>Stock: Low to High</option>
@@ -79,8 +79,8 @@
                 </div>
 
                 <div>
-                    <a href="/products/" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#F97316] font-mono font-bold text-[10px] uppercase tracking-widest border border-[#E2E8F0] h-[46px] rounded-xl transition-all flex items-center justify-center w-full">
-                        Reset Matrix
+                    <a href="/products/" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#F97316] font-bold text-[10px] uppercase tracking-widest border border-[#E2E8F0] h-[46px] rounded-xl transition-all flex items-center justify-center w-full">
+                        Reset Filters
                     </a>
                 </div>
             </div>
@@ -90,19 +90,19 @@
             {% if products %}
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {% for product in products %}
-                        <div class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm hover:border-[#F97316]/50 transition-all flex flex-col group relative">
+                        <div class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#F97316]/50 transition-all flex flex-col group relative">
                             
                             <a href="/products/{{ product.id }}/" class="flex flex-col flex-grow">
-                                <div class="aspect-square w-full bg-[#F8FAFC] flex items-center justify-center p-4 relative overflow-hidden border-b border-[#E2E8F0]">
+                                <div class="aspect-square w-full bg-[#F8FAFC] relative overflow-hidden border-b border-[#E2E8F0]">
                                     {% if product.product_image %}
                                         <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     {% else %}
-                                        <div class="w-full h-full flex flex-col items-center justify-center bg-[#E2E8F0]/50 rounded-xl">
+                                        <div class="w-full h-full flex flex-col items-center justify-center bg-[#E2E8F0]/40">
                                             <i data-lucide="camera" class="w-10 h-10 text-[#475569] group-hover:scale-110 group-hover:text-[#F97316] transition-all duration-300"></i>
-                                            <span class="text-[9px] uppercase tracking-widest text-[#475569] font-bold mt-2">No Imagery</span>
+                                            <span class="text-[9px] uppercase tracking-widest text-[#475569] font-bold mt-2">No Image</span>
                                         </div>
                                     {% endif %}
-                                    <span class="absolute top-3 left-3 bg-white/90 border border-[#E2E8F0] backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm">
+                                    <span class="absolute top-3 left-3 bg-[#FFFFFF]/90 border border-[#E2E8F0] backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm">
                                         {{ product.get_category_display }}
                                     </span>
                                 </div>
@@ -113,33 +113,33 @@
                                             {{ product.name }}
                                         </h3>
                                         <p class="text-[11px] text-[#475569] font-medium leading-relaxed">
-                                            {{ product.description|default:"No technical specifications logs available."|truncatewords:10 }}
+                                            {{ product.description|default:"No description available."|truncatewords:10 }}
                                         </p>
                                     </div>
                                 </div>
                             </a>
 
-                            <div class="p-5 pt-0 border-t border-transparent">
+                            <div class="p-5 pt-0 border-t border-[#E2E8F0]/0">
                                 <div class="flex items-center justify-between pt-3 border-t border-[#E2E8F0]">
                                     <div class="flex flex-col">
-                                        <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569]">Valuation</span>
+                                        <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569]">Price</span>
                                         <span class="text-base font-mono font-black text-[#111827]">Rs. {{ product.price|floatformat:2 }}</span>
                                     </div>
 
                                     {% if user.is_authenticated and not user.is_staff %}
                                         {% if product.stock > 0 %}
-                                            <a href="/cart/add/{{ product.id }}/" class="bg-white hover:bg-[#F97316] text-[#111827] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm z-10">
+                                            <a href="/cart/add/{{ product.id }}/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Add to Cart">
                                                 <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                                             </a>
                                         {% else %}
-                                            <p class="text-xs font-bold text-red-500 uppercase tracking-wider">Out of Stock</p>
+                                            <p class="text-xs font-bold text-[#DC2626] uppercase tracking-wider">Out of Stock</p>
                                         {% endif %}
                                     {% elif user.is_staff %}
-                                        <a href="/dashboard/admin/?section=product-management" class="bg-white hover:bg-[#F97316] text-[#111827] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm z-10">
+                                        <a href="/dashboard/admin/?section=product-management" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Manage Product">
                                             <i data-lucide="settings" class="w-4 h-4"></i>
                                         </a>
                                     {% else %}
-                                        <a href="/login/" class="bg-white hover:bg-[#F97316] text-[#111827] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm z-10">
+                                        <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Log In to Buy">
                                             <i data-lucide="log-in" class="w-4 h-4"></i>
                                         </a>
                                     {% endif %}
@@ -151,12 +151,12 @@
             {% else %}
                 <div class="flex flex-col items-center justify-center text-center py-24 border border-dashed border-[#E2E8F0] rounded-3xl bg-[#FFFFFF] shadow-sm">
                     <div class="w-16 h-16 bg-[#F8FAFC] rounded-2xl flex items-center justify-center border border-[#E2E8F0] mb-4">
-                        <i data-lucide="shield-alert" class="w-7 h-7 text-[#F97316]"></i>
+                        <i data-lucide="package-open" class="w-8 h-8 text-[#475569]"></i>
                     </div>
-                    <h3 class="text-[#111827] font-bold text-base tracking-tight">No Matching Configurations</h3>
-                    <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">No assets match your current filter matrix guidelines. Reset filters to scan again.</p>
-                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-black px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md">
-                        Reset Search Grid
+                    <h3 class="text-[#111827] font-bold text-base tracking-tight">No Products Found</h3>
+                    <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">No products match your selected filters. Reset filters to see all items.</p>
+                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md">
+                        Reset Filters
                     </a>
                 </div>
             {% endif %}
