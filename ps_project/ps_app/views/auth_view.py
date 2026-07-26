@@ -32,9 +32,6 @@ def register_view(request):
             
         if password != confirm_password:
             errors['confirm_password'] = 'Passwords do not match.'
-            
-        if not address:
-            errors['address'] = 'Shipping address is required.'
 
         if errors:
             return render(request, 'auth/register_page.html', {'errors': errors, 'data': request.POST})
