@@ -839,6 +839,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 9rem;
 }
 
+.h-2\.5 {
+  height: 0.625rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -953,6 +957,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-36 {
   width: 9rem;
+}
+
+.w-2\.5 {
+  width: 0.625rem;
 }
 
 .min-w-\[320px\] {
@@ -1206,6 +1214,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.625rem;
 }
 
+.gap-10 {
+  gap: 2.5rem;
+}
+
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1276,6 +1288,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+}
+
+.space-y-16 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(4rem * var(--tw-space-y-reverse));
 }
 
 .divide-y > :not([hidden]) ~ :not([hidden]) {
@@ -1547,6 +1565,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: transparent;
 }
 
+.border-\[\#F97316\]\/30 {
+  border-color: rgb(249 115 22 / 0.3);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1816,6 +1838,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
+}
+
+.bg-emerald-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 185 129 / var(--tw-bg-opacity));
 }
 
 .bg-\[radial-gradient\(\#e5e7eb_1px\2c transparent_1px\)\] {
@@ -2094,6 +2121,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-4 {
   padding-bottom: 1rem;
+}
+
+.pt-14 {
+  padding-top: 3.5rem;
 }
 
 .text-left {
@@ -2572,6 +2603,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .shadow-\[\#F97316\]\/20 {
   --tw-shadow-color: rgb(249 115 22 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-emerald-500\/30 {
+  --tw-shadow-color: rgb(16 185 129 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-red-500\/30 {
+  --tw-shadow-color: rgb(239 68 68 / 0.3);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -3367,6 +3408,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 4rem;
   }
 
+  .lg\:gap-14 {
+    gap: 3.5rem;
+  }
+
   .lg\:border-b-0 {
     border-bottom-width: 0px;
   }
@@ -3409,6 +3454,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .lg\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .lg\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .lg\:pt-0 {
