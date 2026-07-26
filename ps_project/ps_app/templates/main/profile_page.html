@@ -56,13 +56,11 @@
                         </a>
                     {% endif %}
 
-                    <!-- Edit Profile: Premium solid border-style button with orange icon badge -->
                     <a href="/profile/edit/" class="w-full bg-[#111827] hover:bg-[#1F2937] text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2.5 text-sm border-2 border-[#1F2937] hover:border-[#F97316]/50 shadow-sm group">
                         <i data-lucide="edit-3" class="w-4 h-4 text-[#F97316] group-hover:scale-110 transition-transform"></i>
                         <span>Edit Profile</span>
                     </a>
                     
-                    <!-- Delete Account -->
                     {% if not user.is_staff %}
                         <a href="/profile/delete/{{ user.id }}/" class="w-full bg-[#2A1215] hover:bg-[#3B171C] text-red-400 border border-red-900/40 hover:border-red-700/60 font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
                             <i data-lucide="trash-2" class="w-4 h-4 text-red-400"></i>
