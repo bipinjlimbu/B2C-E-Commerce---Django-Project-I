@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.db.models import Q
 from ..models import Brand, Product, Wishlist
 
-@login_required
 def products_view(request):
     context = {}
     
