@@ -2667,10 +2667,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(212 212 212 / var(--tw-border-opacity));
 }
 
+.after\:border-\[\#CBD5E1\]::after {
+  content: var(--tw-content);
+  --tw-border-opacity: 1;
+  border-color: rgb(203 213 225 / var(--tw-border-opacity));
+}
+
 .after\:bg-neutral-400::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(163 163 163 / var(--tw-bg-opacity));
+}
+
+.after\:bg-white::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .after\:transition-all::after {
@@ -3017,6 +3029,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .peer:checked ~ .peer-checked\:bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.peer:checked ~ .peer-checked\:bg-\[\#F97316\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after {
