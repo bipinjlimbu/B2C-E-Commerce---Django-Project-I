@@ -1,17 +1,17 @@
 <div class="space-y-6">
     <div>
-        <h2 class="text-xs font-bold uppercase tracking-widest text-red-600 mb-1">Active Pipelines</h2>
-        <p class="text-2xl font-black tracking-tight text-neutral-900 uppercase">Pending Orders Matrix</p>
+        <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Orders</h2>
+        <p class="text-2xl font-black tracking-tight text-[#111827] uppercase">Active Orders</p>
     </div>
 
     <div class="space-y-4">
         {% for order in pending_orders %}
-            <div class="bg-white border border-neutral-200 rounded-2xl p-6 min-h-[140px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 transition-all shadow-sm group">
+            <div class="bg-white border border-[#E2E8F0] rounded-2xl p-6 min-h-[140px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-[#F97316]/30 transition-all shadow-sm group">
                 
                 <div class="space-y-4 flex-grow w-full">
                     
                     <div class="flex flex-wrap items-center gap-3">
-                        <span class="font-mono font-black text-base text-neutral-900">#ORDER-{{ order.id }}</span>
+                        <span class="font-mono font-black text-base text-[#111827]">#ORDER-{{ order.id }}</span>
                         
                         {% if order.status == 'paid' %}
                             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 text-[10px] font-black uppercase tracking-wider">
@@ -34,26 +34,26 @@
                                 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> {{ order.get_status_display }}
                             </span>
                         {% else %}
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-neutral-50 border border-neutral-200 text-neutral-600 text-[10px] font-black uppercase tracking-wider">
-                                <span class="w-1.5 h-1.5 rounded-full bg-neutral-400"></span> {{ order.get_status_display }}
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] text-[#475569] text-[10px] font-black uppercase tracking-wider">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span> {{ order.get_status_display }}
                             </span>
                         {% endif %}
                         
-                        <span class="text-xs text-neutral-400 font-mono">| Registered: {{ order.created_at|date:"Y-m-d H:i" }}</span>
+                        <span class="text-xs text-[#475569] font-mono">| Placed: {{ order.created_at|date:"Y-m-d H:i" }}</span>
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-4xl">
                         {% for item in order.items.all %}
-                            <div class="flex items-center gap-3 bg-neutral-50 border border-neutral-200/60 p-2 rounded-xl">
-                                <div class="w-10 h-10 bg-white border border-neutral-200 rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0">
+                            <div class="flex items-center gap-3 bg-[#F8FAFC] border border-[#E2E8F0] p-2 rounded-xl">
+                                <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0">
                                     {% if item.product.product_image %}
                                         <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover">
                                     {% else %}
-                                        <i data-lucide="image" class="w-6 h-6 text-neutral-300"></i>
+                                        <i data-lucide="image" class="w-6 h-6 text-[#94A3B8]"></i>
                                     {% endif %}
                                 </div>
-                                <span class="text-neutral-700 text-xs font-black tracking-tight truncate">
-                                    {{ item.product.name }} <span class="text-neutral-400 font-medium ml-1">× {{ item.quantity }}</span>
+                                <span class="text-[#111827] text-xs font-black tracking-tight truncate">
+                                    {{ item.product.name }} <span class="text-[#475569] font-medium ml-1">× {{ item.quantity }}</span>
                                 </span>
                             </div>
                         {% endfor %}
@@ -61,34 +61,34 @@
 
                 </div>
 
-                <div class="flex items-center justify-between lg:justify-end gap-8 border-t lg:border-t-0 border-neutral-100 pt-4 lg:pt-0 shrink-0">
+                <div class="flex items-center justify-between lg:justify-end gap-8 border-t lg:border-t-0 border-[#E2E8F0] pt-4 lg:pt-0 shrink-0">
                     <div class="flex flex-col lg:text-right">
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-neutral-400">Total Value</span>
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569]">Total Amount</span>
                         <div class="flex items-baseline gap-0.5">
-                            <span class="text-xs font-mono font-bold text-neutral-500">Rs.</span>
-                            <span class="text-base font-mono font-black text-neutral-900">{{ order.total_amount|floatformat:2 }}</span>
+                            <span class="text-xs font-mono font-bold text-[#475569]">Rs.</span>
+                            <span class="text-base font-mono font-black text-[#111827]">{{ order.total_amount|floatformat:2 }}</span>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2">
                         {% if order.status == "paid" %}
-                            <div class="bg-neutral-900 text-white font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md whitespace-nowrap">
+                            <div class="bg-[#111827] text-white font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-sm whitespace-nowrap">
                                 <i data-lucide="package" class="w-3.5 h-3.5 text-amber-500 animate-pulse"></i>
-                                <span>Awaiting Dispatch</span>
+                                <span>Processing</span>
                             </div>
                         {% elif order.status == "shipping" %}
-                            <div class="bg-neutral-900 text-white font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md whitespace-nowrap">
-                                <i data-lucide="radar" class="w-3.5 h-3.5 text-red-500"></i>
-                                <span>On the Way</span>
+                            <div class="bg-[#111827] text-white font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-sm whitespace-nowrap">
+                                <i data-lucide="truck" class="w-3.5 h-3.5 text-[#F97316]"></i>
+                                <span>Shipped</span>
                             </div>
                         {% elif order.status == "delivered" %}
-                            <a href="/order/confirmed/{{ order.id }}" class="bg-neutral-900 hover:bg-neutral-800 text-white font-black h-11 px-5 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md whitespace-nowrap active:scale-95">
-                                <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                            <a href="/order/confirmed/{{ order.id }}" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-black h-11 px-5 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-sm whitespace-nowrap active:scale-95">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-white"></i>
                                 <span>Mark as Received</span>
                             </a>
                         {% endif %}
 
-                        <a href="/order/cancelled/{{ order.id }}" class="bg-neutral-50 hover:bg-red-50 border border-neutral-200 hover:border-red-200 text-neutral-400 hover:text-red-600 h-11 w-11 rounded-xl transition-all flex items-center justify-center active:scale-95" title="Abort Order Pipeline">
+                        <a href="/order/cancelled/{{ order.id }}" class="bg-[#F8FAFC] hover:bg-red-50 border border-[#E2E8F0] hover:border-red-200 text-[#475569] hover:text-red-600 h-11 w-11 rounded-xl transition-all flex items-center justify-center active:scale-95" title="Cancel Order">
                             <i data-lucide="x-circle" class="w-4 h-4"></i>
                         </a>
                     </div>
@@ -96,12 +96,12 @@
 
             </div>
         {% empty %}
-            <div class="flex flex-col items-center justify-center text-center p-12 bg-neutral-50 border border-dashed border-neutral-300 rounded-2xl min-h-[220px]">
-                <div class="w-12 h-12 rounded-xl bg-white border border-neutral-200 flex items-center justify-center mb-4 shadow-sm text-neutral-400">
+            <div class="flex flex-col items-center justify-center text-center p-12 bg-[#F8FAFC] border border-dashed border-[#E2E8F0] rounded-2xl min-h-[220px]">
+                <div class="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center mb-4 shadow-sm text-[#475569]">
                     <i data-lucide="inbox" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-sm font-black text-neutral-900 uppercase tracking-wider mb-1">No Pending Operations</h3>
-                <p class="text-xs text-neutral-500 max-w-xs font-medium">The queue is fully processed. All active incoming pipelines have been cleared.</p>
+                <h3 class="text-sm font-black text-[#111827] uppercase tracking-wider mb-1">No Pending Orders</h3>
+                <p class="text-xs text-[#475569] max-w-xs font-medium">You currently have no active orders in your queue.</p>
             </div>
         {% endfor %}
     </div>
