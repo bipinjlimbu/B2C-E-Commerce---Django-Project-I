@@ -1,70 +1,82 @@
 <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1">Catalog Architecture</h2>
-            <h1 class="text-2xl font-black text-neutral-900 tracking-tight">Brand Control</h1>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Catalog</h2>
+            <h1 class="text-2xl font-black text-[#111827] tracking-tight">Brand Management</h1>
         </div>
         <div class="flex items-center gap-3">
-            <div class="bg-black text-white px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-bold font-mono">
-                Total Brands: {{ brands|length|default:"0" }}
+            <div class="bg-white text-[#111827] px-4 py-2.5 rounded-xl border border-[#E2E8F0] text-xs font-bold shadow-sm flex items-center gap-2">
+                <i data-lucide="tag" class="w-4 h-4 text-[#F97316]"></i>
+                Total Brands: <span class="text-[#F97316] font-extrabold">{{ brands|length|default:"0" }}</span>
             </div>
-            <a href="/brands/add/" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-3 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-red-600/10 active:scale-95">
+            <a href="/brands/add/" class="bg-[#F97316] hover:bg-[#ea580c] text-white text-xs font-bold uppercase tracking-wider px-4 py-3 rounded-xl transition-all flex items-center gap-2 shadow-sm active:scale-95">
                 <i data-lucide="plus" class="w-4 h-4"></i>
-                Add New Brand
+                Add Brand
             </a>
         </div>
     </div>
 
-    <div class="bg-black border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden">
+    <div class="bg-white border border-[#E2E8F0] rounded-2xl shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 {% if brands %}
                     <thead>
-                        <tr class="border-b border-neutral-800 text-[10px] font-bold uppercase tracking-widest text-neutral-400 bg-neutral-950/50">
-                            <th class="p-4 pl-6">Brand Log</th>
-                            <th class="p-4">Products Linked</th>
-                            <th class="p-4">Registration Identity</th>
-                            <th class="p-4 pr-6 text-right">System Actions</th>
+                        <tr class="border-b border-[#E2E8F0] text-[10px] font-bold uppercase tracking-wider text-[#475569] bg-[#F8FAFC]">
+                            <th class="p-4 pl-6">Brand Details</th>
+                            <th class="p-4">Linked Products</th>
+                            <th class="p-4">Created At</th>
+                            <th class="p-4 pr-6 text-right">Actions</th>
                         </tr>
                     </thead>
                 {% endif %}
-                <tbody class="divide-y divide-neutral-900 text-sm font-semibold text-neutral-300">
+                <tbody class="divide-y divide-[#E2E8F0] text-sm text-[#475569]">
                     {% for brand in brands %}
-                        <tr class="hover:bg-neutral-900/30 transition-colors">
+                        <tr class="hover:bg-[#F8FAFC]/80 transition-colors">
                             <td class="p-4 pl-6 flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden flex items-center justify-center shrink-0">
+                                <div class="w-10 h-10 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] overflow-hidden flex items-center justify-center shrink-0 shadow-sm">
                                     {% if brand.logo %}
                                         <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="w-full h-full object-contain p-1">
                                     {% else %}
-                                        <i data-lucide="image" class="w-4 h-4 text-neutral-600"></i>
+                                        <i data-lucide="image" class="w-4 h-4 text-[#475569]"></i>
                                     {% endif %}
                                 </div>
                                 <div>
-                                    <span class="text-white block font-bold">{{ brand.name }}</span>
+                                    <span class="text-[#111827] block font-bold text-sm">{{ brand.name }}</span>
                                 </div>
                             </td>
-                            <td class="p-4 font-mono text-sm text-neutral-300">
-                                {{ brand.product_count|default:"0" }} Products
+                            <td class="p-4 font-semibold text-xs text-[#111827]">
+                                <span class="bg-[#F8FAFC] border border-[#E2E8F0] px-2.5 py-1 rounded-lg">
+                                    {{ brand.product_count|default:"0" }} Products
+                                </span>
                             </td>
-                            <td class="p-4 font-mono text-xs text-neutral-500">
+                            <td class="p-4 text-xs font-medium text-[#475569]">
                                 {{ brand.created_at|date:"Y-m-d H:i" }}
                             </td>
                             <td class="p-4 pr-6 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="/brands/edit/{{ brand.id }}/" class="p-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white rounded-xl border border-neutral-800 transition-all">
+                                    <a href="/brands/edit/{{ brand.id }}/" 
+                                       title="Edit Brand"
+                                       class="p-2 bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#111827] rounded-xl border border-[#E2E8F0] transition-all shadow-sm">
                                         <i data-lucide="edit-3" class="w-4 h-4"></i>
                                     </a>
-                                    <a href="/brands/delete/{{ brand.id }}/" class="p-2 bg-neutral-900 hover:bg-red-600/20 text-neutral-400 hover:text-red-500 rounded-xl border border-neutral-800 hover:border-red-600/30 transition-all">
+                                    <a href="/brands/delete/{{ brand.id }}/" 
+                                       title="Delete Brand"
+                                       class="p-2 bg-[#F8FAFC] hover:bg-red-50 text-[#475569] hover:text-red-600 rounded-xl border border-[#E2E8F0] hover:border-red-200 transition-all shadow-sm">
                                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                                     </a>
                                 </div>
                             </td>
                         </tr>
                     {% empty %}
-                        <div class="bg-neutral-900 text-neutral-400 p-4 rounded-xl text-center">
-                            <i data-lucide="image-off" class="w-8 h-8 mx-auto text-neutral-500"></i>
-                            <p class="mt-2">No brands found.</p>
-                        </div>
+                        <tr>
+                            <td colspan="4" class="p-12 text-center bg-white text-[#475569]">
+                                <div class="w-12 h-12 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-3">
+                                    <i data-lucide="image-off" class="w-6 h-6 text-[#475569]"></i>
+                                </div>
+                                <p class="text-sm font-bold text-[#111827]">No brands found.</p>
+                                <p class="text-xs text-[#475569] mt-1">Click the "Add Brand" button above to create one.</p>
+                            </td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
