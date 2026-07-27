@@ -94,6 +94,8 @@
                     {% endif %}
 
                     <div class="flex gap-2 w-full sm:w-auto">
+
+                        {% if not user.is_staff %}
                         <a href="/products/wishlist-toggle/{{ product.id }}/" class="bg-[#FFFFFF] hover:bg-[#F8FAFC] text-[#F97316] w-12 h-12 rounded-xl transition-all flex items-center justify-center border border-[#E2E8F0] hover:border-[#F97316] shadow-sm" title="Remove from Wishlist">
                         {% if product.in_wishlist %}
                             <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
@@ -101,6 +103,7 @@
                             <i data-lucide="heart" class="w-4 h-4"></i>
                         {% endif %}
                         </a>
+                        {% endif %}
 
                         <a href="javascript:history.back()" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#111827] font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest border border-[#E2E8F0] whitespace-nowrap">
                             Back
@@ -138,58 +141,61 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl divide-y divide-[#E2E8F0] shadow-sm overflow-hidden">
 
                 {% for review in reviews %}
-                <div class="bg-[#FFFFFF] border border-[#E2E8F0] p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-[#F97316]/50 transition-all relative group shadow-sm">
-                    
-                    {% if review.customer == request.user or request.user.is_staff %}
-                        <div class="absolute top-4 right-4 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-                            {% if review.customer == request.user %}
-                                <a href="/review/edit/{{ review.id }}/" class="w-7 h-7 bg-[#F8FAFC] hover:bg-[#E2E8F0] border border-[#E2E8F0] rounded-lg flex items-center justify-center text-[#475569] hover:text-[#111827] transition-colors" title="Edit Review">
-                                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                                </a>
+                <div class="p-5 hover:bg-[#F8FAFC]/50 transition-colors relative group">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-xs font-bold text-[#F97316] font-mono overflow-hidden shrink-0 mt-0.5">
+                            {% if review.customer.profile_picture %}
+                                <img src="{{ review.customer.profile_picture.url }}" alt="{{ review.customer.get_full_name }}" class="w-full h-full object-cover">
+                            {% else %}
+                                {{ review.customer.get_full_name|slice:":1"|upper }}
                             {% endif %}
-                            <a href="/review/delete/{{ review.id }}/" class="w-7 h-7 bg-[#F8FAFC] hover:bg-red-50 border border-[#E2E8F0] hover:border-red-200 rounded-lg flex items-center justify-center text-[#475569] hover:text-red-500 transition-colors" title="Delete Review">
-                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                            </a>
                         </div>
-                    {% endif %}
 
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-xs font-bold text-[#F97316] font-mono overflow-hidden">
-                                    {% if review.customer.profile_picture %}
-                                        <img src="{{ review.customer.profile_picture.url }}" alt="{{ review.customer.get_full_name }}" class="w-full h-full object-cover">
-                                    {% else %}
-                                        {{ review.customer.get_full_name|slice:":1"|upper }}
+                        <div class="flex-1 min-w-0 space-y-1.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="text-xs font-bold text-[#111827] tracking-wide">{{ review.customer.get_full_name }}</h4>
+                                    <span class="text-[#CBD5E1] text-xs">•</span>
+                                    <span class="text-[10px] font-mono text-[#475569]">{{ review.created_at|timesince }} ago</span>
+                                </div>
+
+                                <div class="flex items-center gap-3">
+                                    <div class="flex text-[#F97316]">
+                                        {% for i in "12345" %}
+                                            {% if forloop.counter <= review.rating %}
+                                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                            {% else %}
+                                                <i data-lucide="star" class="w-3 h-3 text-[#E2E8F0]"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                    {% if review.customer == request.user or request.user.is_staff %}
+                                        <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                            {% if review.customer == request.user %}
+                                                <a href="/review/edit/{{ review.id }}/" class="w-6 h-6 bg-[#F8FAFC] hover:bg-[#E2E8F0] border border-[#E2E8F0] rounded-md flex items-center justify-center text-[#475569] hover:text-[#111827] transition-colors" title="Edit Review">
+                                                    <i data-lucide="edit-3" class="w-3 h-3"></i>
+                                                </a>
+                                            {% endif %}
+                                            <a href="/review/delete/{{ review.id }}/" class="w-6 h-6 bg-[#F8FAFC] hover:bg-red-50 border border-[#E2E8F0] hover:border-red-200 rounded-md flex items-center justify-center text-[#475569] hover:text-red-500 transition-colors" title="Delete Review">
+                                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                            </a>
+                                        </div>
                                     {% endif %}
                                 </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-[#111827] tracking-wide pr-16">{{ review.customer.get_full_name }}</h4>
-                                    <p class="text-[9px] text-[#475569] font-mono">{{ review.customer.email }}</p>
-                                </div>
                             </div>
-                            
-                            <div class="flex text-[#F97316] {% if review.customer == request.user %}group-hover:opacity-0 transition-opacity duration-200 pr-1{% endif %}">
-                                {% for i in "12345" %}
-                                    {% if forloop.counter <= review.rating %}
-                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                    {% else %}
-                                        <i data-lucide="star" class="w-3 h-3 text-[#E2E8F0]"></i>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
+
+                            <p class="text-xs text-[#475569] font-medium leading-relaxed">
+                                {{ review.comment }}
+                            </p>
                         </div>
-                        <p class="text-xs text-[#475569] font-medium leading-relaxed">
-                            {{ review.comment }}
-                        </p>
                     </div>
-                    <span class="text-[9px] font-mono text-[#475569] uppercase tracking-widest">Posted {{ review.created_at|timesince }} ago</span>
                 </div>
                 {% empty %}
-                <div class="col-span-full bg-[#FFFFFF] border border-dashed border-[#E2E8F0] py-12 px-8 rounded-2xl flex flex-col justify-center items-center space-y-3 text-center shadow-sm">
+                <div class="py-12 px-8 flex flex-col justify-center items-center space-y-3 text-center">
                     <i data-lucide="message-square" class="w-10 h-10 text-[#475569]"></i>
                     <p class="text-xs font-bold text-[#475569]">No reviews written for this product yet.</p>
                 </div>

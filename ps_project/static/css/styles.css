@@ -995,6 +995,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-width: 800px;
 }
 
+.min-w-0 {
+  min-width: 0px;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
