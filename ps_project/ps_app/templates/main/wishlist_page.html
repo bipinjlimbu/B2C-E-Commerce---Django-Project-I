@@ -3,72 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Tactical Assets | PixelShot</title>
+    <title>Saved Assets | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-black text-neutral-100 font-sans min-h-screen flex flex-col">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#475569]">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 space-y-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-8">
         <div>
-            <h1 class="text-xs font-bold uppercase tracking-widest text-red-600 mb-1">Tactical Logistics</h1>
-            <p class="text-2xl lg:text-3xl font-black tracking-tight text-white uppercase">Saved Assets Matrix</p>
+            <h1 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Personal Collection</h1>
+            <p class="text-2xl lg:text-3xl font-black tracking-tight text-[#111827] uppercase">Saved Wishlist</p>
         </div>
 
         <div class="w-full">
             {% if wishlist_items %}
                 <div class="space-y-4">
                     {% for item in wishlist_items %}
-                        <div class="bg-black border border-neutral-900 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-neutral-800 transition-all group">
+                        <div class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-[#F97316]/50 transition-all shadow-sm group relative overflow-hidden">
                             
                             <a href="/products/{{ item.product.id }}/" class="flex flex-col sm:flex-row items-center gap-6 flex-grow w-full">
-                                <div class="w-20 h-20 bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden flex items-center justify-center p-2 flex-shrink-0">
+                                <div class="w-24 h-24 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl overflow-hidden flex items-center justify-center relative flex-shrink-0">
                                     {% if item.product.product_image %}
-                                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 {% if item.product.stock <= 0 %}grayscale contrast-125 opacity-50{% endif %}">
                                     {% else %}
-                                        <i data-lucide="camera" class="w-6 h-6 text-neutral-700"></i>
+                                        <div class="w-full h-full flex flex-col items-center justify-center bg-[#E2E8F0]/40">
+                                            <i data-lucide="camera" class="w-6 h-6 text-[#475569]"></i>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if item.product.stock <= 0 %}
+                                        <div class="absolute inset-0 bg-[#0B0F14]/30 backdrop-blur-[1px] flex items-center justify-center z-20">
+                                            <span class="bg-[#DC2626] text-white font-black text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-md shadow-lg border border-white -rotate-12 transform scale-105 select-none">
+                                                Sold Out
+                                            </span>
+                                        </div>
                                     {% endif %}
                                 </div>
 
                                 <div class="space-y-2 text-center sm:text-left flex-grow">
                                     <div class="flex flex-col items-center sm:items-start gap-1">
-                                        <h3 class="font-bold text-neutral-200 text-base tracking-tight group-hover:text-red-500 transition-colors">
+                                        <h3 class="font-bold text-[#111827] text-base tracking-tight group-hover:text-[#F97316] transition-colors">
                                             {{ item.product.name }}
                                         </h3>
-                                        <span class="bg-neutral-900 border border-neutral-800 text-[9px] font-black uppercase tracking-widest text-neutral-400 px-2 py-0.5 rounded-md">
+                                        <span class="bg-[#F8FAFC] border border-[#E2E8F0] text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm">
                                             {{ item.product.get_category_display }}
                                         </span>
                                     </div>
                                 </div>
                             </a>
 
-                            <div class="flex flex-row sm:items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-neutral-900 pt-4 sm:pt-0">
+                            <div class="flex flex-row sm:items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-[#E2E8F0] pt-4 sm:pt-0">
                                 <div class="flex flex-col">
-                                    <span class="text-[9px] uppercase font-bold tracking-wider text-neutral-600">Valuation</span>
-                                    <div class="flex items-baseline gap-1">
-                                        <span class="text-sm font-mono font-bold text-neutral-400">Rs.</span>
-                                        <span class="text-base font-mono font-black text-white">{{ item.product.price|floatformat:2 }}</span>
-                                    </div>
+                                    <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569]">Price</span>
+                                    <span class="text-base font-mono font-black text-[#111827]">Rs. {{ item.product.price|floatformat:2 }}</span>
                                 </div>
 
                                 <div class="flex items-center gap-3">
                                     {% if item.product.stock > 0 %}
-                                        <a href="/cart/add/{{ item.product.id }}/" class="bg-red-600 hover:bg-red-700 text-white font-bold h-10 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-lg shadow-red-600/10 whitespace-nowrap">
+                                        <a href="/cart/add/{{ item.product.id }}/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-bold h-10 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md whitespace-nowrap">
                                             <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
                                             <span>Add to Cart</span>
                                         </a>
                                     {% else %}
-                                        <button disabled class="bg-neutral-950 text-neutral-700 font-bold h-10 px-4 rounded-xl border border-neutral-900 flex items-center justify-center gap-2 text-xs uppercase tracking-widest cursor-not-allowed whitespace-nowrap">
+                                        <button disabled class="bg-[#E2E8F0] text-[#475569] font-bold h-10 px-4 rounded-xl border border-[#E2E8F0] flex items-center justify-center gap-2 text-xs uppercase tracking-widest cursor-not-allowed whitespace-nowrap">
                                             <i data-lucide="slash" class="w-3.5 h-3.5"></i>
                                             <span>Out of Stock</span>
                                         </button>
                                     {% endif %}
 
-                                    <a href="/products/wishlist/remove/{{ item.product.id }}/" class="bg-neutral-950 hover:bg-neutral-900 text-neutral-500 hover:text-red-500 border border-neutral-900 hover:border-red-600/30 h-10 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-lg font-bold whitespace-nowrap" title="Remove Asset">
+                                    <a href="/products/wishlist/remove/{{ item.product.id }}/" class="bg-[#F8FAFC] hover:bg-red-50 text-[#475569] hover:text-[#DC2626] border border-[#E2E8F0] hover:border-red-200 h-10 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-sm font-bold whitespace-nowrap" title="Remove Asset">
                                         <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                         <span>Remove</span>
                                     </a>
@@ -79,14 +86,14 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="flex flex-col items-center justify-center text-center py-24 border border-dashed border-neutral-800 rounded-3xl bg-black">
-                    <div class="w-16 h-16 bg-neutral-900/50 rounded-2xl flex items-center justify-center border border-neutral-800 mb-4">
-                        <i data-lucide="archive" class="w-7 h-7 text-neutral-600"></i>
+                <div class="flex flex-col items-center justify-center text-center py-24 border border-dashed border-[#E2E8F0] rounded-3xl bg-[#FFFFFF] shadow-sm">
+                    <div class="w-16 h-16 bg-[#F8FAFC] rounded-2xl flex items-center justify-center border border-[#E2E8F0] mb-4">
+                        <i data-lucide="heart-off" class="w-7 h-7 text-[#475569]"></i>
                     </div>
-                    <h3 class="text-neutral-200 font-bold text-base tracking-tight">Wishlist Matrix Empty</h3>
-                    <p class="text-xs text-neutral-500 mt-1 max-w-xs leading-relaxed mb-6">No hardware assets have been allocated to your profile's custom watchlist archive yet.</p>
-                    <a href="/products/" class="bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 hover:border-red-600/50 text-neutral-300 hover:text-white font-black px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all">
-                        Browse Main Terminal
+                    <h3 class="text-[#111827] font-bold text-base tracking-tight">Your Wishlist is Empty</h3>
+                    <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">No items have been added to your saved wishlist collection yet.</p>
+                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md">
+                        Explore Catalog
                     </a>
                 </div>
             {% endif %}

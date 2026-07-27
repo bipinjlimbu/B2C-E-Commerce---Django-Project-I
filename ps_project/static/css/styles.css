@@ -467,7 +467,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.backdrop-blur-md, .backdrop-blur-\[2px\] {
+.backdrop-blur-md, .backdrop-blur-\[2px\], .backdrop-blur-\[1px\] {
   --tw-backdrop-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-backdrop-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-backdrop-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -2705,6 +2705,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   backdrop-filter: var(--tw-backdrop-filter);
 }
 
+.backdrop-blur-\[1px\] {
+  --tw-backdrop-blur: blur(1px);
+  backdrop-filter: var(--tw-backdrop-filter);
+}
+
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -3122,6 +3127,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-\[\#ea580c\]:hover {
   --tw-text-opacity: 1;
   color: rgb(234 88 12 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#DC2626\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-xl:hover {
