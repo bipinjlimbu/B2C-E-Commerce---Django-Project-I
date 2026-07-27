@@ -3,59 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deploy Brand | PixelShot</title>
+    <title>Add Brand | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-white font-sans min-h-screen flex flex-col text-neutral-900">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#111827]">
 
     {% include 'components/_navbar.html' %}
     
     {% include 'components/_messages.html' %}
 
     <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <form method="POST" enctype="multipart/form-data" class="w-full max-w-2xl bg-black border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl p-8 lg:p-12 space-y-8">
+        <form method="POST" enctype="multipart/form-data" class="w-full max-w-2xl bg-white border border-[#E2E8F0] rounded-3xl overflow-hidden shadow-sm p-8 lg:p-12 space-y-8">
             {% csrf_token %}
             
             <div>
-                <h2 class="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">Catalog Architecture</h2>
-                <p class="text-xl font-extrabold text-white tracking-tight">Deploy Brand Asset</p>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Brand Management</h2>
+                <h1 class="text-2xl font-black text-[#111827] tracking-tight">Add New Brand</h1>
             </div>
 
             <div class="space-y-6">
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_name" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Brand Name</label>
-                    <input type="text" id="id_name" name="name" value="{{ data.name|default:'' }}" maxlength="255" placeholder="e.g. Sony, Canon, Fujifilm" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_name" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Brand Name</label>
+                    <input type="text" id="id_name" name="name" value="{{ data.name|default:'' }}" maxlength="255" placeholder="e.g. Sony, Canon, Fujifilm" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8]">
                     {% if errors.name %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.name }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.name }}</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-6 rounded-2xl flex flex-col items-center justify-center text-center group transition-colors relative">
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-6 rounded-2xl flex flex-col items-center justify-center text-center group transition-colors relative">
                     <div class="space-y-2">
-                        <div class="w-12 h-12 rounded-xl bg-black border border-neutral-800 flex items-center justify-center text-neutral-500 mx-auto group-hover:border-red-600 transition-colors">
-                            <i data-lucide="image" class="w-5 h-5 text-neutral-400"></i>
+                        <div class="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-[#475569] mx-auto group-hover:border-[#F97316] transition-colors shadow-sm">
+                            <i data-lucide="image" class="w-5 h-5 text-[#F97316]"></i>
                         </div>
-                        <div class="flex text-xs text-neutral-400 justify-center">
-                            <label for="id_logo" class="relative cursor-pointer rounded-md font-bold text-red-500 hover:text-red-400 focus-within:outline-none">
-                                <span>Upload logo identity</span>
+                        <div class="flex text-xs text-[#475569] justify-center">
+                            <label for="id_logo" class="relative cursor-pointer rounded-md font-bold text-[#F97316] hover:text-[#ea580c] focus-within:outline-none">
+                                <span>Upload brand logo</span>
                                 <input id="id_logo" name="logo" type="file" accept="image/*" class="sr-only">
                             </label>
                         </div>
-                        <p class="text-[10px] text-neutral-600 uppercase tracking-wider">PNG, JPG, WEBP formats up to 5MB</p>
+                        <p class="text-[10px] text-[#475569] uppercase tracking-wider font-medium">PNG, JPG, WEBP formats up to 5MB</p>
                     </div>
                     {% if errors.logo %}
-                        <p class="text-red-500 text-xs mt-2">{{ errors.logo }}</p>
+                        <p class="text-red-600 text-xs mt-2 font-medium">{{ errors.logo }}</p>
                     {% endif %}
                 </div>
             </div>
 
-            <div class="flex items-center gap-3 pt-4 border-t border-neutral-900">
-                <button type="submit" class="flex-grow sm:flex-none bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-lg shadow-red-600/10">
+            <div class="flex items-center gap-3 pt-4 border-t border-[#E2E8F0]">
+                <button type="submit" class="flex-grow sm:flex-none bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-sm active:scale-95">
                     <i data-lucide="plus" class="w-4 h-4"></i>
-                    Register Asset
+                    Add Brand
                 </button>
-                <a href="/dashboard/admin/?section=brand-management" class="flex-grow sm:flex-none bg-neutral-900 hover:bg-neutral-800 text-neutral-200 font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-neutral-800">
+                <a href="/dashboard/admin/?section=brand-management" class="flex-grow sm:flex-none bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-[#E2E8F0]">
                     Cancel
                 </a>
             </div>
@@ -74,7 +74,7 @@
                 const labelContainer = e.target.closest('.space-y-2');
                 const textElement = labelContainer.querySelector('span');
                 textElement.textContent = fileName;
-                textElement.className = "text-green-400 font-mono text-xs";
+                textElement.className = "text-emerald-600 font-mono text-xs font-bold";
             }
         });
     </script>
