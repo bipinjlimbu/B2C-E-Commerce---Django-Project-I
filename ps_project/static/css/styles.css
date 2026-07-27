@@ -2224,6 +2224,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   letter-spacing: 0.15em;
 }
 
+.tracking-\[0\.2em\] {
+  letter-spacing: 0.2em;
+}
+
 .text-\[\#475569\] {
   --tw-text-opacity: 1;
   color: rgb(71 85 105 / var(--tw-text-opacity));
@@ -2504,6 +2508,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-5 {
   opacity: 0.05;
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .shadow-sm {
