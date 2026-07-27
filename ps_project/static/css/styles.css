@@ -1791,6 +1791,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   fill: #f59e0b;
 }
 
+.fill-\[\#E2E8F0\] {
+  fill: #E2E8F0;
+}
+
 .stroke-\[2\.5\] {
   stroke-width: 2.5;
 }
