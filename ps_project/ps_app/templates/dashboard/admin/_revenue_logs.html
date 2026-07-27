@@ -1,46 +1,59 @@
 <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1">Platform Audit</h2>
-            <h1 class="text-2xl font-black text-neutral-900 tracking-tight">Revenue Logs</h1>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Platform Audit</h2>
+            <h1 class="text-2xl font-black text-[#111827] tracking-tight">Revenue Logs</h1>
         </div>
         <div class="flex items-center gap-3">
-            <div class="bg-black text-white px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-bold font-mono">
-                Total Gross: Rs.{{ total_gross_revenue|floatformat:2 }}
+            <div class="bg-white text-[#111827] px-4 py-2.5 rounded-xl border border-[#E2E8F0] text-xs font-bold shadow-sm flex items-center gap-2">
+                <i data-lucide="wallet" class="w-4 h-4 text-[#F97316]"></i>
+                Total Gross: <span class="text-[#F97316] font-extrabold font-mono">Rs.{{ total_gross_revenue|floatformat:2 }}</span>
             </div>
         </div>
     </div>
 
-    <div class="bg-black border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden">
+    <div class="bg-white border border-[#E2E8F0] rounded-2xl shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse min-w-[800px]">
-                <thead>
-                    <tr class="border-b border-neutral-800 text-[10px] font-bold uppercase tracking-widest text-neutral-400 bg-neutral-950/50">
-                        <th class="p-4 pl-6 w-[20%]">Order</th>
-                        <th class="p-4 w-[25%]">Customer Account</th>
-                        <th class="p-4 w-[25%]">Settlement Pathway</th>
-                        <th class="p-4 w-[15%]">Net Captured Value</th>
-                        <th class="p-4 pr-6 text-right w-[15%]">Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-neutral-900 text-sm font-semibold text-neutral-300">
+                {% if revenue_logs %}
+                    <thead>
+                        <tr class="border-b border-[#E2E8F0] text-[10px] font-bold uppercase tracking-wider text-[#475569] bg-[#F8FAFC]">
+                            <th class="p-4 pl-6 w-[20%]">Order</th>
+                            <th class="p-4 w-[25%]">Customer Account</th>
+                            <th class="p-4 w-[25%]">Settlement Pathway</th>
+                            <th class="p-4 w-[15%]">Net Captured Value</th>
+                            <th class="p-4 pr-6 text-right w-[15%]">Timestamp</th>
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tbody class="divide-y divide-[#E2E8F0] text-sm text-[#475569]">
                     {% for log in revenue_logs %}
-                        <tr class="hover:bg-neutral-900/30 transition-colors">
+                        <tr class="hover:bg-[#F8FAFC]/80 transition-colors">
                             <td class="p-4 pl-6 align-middle">
-                                <span class="text-white block font-mono font-bold text-xs tracking-wider">#ORDER-{{ log.id }}</span>
+                                <span class="text-[#111827] block font-mono font-bold text-xs tracking-wider">#ORDER-{{ log.id }}</span>
                             </td>
                             <td class="p-4 align-middle">
-                                <span class="text-white block font-bold">{{ log.customer.get_full_name|default:"N/A" }}</span>
-                                <span class="text-[11px] font-mono text-neutral-500 block">@{{ log.customer.username }}</span>
+                                <span class="text-[#111827] block font-bold text-sm">{{ log.customer.get_full_name|default:"N/A" }}</span>
+                                <span class="text-[11px] font-mono text-[#F97316] font-semibold block">@{{ log.customer.username }}</span>
                             </td>
                             <td class="p-4 align-middle">
-                                <div class="flex items-center gap-1.5 text-xs font-mono text-neutral-200">
-                                    <i data-lucide="credit-card" class="w-3.5 h-3.5 text-neutral-500 shrink-0"></i>
+                                <div class="flex items-center gap-1.5 text-xs font-mono text-[#111827] font-medium">
+                                    <i data-lucide="credit-card" class="w-3.5 h-3.5 text-[#475569] shrink-0"></i>
                                     <span>{{ log.get_payment_method_display }}</span>
                                 </div>
                             </td>
-                            <td class="p-4 align-middle font-mono text-sm text-green-400">+Rs.{{ log.total_amount|floatformat:2 }}</td>
-                            <td class="p-4 pr-6 text-right align-middle font-mono text-xs text-neutral-500">{{ log.created_at|date:"Y-m-d H:i" }}</td>
+                            <td class="p-4 align-middle font-mono text-sm font-bold text-emerald-600">+Rs.{{ log.total_amount|floatformat:2 }}</td>
+                            <td class="p-4 pr-6 text-right align-middle font-mono text-xs text-[#475569] font-medium">{{ log.created_at|date:"Y-m-d H:i" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="p-12 text-center bg-white text-[#475569]">
+                                <div class="w-12 h-12 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-3">
+                                    <i data-lucide="receipt" class="w-6 h-6 text-[#475569]"></i>
+                                </div>
+                                <p class="text-sm font-bold text-[#111827]">No revenue logs available.</p>
+                                <p class="text-xs text-[#475569] mt-1">Processed transactions and revenue items will appear here.</p>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
