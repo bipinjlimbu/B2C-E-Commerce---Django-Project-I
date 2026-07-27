@@ -1784,6 +1784,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
+.bg-emerald-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
+}
+
 .bg-\[radial-gradient\(\#E2E8F0_1px\2c transparent_1px\)\] {
   background-image: radial-gradient(#E2E8F0 1px,transparent 1px);
 }
@@ -3164,6 +3169,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .sm\:flex-row {

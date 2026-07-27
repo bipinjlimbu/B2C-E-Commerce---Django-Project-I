@@ -1,33 +1,65 @@
 <div class="space-y-6">
-    <div>
-        <h2 class="text-xs font-bold uppercase tracking-widest text-red-600 mb-1">Logistics Trace</h2>
-        <p class="text-2xl font-black tracking-tight text-neutral-900 uppercase">Purchase History Matrix</p>
+    <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+        <div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Orders History</h2>
+            <h1 class="text-2xl font-black text-[#111827] tracking-tight">Purchase History</h1>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full xl:w-auto">
+            <div class="bg-white border border-[#E2E8F0] rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-sm">
+                <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569] block mb-0.5">Total Orders</span>
+                <span class="text-sm font-bold font-mono text-[#111827]">{{ orders|length }}</span>
+            </div>
+            <div class="bg-white border border-[#E2E8F0] rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-sm">
+                <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569] block mb-0.5">Completed</span>
+                <span class="text-sm font-bold font-mono text-emerald-600">
+                    {{ completed_orders_count }}
+                </span>
+            </div>
+            <div class="bg-white border border-[#E2E8F0] rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-sm">
+                <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569] block mb-0.5">Cancelled</span>
+                <span class="text-sm font-bold font-mono text-red-600">
+                    {{ cancelled_orders_count }}
+                </span>
+            </div>
+        </div>
     </div>
 
     <div class="space-y-4">
         {% for order in orders %}
-            <div class="bg-white border border-neutral-200 rounded-2xl p-6 min-h-[140px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 transition-all shadow-sm group">
+            <div class="bg-white border border-[#E2E8F0] rounded-2xl p-6 min-h-[140px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-[#CBD5E1] transition-all shadow-sm group">
                 
                 <div class="space-y-4 flex-grow w-full">
                     
                     <div class="flex flex-wrap items-center gap-3">
-                        <span class="font-mono font-black text-base text-neutral-900">#ORDER-{{ order.id }}</span>
-                        <span class="text-xs text-neutral-400 font-mono">| Registered: {{ order.created_at }}</span>
+                        <span class="font-mono font-black text-base text-[#111827]">#ORDER-{{ order.id }}</span>
+                        
+                        <span class="text-xs text-[#E2E8F0] font-mono">|</span>
+
+                        <span class="text-[10px] font-black uppercase tracking-widest 
+                            {% if order.status == 'completed' %} text-emerald-600
+                            {% elif order.status == 'cancelled' %} text-red-600
+                            {% else %} text-[#475569] {% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+
+                        <span class="text-xs text-[#E2E8F0] font-mono">|</span>
+                        <span class="text-xs text-[#475569] font-mono">{{ order.created_at|date:"M d, Y" }}</span>
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-4xl">
                         
                         {% for item in order.items.all %}
-                            <div class="flex items-center gap-3 bg-neutral-50 border border-neutral-200/60 p-2 rounded-xl">
-                                <div class="w-10 h-10 bg-white border border-neutral-200 rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0">
+                            <div class="flex items-center gap-3 bg-[#F8FAFC] border border-[#E2E8F0] p-2 rounded-xl">
+                                <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0 shadow-sm">
                                     {% if item.product.product_image %}
                                         <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover">
                                     {% else %}
-                                        <i data-lucide="image" class="w-6 h-6 text-neutral-300"></i>
+                                        <i data-lucide="image" class="w-5 h-5 text-[#475569]"></i>
                                     {% endif %}
                                 </div>
-                                <span class="text-neutral-700 text-xs font-black tracking-tight truncate">
-                                    {{ item.product.name }} <span class="text-neutral-400 font-medium ml-1">× {{ item.quantity }}</span>
+                                <span class="text-[#111827] text-xs font-bold tracking-tight truncate flex-grow">
+                                    {{ item.product.name }}
+                                    <span class="text-[#F97316] bg-[#F97316]/10 px-1.5 py-0.5 rounded border border-[#F97316]/20 text-[10px] font-mono font-bold ml-1">x{{ item.quantity }}</span>
                                 </span>
                             </div>
                         {% endfor %}
@@ -35,24 +67,26 @@
                     </div>
                 </div>
 
-                <div class="flex flex-wrap sm:flex-nowrap items-center justify-between lg:justify-end gap-6 border-t lg:border-t-0 border-neutral-100 pt-4 lg:pt-0 shrink-0 w-full lg:w-auto">
+                <div class="flex flex-wrap sm:flex-nowrap items-center justify-between lg:justify-end gap-6 border-t lg:border-t-0 border-[#E2E8F0] pt-4 lg:pt-0 shrink-0 w-full lg:w-auto">
                     
                     <div class="flex flex-col lg:text-right">
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-neutral-400">Allocation Total</span>
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-[#475569]">Total Amount</span>
                         <div class="flex items-baseline gap-0.5">
-                            <span class="text-xs font-mono font-bold text-neutral-500">Rs.</span>
-                            <span class="text-base font-mono font-black text-neutral-900">{{ order.total_amount }}</span>
+                            <span class="text-xs font-mono font-bold text-[#475569]">Rs.</span>
+                            <span class="text-base font-mono font-black text-[#111827]">{{ order.total_amount }}</span>
                         </div>
                     </div>
 
-                    <div class="shrink-0">
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end shrink-0">
                         {% if order.status == 'completed' %}
-                            <div class="bg-green-600 text-white font-black h-10 px-5 rounded-xl flex items-center justify-center text-[10px] uppercase tracking-widest shadow-sm select-none min-w-[110px]">
-                                Completed
+                            <div class="bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider select-none min-w-[140px]">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                                <span>Completed</span>
                             </div>
                         {% else %}
-                            <div class="bg-red-600 text-white font-black h-10 px-5 rounded-xl flex items-center justify-center text-[10px] uppercase tracking-widest shadow-sm select-none min-w-[110px]">
-                                Cancelled
+                            <div class="bg-red-50 border border-red-200 text-red-600 font-bold h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider select-none min-w-[140px]">
+                                <i data-lucide="x-circle" class="w-4 h-4 text-red-600"></i>
+                                <span>Cancelled</span>
                             </div>
                         {% endif %}
                     </div>
@@ -61,12 +95,12 @@
 
             </div>
         {% empty %}
-            <div class="flex flex-col items-center justify-center text-center p-12 bg-neutral-50 border border-dashed border-neutral-300 rounded-2xl min-h-[220px]">
-                <div class="w-12 h-12 rounded-xl bg-white border border-neutral-200 flex items-center justify-center mb-4 shadow-sm text-neutral-400">
+            <div class="flex flex-col items-center justify-center text-center p-12 bg-[#F8FAFC] border border-dashed border-[#E2E8F0] rounded-2xl min-h-[220px]">
+                <div class="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center mb-4 shadow-sm text-[#475569]">
                     <i data-lucide="history" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-sm font-black text-neutral-900 uppercase tracking-wider mb-1">Archive Empty</h3>
-                <p class="text-xs text-neutral-500 max-w-xs font-medium">No archived transactions or logged runs were detected in your log profile history.</p>
+                <h3 class="text-sm font-black text-[#111827] uppercase tracking-wider mb-1">No Purchase History</h3>
+                <p class="text-xs text-[#475569] max-w-xs font-medium">You don't have any completed or cancelled orders in your account history yet.</p>
             </div>
         {% endfor %}
     </div>
