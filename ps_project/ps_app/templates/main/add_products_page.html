@@ -3,152 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deploy Product | PixelShot</title>
+    <title>Add Product | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-white font-sans min-h-screen flex flex-col text-neutral-900">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#111827]">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
     <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <form method="POST" enctype="multipart/form-data" class="w-full max-w-4xl bg-black border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl p-8 lg:p-12 space-y-8">
+        <form method="POST" enctype="multipart/form-data" class="w-full max-w-4xl bg-white border border-[#E2E8F0] rounded-3xl overflow-hidden shadow-sm p-8 lg:p-12 space-y-8">
             {% csrf_token %}
             
             <div>
-                <h2 class="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">Catalog Architecture</h2>
-                <h1 class="text-2xl font-black text-white tracking-tight">Deploy New Hardware</h1>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Product Management</h2>
+                <h1 class="text-2xl font-black text-[#111827] tracking-tight">Add New Product</h1>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <div class="space-y-6 md:col-span-2">
-                    <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                        <label for="id_name" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Product Title</label>
-                        <input type="text" id="id_name" name="name" value="{{ data.name|default:'' }}" maxlength="255" placeholder="e.g. Sony Alpha 7 IV" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                    <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                        <label for="id_name" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Product Name</label>
+                        <input type="text" id="id_name" name="name" value="{{ data.name|default:'' }}" maxlength="255" placeholder="e.g. Sony Alpha 7 IV" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8]">
                         {% if errors.name %}
-                            <p class="text-red-500 text-xs mt-1">{{ errors.name }}</p>
+                            <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.name }}</p>
                         {% endif %}
                     </div>
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_brand" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Brand Anchor</label>
-                    <select id="id_brand" name="brand" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none cursor-pointer">
-                        <option value="" disabled selected class="bg-black text-neutral-500">Select Associated Brand</option>
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_brand" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Brand</label>
+                    <select id="id_brand" name="brand" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none cursor-pointer">
+                        <option value="" disabled selected class="bg-white text-[#475569]">Select Brand</option>
                         {% for brand in brands %}
-                            <option value="{{ brand.id }}" {% if data.brand == brand.id|stringformat:"s" %}selected{% endif %} class="bg-black text-white">{{ brand.name }}</option>
+                            <option value="{{ brand.id }}" {% if data.brand == brand.id|stringformat:"s" %}selected{% endif %} class="bg-white text-[#111827]">{{ brand.name }}</option>
                         {% endfor %}
                     </select>
                     {% if errors.brand %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.brand }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.brand }}</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_sku" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Stock Keeping Unit (SKU)</label>
-                    <input type="text" id="id_sku" name="sku" value="{{ data.sku|default:'' }}" maxlength="100" placeholder="e.g. ILCE-7M4-B" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700">
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_sku" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">SKU Code</label>
+                    <input type="text" id="id_sku" name="sku" value="{{ data.sku|default:'' }}" maxlength="100" placeholder="e.g. ILCE-7M4-B" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8]">
                     {% if errors.sku %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.sku }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.sku }}</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_category" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">System Category</label>
-                    <select id="id_category" name="category" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none cursor-pointer">
-                        <option value="" disabled selected class="bg-black text-neutral-500">Select Allocation Segment</option>
-                        <option value="cameras" {% if data.category == 'cameras' %}selected{% endif %} class="bg-black text-white">Camera Bodies</option>
-                        <option value="lenses" {% if data.category == 'lenses' %}selected{% endif %} class="bg-black text-white">Lenses & Optics</option>
-                        <option value="stabilizers" {% if data.category == 'stabilizers' %}selected{% endif %} class="bg-black text-white">Gimbals & Tripods</option>
-                        <option value="lighting" {% if data.category == 'lighting' %}selected{% endif %} class="bg-black text-white">Studio & On-Camera Lighting</option>
-                        <option value="audio" {% if data.category == 'audio' %}selected{% endif %} class="bg-black text-white">Microphones & Audio Recorders</option>
-                        <option value="storage" {% if data.category == 'storage' %}selected{% endif %} class="bg-black text-white">Memory Cards & Drives</option>
-                        <option value="accessories" {% if data.category == 'accessories' %}selected{% endif %} class="bg-black text-white">Bags, Power & Rigging</option>
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_category" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Category</label>
+                    <select id="id_category" name="category" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none cursor-pointer">
+                        <option value="" disabled selected class="bg-white text-[#475569]">Select Category</option>
+                        <option value="cameras" {% if data.category == 'cameras' %}selected{% endif %} class="bg-white text-[#111827]">Camera Bodies</option>
+                        <option value="lenses" {% if data.category == 'lenses' %}selected{% endif %} class="bg-white text-[#111827]">Lenses & Optics</option>
+                        <option value="stabilizers" {% if data.category == 'stabilizers' %}selected{% endif %} class="bg-white text-[#111827]">Gimbals & Tripods</option>
+                        <option value="lighting" {% if data.category == 'lighting' %}selected{% endif %} class="bg-white text-[#111827]">Studio & On-Camera Lighting</option>
+                        <option value="audio" {% if data.category == 'audio' %}selected{% endif %} class="bg-white text-[#111827]">Microphones & Audio Recorders</option>
+                        <option value="storage" {% if data.category == 'storage' %}selected{% endif %} class="bg-white text-[#111827]">Memory Cards & Drives</option>
+                        <option value="accessories" {% if data.category == 'accessories' %}selected{% endif %} class="bg-white text-[#111827]">Bags, Power & Accessories</option>
                     </select>
                     {% if errors.category %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.category }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.category }}</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_condition" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Hardware Condition</label>
-                    <select id="id_condition" name="condition" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none cursor-pointer">
-                        <option value="new" {% if data.condition == 'new' or not data.condition %}selected{% endif %} class="bg-black text-white">Brand New (Sealed)</option>
-                        <option value="refurbished" {% if data.condition == 'refurbished' %}selected{% endif %} class="bg-black text-white">Factory Refurbished</option>
-                        <option value="open_box" {% if data.condition == 'open_box' %}selected{% endif %} class="bg-black text-white">Open Box / Mint</option>
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_condition" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Condition</label>
+                    <select id="id_condition" name="condition" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none cursor-pointer">
+                        <option value="new" {% if data.condition == 'new' or not data.condition %}selected{% endif %} class="bg-white text-[#111827]">Brand New (Sealed)</option>
+                        <option value="refurbished" {% if data.condition == 'refurbished' %}selected{% endif %} class="bg-white text-[#111827]">Factory Refurbished</option>
+                        <option value="open_box" {% if data.condition == 'open_box' %}selected{% endif %} class="bg-white text-[#111827]">Open Box / Mint</option>
                     </select>
                     {% if errors.condition %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.condition }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.condition }}</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_price" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Valuation Price ($)</label>
-                    <input type="number" id="id_price" name="price" step="0.01" min="0" value="{{ data.price|default:'' }}" placeholder="0.00" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700 font-mono">
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_price" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Price ($)</label>
+                    <input type="number" id="id_price" name="price" step="0.01" min="0" value="{{ data.price|default:'' }}" placeholder="0.00" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8] font-mono">
                     {% if errors.price %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.price }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.price }}</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                    <label for="id_stock" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Stock Metric Quantity</label>
-                    <input type="number" id="id_stock" name="stock" min="0" value="{{ data.stock|default:'0' }}" placeholder="0" class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700 font-mono">
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                    <label for="id_stock" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Stock Quantity</label>
+                    <input type="number" id="id_stock" name="stock" min="0" value="{{ data.stock|default:'0' }}" placeholder="0" class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8] font-mono">
                     {% if errors.stock %}
-                        <p class="text-red-500 text-xs mt-1">{{ errors.stock }}</p>
+                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.stock }}</p>
                     {% endif %}
                 </div>
 
                 <div class="space-y-6 md:col-span-2">
-                    <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl focus-within:border-red-600 transition-colors">
-                        <label for="id_description" class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">Technical Specs & Description</label>
-                        <textarea id="id_description" name="description" rows="5" placeholder="Enter full specifications structural logs..." class="w-full bg-transparent text-sm font-semibold text-neutral-200 focus:outline-none placeholder-neutral-700 resize-none">{{ data.description|default:'' }}</textarea>
+                    <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
+                        <label for="id_description" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Description & Specifications</label>
+                        <textarea id="id_description" name="description" rows="5" placeholder="Enter full product details and technical specifications..." class="w-full bg-transparent text-sm font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8] resize-none">{{ data.description|default:'' }}</textarea>
                         {% if errors.description %}
-                            <p class="text-red-500 text-xs mt-1">{{ errors.description }}</p>
+                            <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.description }}</p>
                         {% endif %}
                     </div>
                 </div>
 
                 <div class="space-y-6 md:col-span-2">
-                    <div class="bg-neutral-900 border border-neutral-800 p-6 rounded-2xl flex flex-col items-center justify-center text-center group transition-colors relative">
+                    <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-6 rounded-2xl flex flex-col items-center justify-center text-center group transition-colors relative">
                         <div class="space-y-2">
-                            <div class="w-12 h-12 rounded-xl bg-black border border-neutral-800 flex items-center justify-center text-neutral-500 mx-auto group-hover:border-red-600 transition-colors">
-                                <i data-lucide="camera" class="w-5 h-5 text-neutral-400"></i>
+                            <div class="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-[#475569] mx-auto group-hover:border-[#F97316] transition-colors shadow-sm">
+                                <i data-lucide="camera" class="w-5 h-5 text-[#F97316]"></i>
                             </div>
-                            <div class="flex text-xs text-neutral-400 justify-center">
-                                <label for="id_product_image" class="relative cursor-pointer rounded-md font-bold text-red-500 hover:text-red-400 focus-within:outline-none">
-                                    <span>Upload asset imagery</span>
+                            <div class="flex text-xs text-[#475569] justify-center">
+                                <label for="id_product_image" class="relative cursor-pointer rounded-md font-bold text-[#F97316] hover:text-[#ea580c] focus-within:outline-none">
+                                    <span>Upload product image</span>
                                     <input id="id_product_image" name="product_image" type="file" accept="image/*" class="sr-only">
                                 </label>
                             </div>
-                            <p class="text-[10px] text-neutral-600 uppercase tracking-wider">Image files up to 10MB</p>
+                            <p class="text-[10px] text-[#475569] uppercase tracking-wider font-medium">Image files up to 10MB</p>
                         </div>
                         {% if errors.product_image %}
-                            <p class="text-red-500 text-xs mt-2">{{ errors.product_image }}</p>
+                            <p class="text-red-600 text-xs mt-2 font-medium">{{ errors.product_image }}</p>
                         {% endif %}
                     </div>
                 </div>
 
-                <div class="md:col-span-2 bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-center justify-between">
+                <div class="md:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between">
                     <div>
-                        <label for="id_is_active" class="text-xs font-bold uppercase tracking-widest text-white block">Visibility Status</label>
-                        <p class="text-[10px] text-neutral-500 uppercase tracking-wider">Toggle asset distribution inside active live storefront matrix</p>
+                        <label for="id_is_active" class="text-xs font-bold uppercase tracking-widest text-[#111827] block">Visibility Status</label>
+                        <p class="text-[10px] text-[#475569] uppercase tracking-wider font-medium">Show or hide this item in the store</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" id="id_is_active" name="is_active" value="true" checked class="sr-only peer">
-                        <div class="w-11 h-6 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600 peer-checked:after:bg-white peer-checked:after:border-transparent"></div>
+                        <div class="w-11 h-6 bg-[#E2E8F0] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-[#CBD5E1] after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#F97316] peer-checked:after:bg-white peer-checked:after:border-transparent"></div>
                     </label>
                 </div>
 
             </div>
 
-            <div class="flex items-center gap-3 pt-4 border-t border-neutral-900">
-                <button type="submit" class="flex-grow sm:flex-none bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-lg shadow-red-600/10">
+            <div class="flex items-center gap-3 pt-4 border-t border-[#E2E8F0]">
+                <button type="submit" class="flex-grow sm:flex-none bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-sm active:scale-95">
                     <i data-lucide="plus" class="w-4 h-4"></i>
-                    Publish Hardware
+                    Add Product
                 </button>
-                <a href="/dashboard/admin/?section=product-management" class="flex-grow sm:flex-none bg-neutral-900 hover:bg-neutral-800 text-neutral-200 font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-neutral-800">
+                <a href="/dashboard/admin/?section=product-management" class="flex-grow sm:flex-none bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-[#E2E8F0]">
                     Cancel
                 </a>
             </div>
@@ -167,7 +167,7 @@
                 const labelContainer = e.target.closest('.space-y-2');
                 const textElement = labelContainer.querySelector('span');
                 textElement.textContent = fileName;
-                textElement.className = "text-green-400 font-mono text-xs";
+                textElement.className = "text-emerald-600 font-mono text-xs font-bold";
             }
         });
     </script>
