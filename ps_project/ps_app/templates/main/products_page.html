@@ -95,16 +95,24 @@
                             <a href="/products/{{ product.id }}/" class="flex flex-col flex-grow">
                                 <div class="aspect-square w-full bg-[#F8FAFC] relative overflow-hidden border-b border-[#E2E8F0]">
                                     {% if product.product_image %}
-                                        <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 {% if product.stock <= 0 %}grayscale contrast-125 opacity-50{% endif %}">
                                     {% else %}
                                         <div class="w-full h-full flex flex-col items-center justify-center bg-[#E2E8F0]/40">
                                             <i data-lucide="camera" class="w-10 h-10 text-[#475569] group-hover:scale-110 group-hover:text-[#F97316] transition-all duration-300"></i>
                                             <span class="text-[9px] uppercase tracking-widest text-[#475569] font-bold mt-2">No Image</span>
                                         </div>
                                     {% endif %}
-                                    <span class="absolute top-3 left-3 bg-[#FFFFFF]/90 border border-[#E2E8F0] backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm">
+                                    <span class="absolute top-3 left-3 bg-[#FFFFFF]/90 border border-[#E2E8F0] backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm z-10">
                                         {{ product.get_category_display }}
                                     </span>
+
+                                    {% if product.stock <= 0 %}
+                                        <div class="absolute inset-0 bg-[#0B0F14]/30 backdrop-blur-[2px] flex items-center justify-center z-20">
+                                            <span class="bg-[#DC2626] text-white font-black text-sm uppercase tracking-widest px-5 py-2.5 rounded-xl shadow-2xl border-2 border-white -rotate-12 transform scale-105 select-none drop-shadow-xl">
+                                                Sold Out
+                                            </span>
+                                        </div>
+                                    {% endif %}
                                 </div>
 
                                 <div class="p-5 flex-grow space-y-4">
@@ -132,16 +140,20 @@
                                                 <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                                             </a>
                                         {% else %}
-                                            <p class="text-xs font-bold text-[#DC2626] uppercase tracking-wider">Out of Stock</p>
+                                            <span class="text-[10px] font-black text-[#DC2626] bg-[#DC2626]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">Out of Stock</span>
                                         {% endif %}
                                     {% elif user.is_staff %}
                                         <a href="/dashboard/admin/?section=product-management" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Manage Product">
                                             <i data-lucide="settings" class="w-4 h-4"></i>
                                         </a>
                                     {% else %}
-                                        <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Log In to Buy">
-                                            <i data-lucide="log-in" class="w-4 h-4"></i>
-                                        </a>
+                                        {% if product.stock > 0 %}
+                                            <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Log In to Buy">
+                                                <i data-lucide="log-in" class="w-4 h-4"></i>
+                                            </a>
+                                        {% else %}
+                                            <span class="text-[10px] font-black text-[#DC2626] bg-[#DC2626]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">Out of Stock</span>
+                                        {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
