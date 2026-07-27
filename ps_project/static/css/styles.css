@@ -1551,6 +1551,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
 }
 
+.border-red-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 226 226 / var(--tw-border-opacity));
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1832,6 +1837,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .stroke-\[2px\] {
   stroke-width: 2px;
+}
+
+.stroke-\[2\] {
+  stroke-width: 2;
 }
 
 .object-contain {
@@ -3255,6 +3264,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:p-5 {
     padding: 1.25rem;
+  }
+
+  .sm\:p-10 {
+    padding: 2.5rem;
   }
 
   .sm\:px-6 {
