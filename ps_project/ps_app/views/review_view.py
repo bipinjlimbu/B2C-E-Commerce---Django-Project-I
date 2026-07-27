@@ -68,7 +68,7 @@ def edit_review_view(request, review_id):
         review.comment = comment
         review.save()
         messages.success(request, 'Review updated successfully.')
-        return redirect(f'/products/{review.product.id}/')
+        return redirect('/dashboard/?section=my-reviews')
     
     return render(request, 'main/edit_review_page.html', {'review': review})
 
