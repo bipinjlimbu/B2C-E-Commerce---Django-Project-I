@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Terminal | PixelShot</title>
+    <title>Admin Dashboard | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     <style>
@@ -14,100 +14,100 @@
             background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #262626;
+            background: #E2E8F0;
             border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #dc2626;
+            background: #F97316;
         }
     </style>
 </head>
 
-<body class="bg-white flex min-h-screen overflow-hidden text-neutral-900">
+<body class="bg-[#F8FAFC] flex min-h-screen overflow-hidden text-[#475569]">
 
     {% include 'components/_messages.html' %}
 
-    <aside class="w-80 bg-black text-white flex flex-col shadow-2xl relative z-30 border-r border-neutral-800">
-        <div class="p-8 border-b border-neutral-800">
+    <aside class="w-80 bg-white text-[#475569] flex flex-col shadow-sm relative z-30 border-r border-[#E2E8F0]">
+        <div class="p-8 border-b border-[#E2E8F0]">
             <div class="flex items-center gap-3">
-                <div class="h-10 w-10 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/20">
-                    <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                <div class="h-10 w-10 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl flex items-center justify-center shadow-sm">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-[#F97316]"></i>
                 </div>
-                <h1 class="text-2xl font-black italic tracking-tighter uppercase">
-                    Pixel<span class="text-red-500">Shot</span>
+                <h1 class="text-2xl font-black tracking-tight text-[#111827] uppercase">
+                    Pixel<span class="text-[#F97316]">Shot</span>
                 </h1>
             </div>
-            <p class="text-[10px] text-neutral-500 font-black uppercase tracking-[0.3em] mt-4 italic">Management Console</p>
+            <p class="text-[10px] text-[#475569] font-bold uppercase tracking-widest mt-4">Admin Dashboard</p>
         </div>
 
         <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
             
             <div class="space-y-2">
-                <h3 class="px-4 text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-4 italic">Identity Control</h3>
+                <h3 class="px-4 text-[10px] font-bold text-[#475569] uppercase tracking-wider mb-4">Customers</h3>
                 
-                <a href="?section=customer-list" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'customer-list' or not section %}bg-red-600 text-white shadow-lg{% else %}text-neutral-400 hover:bg-neutral-900 hover:text-white{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                <a href="?section=customer-list" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'customer-list' or not section %}bg-[#F97316] text-white shadow-md{% else %}text-[#475569] hover:bg-[#F8FAFC] hover:text-[#111827]{% endif %} font-bold text-xs uppercase tracking-wider transition-all group">
                     <i data-lucide="users" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
-                    Customer Directory
+                    Customer Management
                 </a>
             </div>
 
             <div class="space-y-2">
-                <h3 class="px-4 text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-4 italic">Catalog Architecture</h3>
+                <h3 class="px-4 text-[10px] font-bold text-[#475569] uppercase tracking-wider mb-4">Catalog</h3>
                 
-                <a href="?section=product-management" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'product-management' %}bg-red-600 text-white shadow-lg{% else %}text-neutral-400 hover:bg-neutral-900 hover:text-white{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
-                    <i data-lucide="aperture" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
-                    Product Master
+                <a href="?section=product-management" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'product-management' %}bg-[#F97316] text-white shadow-md{% else %}text-[#475569] hover:bg-[#F8FAFC] hover:text-[#111827]{% endif %} font-bold text-xs uppercase tracking-wider transition-all group">
+                    <i data-lucide="camera" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Product Management
                 </a>
 
-                <a href="?section=brand-management" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'brand-management' %}bg-red-600 text-white shadow-lg{% else %}text-neutral-400 hover:bg-neutral-900 hover:text-white{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                <a href="?section=brand-management" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'brand-management' %}bg-[#F97316] text-white shadow-md{% else %}text-[#475569] hover:bg-[#F8FAFC] hover:text-[#111827]{% endif %} font-bold text-xs uppercase tracking-wider transition-all group">
                     <i data-lucide="tag" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
-                    Brand Control
+                    Brand Management
                 </a>
             </div>
 
             <div class="space-y-2">
-                <h3 class="px-4 text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-4 italic">Orders & Logistics</h3>
+                <h3 class="px-4 text-[10px] font-bold text-[#475569] uppercase tracking-wider mb-4">Orders</h3>
                 
-                <a href="?section=order-fulfillment" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'order-fulfillment' %}bg-red-600 text-white shadow-lg{% else %}text-neutral-400 hover:bg-neutral-900 hover:text-white{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                <a href="?section=order-fulfillment" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'order-fulfillment' %}bg-[#F97316] text-white shadow-md{% else %}text-[#475569] hover:bg-[#F8FAFC] hover:text-[#111827]{% endif %} font-bold text-xs uppercase tracking-wider transition-all group">
                     <i data-lucide="truck" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                     Order Fulfillment
                     {% if pending_orders_count > 0 %}
-                        <span class="ml-auto bg-white/20 text-white px-2 py-0.5 rounded-lg text-[10px] font-mono"> {{ pending_orders_count }}</span>
+                        <span class="ml-auto bg-[#111827] text-white px-2 py-0.5 rounded-lg text-[10px] font-mono"> {{ pending_orders_count }}</span>
                     {% endif %}
                 </a>
             </div>
 
             <div class="space-y-2">
-                <h3 class="px-4 text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-4 italic">Platform Audit</h3>
+                <h3 class="px-4 text-[10px] font-bold text-[#475569] uppercase tracking-wider mb-4">Analytics</h3>
                 
-                <a href="?section=product-reviews" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'product-reviews' %}bg-red-600 text-white shadow-lg{% else %}text-neutral-400 hover:bg-neutral-900 hover:text-white{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
-                    <i data-lucide="package" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                <a href="?section=product-reviews" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'product-reviews' %}bg-[#F97316] text-white shadow-md{% else %}text-[#475569] hover:bg-[#F8FAFC] hover:text-[#111827]{% endif %} font-bold text-xs uppercase tracking-wider transition-all group">
+                    <i data-lucide="star" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                     Product Reviews
                 </a>
                 
-                <a href="?section=revenue-logs" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'revenue-logs' %}bg-red-600 text-white shadow-lg{% else %}text-neutral-400 hover:bg-neutral-900 hover:text-white{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                <a href="?section=revenue-logs" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'revenue-logs' %}bg-[#F97316] text-white shadow-md{% else %}text-[#475569] hover:bg-[#F8FAFC] hover:text-[#111827]{% endif %} font-bold text-xs uppercase tracking-wider transition-all group">
                     <i data-lucide="bar-chart-3" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                     Revenue Logs
                 </a>
             </div>
         </nav>
 
-        <div class="p-6 border-t border-neutral-800 bg-neutral-950 flex flex-col gap-2">
+        <div class="p-6 border-t border-[#E2E8F0] bg-[#F8FAFC] flex flex-col gap-2">
             <a href="/profile/" 
-               class="flex items-center justify-center gap-3 w-full bg-red-600 text-white px-6 py-4 rounded-2xl font-black italic uppercase text-[10px] tracking-widest hover:bg-red-700 transition-all shadow-lg shadow-red-600/20 active:scale-95">
+               class="flex items-center justify-center gap-3 w-full bg-[#111827] text-white px-6 py-3.5 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:bg-[#F97316] transition-all shadow-sm active:scale-95">
                 <i data-lucide="user" class="w-4 h-4"></i>
                 Admin Profile
             </a>
 
             <a href="/" target="_blank" 
-               class="flex items-center justify-center gap-3 w-full bg-neutral-900 border border-neutral-800 text-neutral-400 px-6 py-4 rounded-2xl font-black italic uppercase text-[10px] tracking-widest hover:bg-neutral-800 hover:text-white transition-all active:scale-95">
+               class="flex items-center justify-center gap-3 w-full bg-white border border-[#E2E8F0] text-[#475569] px-6 py-3.5 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:bg-[#E2E8F0] hover:text-[#111827] transition-all active:scale-95">
                 <i data-lucide="external-link" class="w-4 h-4"></i>
                 Live Website
             </a>
         </div>
     </aside>
 
-    <main class="flex-grow flex flex-col h-screen overflow-y-auto bg-white p-6 sm:p-8">
+    <main class="flex-grow flex flex-col h-screen overflow-y-auto bg-[#F8FAFC] p-6 sm:p-8">
         
         {% if section == 'customer-list' or not section %}
             {% include 'dashboard/admin/_customer_list.html' %}
