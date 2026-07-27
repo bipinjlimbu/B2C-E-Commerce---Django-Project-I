@@ -11,6 +11,10 @@ def add_review_view(request, product_id):
     
     product = Product.objects.filter(id=product_id).first()
     
+    if Review.objects.filter(customer=request.user, product=product).exists():
+        messages.error(request, 'You have already reviewed this product.')
+        return redirect(f'/products/{product_id}/')
+    
     errors = {}
     if request.method == 'POST':
         rating = request.POST.get('rating')
