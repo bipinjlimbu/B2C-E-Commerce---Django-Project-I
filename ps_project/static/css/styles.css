@@ -2804,6 +2804,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-ring-color: rgb(249 115 22 / var(--tw-ring-opacity));
 }
 
+.focus-within\:ring-\[\#F97316\]\/30:focus-within {
+  --tw-ring-color: rgb(249 115 22 / 0.3);
+}
+
 .hover\:scale-110:hover {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -2866,6 +2870,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:border-\[\#F97316\]\/30:hover {
   border-color: rgb(249 115 22 / 0.3);
+}
+
+.hover\:border-\[\#F97316\]\/40:hover {
+  border-color: rgb(249 115 22 / 0.4);
 }
 
 .hover\:bg-\[\#ea580c\]:hover {
