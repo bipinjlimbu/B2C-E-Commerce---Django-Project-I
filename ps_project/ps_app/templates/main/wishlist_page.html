@@ -75,10 +75,10 @@
                                         </button>
                                     {% endif %}
 
-                                    <a href="/products/wishlist/remove/{{ item.product.id }}/" class="bg-[#F8FAFC] hover:bg-red-50 text-[#475569] hover:text-[#DC2626] border border-[#E2E8F0] hover:border-red-200 h-10 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-sm font-bold whitespace-nowrap" title="Remove Asset">
+                                    <button type="button" onclick="openWishlistModal('{{ item.product.id }}')" class="bg-[#F8FAFC] hover:bg-red-50 text-[#475569] hover:text-[#DC2626] border border-[#E2E8F0] hover:border-red-200 h-10 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-sm font-bold whitespace-nowrap cursor-pointer" title="Remove Asset">
                                         <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                         <span>Remove</span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
 
@@ -100,11 +100,74 @@
         </div>
     </main>
 
+    <div id="wishlistModal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0F14]/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 px-4">
+        <div id="wishlistModalCard" class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 space-y-6 text-center">
+            
+            <div class="w-16 h-16 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-center mx-auto text-red-600 shadow-sm">
+                <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="text-xl font-black text-[#111827] tracking-tight">Remove from Wishlist</h3>
+                <p class="text-xs text-[#475569] leading-relaxed">
+                    Are you sure you want to remove this item from your saved wishlist collection?
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button type="button" onclick="closeWishlistModal()" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-bold py-3 px-4 rounded-xl border border-[#E2E8F0] transition-all text-xs uppercase tracking-widest cursor-pointer">
+                    Cancel
+                </button>
+                <a id="confirmRemoveWishlistBtn" href="#" class="bg-[#DC2626] hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all text-xs uppercase tracking-widest flex items-center justify-center gap-1.5">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    <span>Remove</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
     {% include 'components/_footer.html' %}
 
     <script src="{% static 'js/lucide.min.js' %}"></script>
     <script>
         lucide.createIcons();
+
+        const wishlistModal = document.getElementById('wishlistModal');
+        const wishlistModalCard = document.getElementById('wishlistModalCard');
+        const confirmRemoveWishlistBtn = document.getElementById('confirmRemoveWishlistBtn');
+
+        function openWishlistModal(productId) {
+            confirmRemoveWishlistBtn.href = '/products/wishlist/remove/' + productId + '/';
+            
+            wishlistModal.classList.remove('opacity-0', 'pointer-events-none');
+            wishlistModal.classList.add('opacity-100');
+            
+            wishlistModalCard.classList.remove('scale-95');
+            wishlistModalCard.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWishlistModal() {
+            wishlistModal.classList.remove('opacity-100');
+            wishlistModal.classList.add('opacity-0', 'pointer-events-none');
+            
+            wishlistModalCard.classList.remove('scale-100');
+            wishlistModalCard.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        wishlistModal.addEventListener('click', function(event) {
+            if (event.target === wishlistModal) {
+                closeWishlistModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !wishlistModal.classList.contains('pointer-events-none')) {
+                closeWishlistModal();
+            }
+        });
     </script>
 </body>
 </html>
