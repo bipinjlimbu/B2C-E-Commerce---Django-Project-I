@@ -55,11 +55,12 @@
                             <td class="p-4 font-mono text-xs text-[#475569] font-medium">{{ review.created_at|date:"Y-m-d" }}</td>
                             <td class="p-4 pr-6 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="/review/delete/{{ review.id }}" 
-                                       title="Purge Review From Public Catalog" 
-                                       class="p-2 bg-[#F8FAFC] hover:bg-red-50 text-[#475569] hover:text-red-600 rounded-xl border border-[#E2E8F0] hover:border-red-200 transition-all shadow-sm">
+                                    <button type="button" 
+                                            onclick="openDeleteReviewModal('{{ review.id }}')"
+                                            title="Purge Review From Public Catalog" 
+                                            class="p-2 bg-[#F8FAFC] hover:bg-red-50 text-[#475569] hover:text-red-600 rounded-xl border border-[#E2E8F0] hover:border-red-200 transition-all shadow-sm cursor-pointer">
                                         <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -79,3 +80,66 @@
         </div>
     </div>
 </div>
+
+<div id="deleteReviewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0F14]/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 px-4">
+    <div id="deleteReviewModalCard" class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 space-y-6 text-center">
+        <div class="w-16 h-16 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-center mx-auto text-red-600 shadow-sm">
+            <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+        </div>
+
+        <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#111827] tracking-tight">Confirm Review Deletion</h3>
+            <p class="text-xs text-[#475569] leading-relaxed">
+                Are you sure you want to purge this review from the catalog? This action cannot be undone.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-2">
+            <button type="button" onclick="closeDeleteReviewModal()" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-bold py-3 px-4 rounded-xl border border-[#E2E8F0] transition-all text-xs uppercase tracking-widest cursor-pointer">
+                Cancel
+            </button>
+            <a id="confirmDeleteReviewBtn" href="#" class="bg-[#DC2626] hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all text-xs uppercase tracking-widest flex items-center justify-center gap-1.5">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <span>Delete</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const deleteReviewModal = document.getElementById('deleteReviewModal');
+    const deleteReviewModalCard = document.getElementById('deleteReviewModalCard');
+    const confirmDeleteReviewBtn = document.getElementById('confirmDeleteReviewBtn');
+
+    function openDeleteReviewModal(reviewId) {
+        confirmDeleteReviewBtn.href = '/review/delete/' + reviewId + '/';
+        
+        deleteReviewModal.classList.remove('opacity-0', 'pointer-events-none');
+        deleteReviewModal.classList.add('opacity-100');
+        
+        deleteReviewModalCard.classList.remove('scale-95');
+        deleteReviewModalCard.classList.add('scale-100');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeleteReviewModal() {
+        deleteReviewModal.classList.remove('opacity-100');
+        deleteReviewModal.classList.add('opacity-0', 'pointer-events-none');
+        
+        deleteReviewModalCard.classList.remove('scale-100');
+        deleteReviewModalCard.classList.add('scale-95');
+        document.body.style.overflow = '';
+    }
+
+    deleteReviewModal.addEventListener('click', function(event) {
+        if (event.target === deleteReviewModal) {
+            closeDeleteReviewModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && !deleteReviewModal.classList.contains('pointer-events-none')) {
+            closeDeleteReviewModal();
+        }
+    });
+</script>
