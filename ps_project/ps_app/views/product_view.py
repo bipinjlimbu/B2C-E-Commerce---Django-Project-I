@@ -241,9 +241,10 @@ def single_product_view(request, product_id):
         messages.error(request, "This product is currently inactive.")
         return redirect('home')
     
-    if Wishlist.objects.filter(customer=request.user, product=product).exists():
-        product.in_wishlist = True
-    else:
-        product.in_wishlist = False
+    if request.user.is_authenticated:
+        if Wishlist.objects.filter(customer=request.user, product=product).exists():
+            product.in_wishlist = True
+        else:
+            product.in_wishlist = False
         
     return render(request, 'main/single_product_page.html', {'product': product, 'reviews': reviews})
