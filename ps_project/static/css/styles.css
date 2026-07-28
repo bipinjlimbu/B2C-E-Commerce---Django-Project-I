@@ -467,7 +467,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.backdrop-blur-md, .backdrop-blur-\[2px\], .backdrop-blur-\[1px\], .backdrop-blur-sm {
+.backdrop-blur-md, .backdrop-blur-\[2px\], .backdrop-blur-sm, .backdrop-blur-\[1px\] {
   --tw-backdrop-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-backdrop-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-backdrop-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -1627,6 +1627,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(42 18 21 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#0B0F14\]\/70 {
+  background-color: rgb(11 15 20 / 0.7);
+}
+
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
 }
@@ -1681,8 +1685,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#0B0F14\]\/70 {
-  background-color: rgb(11 15 20 / 0.7);
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .bg-\[radial-gradient\(\#E2E8F0_1px\2c transparent_1px\)\] {
@@ -1761,6 +1771,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-12 {
   padding: 3rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .py-12 {
@@ -2261,12 +2275,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.5;
 }
 
-.opacity-5 {
-  opacity: 0.05;
-}
-
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-5 {
+  opacity: 0.05;
 }
 
 .shadow-sm {
@@ -2360,13 +2374,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   backdrop-filter: var(--tw-backdrop-filter);
 }
 
-.backdrop-blur-\[1px\] {
-  --tw-backdrop-blur: blur(1px);
+.backdrop-blur-sm {
+  --tw-backdrop-blur: blur(4px);
   backdrop-filter: var(--tw-backdrop-filter);
 }
 
-.backdrop-blur-sm {
-  --tw-backdrop-blur: blur(4px);
+.backdrop-blur-\[1px\] {
+  --tw-backdrop-blur: blur(1px);
   backdrop-filter: var(--tw-backdrop-filter);
 }
 
@@ -2655,6 +2669,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(59 23 28 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-\[\#F8FAFC\]\/50:hover {
   background-color: rgb(248 250 252 / 0.5);
 }
@@ -2666,11 +2685,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-red-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 
 .hover\:text-\[\#F97316\]:hover {
