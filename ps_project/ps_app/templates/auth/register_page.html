@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join | PixelShot</title>
+    <title>Create Account | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
@@ -14,7 +14,7 @@
     {% include 'components/_messages.html' %}
 
     <main class="flex-grow flex items-center justify-center p-4 py-12">
-        <div class="bg-white border border-[#E2E8F0] p-8 rounded-2xl shadow-sm max-w-2xl w-full">
+        <div class="bg-[#FFFFFF] border border-[#E2E8F0] p-8 rounded-2xl shadow-sm max-w-2xl w-full">
             
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-12 h-12 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl mb-3 shadow-sm">
@@ -35,9 +35,9 @@
                         </label>
                         <div class="relative">
                             <input type="text" id="username" name="username" value="{{ data.username }}" 
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                             {% if errors.username %}
-                                <p class="text-red-500 text-[11px] font-medium mt-1">{{ errors.username }}</p>
+                                <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.username }}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -49,9 +49,9 @@
                         </label>
                         <div class="relative">
                             <input type="email" id="email" name="email" value="{{ data.email }}" 
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                             {% if errors.email %}
-                                <p class="text-red-500 text-[11px] font-medium mt-1">{{ errors.email }}</p>
+                                <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.email }}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         </label>
                         <div class="relative">
                             <input type="text" id="first_name" name="first_name" value="{{ data.first_name }}" 
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                         </div>
                     </div>
                     
@@ -74,7 +74,7 @@
                         </label>
                         <div class="relative">
                             <input type="text" id="last_name" name="last_name" value="{{ data.last_name }}" 
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                         </div>
                     </div>
 
@@ -85,9 +85,9 @@
                         </label>
                         <div class="relative">
                             <input type="password" id="password" name="password" value="{{ data.password }}" 
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                             {% if errors.password %}
-                                <p class="text-red-500 text-[11px] font-medium mt-1">{{ errors.password }}</p>
+                                <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.password }}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -99,9 +99,9 @@
                         </label>
                         <div class="relative">
                             <input type="password" id="confirm_password" name="confirm_password" value="{{ data.confirm_password }}"
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                             {% if errors.confirm_password %}
-                                <p class="text-red-500 text-[11px] font-medium mt-1">{{ errors.confirm_password }}</p>
+                                <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.confirm_password }}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                         </label>
                         <div class="relative">
                             <input type="text" id="phone" name="phone" value="{{ data.phone }}"
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                         </div>
                     </div>
                     
@@ -124,7 +124,7 @@
                         </label>
                         <div class="relative">
                             <input type="text" id="address" name="address" value="{{ data.address }}"
-                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                                class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                         </div>
                     </div>
 
@@ -144,8 +144,8 @@
                 </div>
 
                 <button type="submit" 
-                    class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs uppercase tracking-widest mt-6">
-                    <span>Register</span>
+                    class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs uppercase tracking-widest mt-6 cursor-pointer">
+                    <span>Create Account</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
             </form>
