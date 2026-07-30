@@ -454,7 +454,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 0 #0000;
 }
 
-.blur-md, .blur-3xl, .contrast-125, .drop-shadow-xl, .drop-shadow-2xl, .grayscale, .filter, .group-hover\:grayscale-0 {
+.blur-md, .blur-3xl, .blur-2xl, .contrast-125, .drop-shadow-xl, .drop-shadow-2xl, .grayscale, .filter, .group-hover\:grayscale-0 {
   --tw-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -619,6 +619,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: -0.25rem;
 }
 
+.-right-12 {
+  right: -3rem;
+}
+
+.-top-12 {
+  top: -3rem;
+}
+
+.-left-12 {
+  left: -3rem;
+}
+
+.-bottom-12 {
+  bottom: -3rem;
+}
+
 .z-\[100\] {
   z-index: 100;
 }
@@ -753,6 +769,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-1 {
   margin-left: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .block {
@@ -907,6 +927,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 18rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -1045,6 +1069,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-72 {
   width: 18rem;
+}
+
+.w-40 {
+  width: 10rem;
 }
 
 .min-w-\[320px\] {
@@ -1423,6 +1451,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: calc(4rem * var(--tw-space-y-reverse));
 }
 
+.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
@@ -1645,6 +1679,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: transparent;
 }
 
+.border-\[\#16A34A\]\/20 {
+  border-color: rgb(22 163 74 / 0.2);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1860,6 +1898,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-\[\#1F2937\]\/50 {
   background-color: rgb(31 41 55 / 0.5);
+}
+
+.bg-\[\#16A34A\]\/10 {
+  background-color: rgb(22 163 74 / 0.1);
+}
+
+.bg-\[\#E2E8F0\]\/60 {
+  background-color: rgb(226 232 240 / 0.6);
 }
 
 .bg-\[radial-gradient\(\#E2E8F0_1px\2c transparent_1px\)\] {
@@ -2349,6 +2395,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25;
 }
 
+.leading-snug {
+  line-height: 1.375;
+}
+
 .tracking-widest {
   letter-spacing: 0.1em;
 }
@@ -2544,6 +2594,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(226 232 240 / var(--tw-text-opacity));
 }
 
+.text-\[\#16A34A\] {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+
+.text-slate-100 {
+  --tw-text-opacity: 1;
+  color: rgb(241 245 249 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -2691,6 +2751,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .blur-3xl {
   --tw-blur: blur(64px);
+  filter: var(--tw-filter);
+}
+
+.blur-2xl {
+  --tw-blur: blur(40px);
   filter: var(--tw-filter);
 }
 
@@ -2868,8 +2933,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.5rem;
 }
 
+.file\:py-2::file-selector-button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.file\:px-3::file-selector-button {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .file\:text-\[10px\]::file-selector-button {
   font-size: 10px;
+}
+
+.file\:text-xs::file-selector-button {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .file\:font-bold::file-selector-button {
@@ -3486,6 +3566,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 1.5rem;
   }
 
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px;
   }
@@ -3564,6 +3649,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:justify-end {
     justify-content: flex-end;
+  }
+
+  .md\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .md\:text-left {
