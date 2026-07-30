@@ -2297,6 +2297,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(251 191 36 / var(--tw-text-opacity));
 }
 
+.text-\[\#E2E8F0\]\/70 {
+  color: rgb(226 232 240 / 0.7);
+}
+
+.text-\[\#E2E8F0\]\/60 {
+  color: rgb(226 232 240 / 0.6);
+}
+
 .underline {
   text-decoration: underline;
 }
