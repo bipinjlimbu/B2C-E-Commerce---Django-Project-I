@@ -1547,6 +1547,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.border-\[\#DC2626\]\/20 {
+  border-color: rgb(220 38 38 / 0.2);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1780,6 +1784,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .fill-\[\#E2E8F0\] {
   fill: #E2E8F0;
+}
+
+.fill-\[\#FBBF24\] {
+  fill: #FBBF24;
 }
 
 .stroke-\[2\.5\] {
@@ -2731,6 +2739,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(249 115 22 / 0.3);
 }
 
+.hover\:border-\[\#DC2626\]\/30:hover {
+  border-color: rgb(220 38 38 / 0.3);
+}
+
 .hover\:bg-\[\#ea580c\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
@@ -2792,6 +2804,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#F97316\]\/90:hover {
+  background-color: rgb(249 115 22 / 0.9);
+}
+
+.hover\:bg-\[\#DC2626\]\/10:hover {
+  background-color: rgb(220 38 38 / 0.1);
+}
+
+.hover\:bg-\[\#DC2626\]\/90:hover {
+  background-color: rgb(220 38 38 / 0.9);
 }
 
 .hover\:text-\[\#F97316\]:hover {
