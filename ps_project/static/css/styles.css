@@ -1748,6 +1748,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#0B0F14\]\/80 {
+  background-color: rgb(11 15 20 / 0.8);
+}
+
 .bg-\[radial-gradient\(\#E2E8F0_1px\2c transparent_1px\)\] {
   background-image: radial-gradient(#E2E8F0 1px,transparent 1px);
 }
@@ -2598,6 +2602,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.placeholder\:text-\[\#475569\]\/50::-moz-placeholder {
+  color: rgb(71 85 105 / 0.5);
+}
+
+.placeholder\:text-\[\#475569\]\/50::placeholder {
+  color: rgb(71 85 105 / 0.5);
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
@@ -2828,6 +2840,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:bg-\[\#DC2626\]\/20:hover {
   background-color: rgb(220 38 38 / 0.2);
+}
+
+.hover\:bg-\[\#1F2937\]\/80:hover {
+  background-color: rgb(31 41 55 / 0.8);
 }
 
 .hover\:text-\[\#F97316\]:hover {

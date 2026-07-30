@@ -28,7 +28,7 @@
                             
                             <img id="avatar_preview" src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% endif %}" alt="{{ user.username }}" class="w-full h-full object-cover {% if not user.profile_picture %}hidden{% endif %}">
 
-                            <label for="profile_picture" class="absolute inset-0 bg-black/75 flex flex-col items-center justify-center gap-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-bold">
+                            <label for="profile_picture" class="absolute inset-0 bg-[#0B0F14]/80 flex flex-col items-center justify-center gap-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-bold">
                                 <i data-lucide="camera" class="w-6 h-6 text-[#F97316]"></i>
                                 <span>Change Photo</span>
                             </label>
@@ -38,22 +38,22 @@
                     </div>
 
                     <div class="space-y-1">
-                        <h1 class="text-2xl font-black tracking-tight text-white">Modify Profile</h1>
+                        <h1 class="text-2xl font-bold tracking-tight text-white">Edit Profile</h1>
                         <span class="inline-block bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/20 text-xs font-mono px-3 py-1 rounded-full font-bold">
-                            @{{ user.username|default:"dummy_creator" }}
+                            @{{ user.username|default:"user" }}
                         </span>
                     </div>
                 </div>
 
                 <div class="w-full pt-6 border-t border-[#1F2937] space-y-3">
-                    <button type="submit" class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-md">
+                    <button type="submit" class="w-full bg-[#F97316] hover:bg-[#F97316]/90 text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-md cursor-pointer">
                         <i data-lucide="save" class="w-4 h-4"></i>
-                        Save Changes
+                        <span>Save Changes</span>
                     </button>
                     
-                    <a href="/profile/" class="w-full bg-[#1A222D] hover:bg-[#25303F] text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm border border-[#374151]">
+                    <a href="/profile/" class="w-full bg-[#1F2937] hover:bg-[#1F2937]/80 text-white font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm border border-[#1F2937]">
                         <i data-lucide="x" class="w-4 h-4 text-[#F97316]"></i>
-                        Cancel
+                        <span>Cancel</span>
                     </a>
                 </div>
             </div>
@@ -61,31 +61,31 @@
             <div class="lg:col-span-8 bg-[#FFFFFF] border border-[#E2E8F0] p-6 sm:p-8 lg:p-10 rounded-3xl shadow-sm space-y-8">
                 <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-6">
                     <div>
-                        <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Personal Registry</h2>
-                        <p class="text-2xl font-black text-[#111827] tracking-tight">Edit Account Parameters</p>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Personal Details</h2>
+                        <p class="text-2xl font-bold text-[#111827] tracking-tight">Update Your Profile</p>
                     </div>
                     <div class="w-10 h-10 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex items-center justify-center text-[#111827]">
-                        <i data-lucide="sliders" class="w-5 h-5 text-[#F97316]"></i>
+                        <i data-lucide="user-check" class="w-5 h-5 text-[#F97316]"></i>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <label for="first_name" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">First Name</label>
-                        <input type="text" id="first_name" name="first_name" {% if data %}value="{{ data.first_name }}"{% else %}value="{{ user.first_name|default:'' }}"{% endif %} placeholder="Enter first name" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
+                        <input type="text" id="first_name" name="first_name" {% if data %}value="{{ data.first_name }}"{% else %}value="{{ user.first_name|default:'' }}"{% endif %} placeholder="Enter first name" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder:text-[#475569]/50">
                     </div>
 
                     <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <label for="last_name" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" {% if data %}value="{{ data.last_name }}"{% else %}value="{{ user.last_name|default:'' }}"{% endif %} placeholder="Enter last name" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
+                        <input type="text" id="last_name" name="last_name" {% if data %}value="{{ data.last_name }}"{% else %}value="{{ user.last_name|default:'' }}"{% endif %} placeholder="Enter last name" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder:text-[#475569]/50">
                     </div>
 
                     <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
                             <label for="username" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Username</label>
-                            <input type="text" id="username" name="username" {% if data %}value="{{ data.username }}"{% else %}value="{{ user.username|default:'' }}"{% endif %} placeholder="Enter username" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
+                            <input type="text" id="username" name="username" {% if data %}value="{{ data.username }}"{% else %}value="{{ user.username|default:'' }}"{% endif %} placeholder="Enter username" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder:text-[#475569]/50">
                             {% if errors.username %}
-                                <p class="text-red-500 text-xs mt-1 font-semibold">{{ errors.username }}</p>
+                                <p class="text-[#DC2626] text-xs mt-1 font-semibold">{{ errors.username }}</p>
                             {% endif %}
                         </div>
                         <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0">
@@ -96,9 +96,9 @@
                     <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
                             <label for="email" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Email Address</label>
-                            <input type="email" id="email" name="email" {% if data %}value="{{ data.email }}"{% else %}value="{{ user.email|default:'' }}"{% endif %} placeholder="Enter email address" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
+                            <input type="email" id="email" name="email" {% if data %}value="{{ data.email }}"{% else %}value="{{ user.email|default:'' }}"{% endif %} placeholder="Enter email address" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder:text-[#475569]/50">
                             {% if errors.email %}
-                                <p class="text-red-500 text-xs mt-1 font-semibold">{{ errors.email }}</p>
+                                <p class="text-[#DC2626] text-xs mt-1 font-semibold">{{ errors.email }}</p>
                             {% endif %}
                         </div>
                         <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0">
@@ -108,8 +108,8 @@
 
                     <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-center justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
-                            <label for="phone" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Phone</label>
-                            <input type="text" id="phone" name="phone" {% if data %}value="{{ data.phone }}"{% else %}value="{{ user.phone|default:'' }}"{% endif %} placeholder="Enter phone number" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400">
+                            <label for="phone" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Phone Number</label>
+                            <input type="text" id="phone" name="phone" {% if data %}value="{{ data.phone }}"{% else %}value="{{ user.phone|default:'' }}"{% endif %} placeholder="Enter phone number" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder:text-[#475569]/50">
                         </div>
                         <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0">
                             <i data-lucide="smartphone" class="w-5 h-5 text-[#F97316]"></i>
@@ -118,10 +118,10 @@
 
                     <div class="sm:col-span-2 bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl flex items-start justify-between gap-4 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-all">
                         <div class="flex-grow">
-                            <label for="address" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Address</label>
-                            <textarea id="address" name="address" rows="2" placeholder="Enter address" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder-slate-400 resize-none leading-relaxed">{% if data %}{{ data.address }}{% else %}{{ user.address|default:'' }}{% endif %}</textarea>
+                            <label for="address" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Home Address</label>
+                            <textarea id="address" name="address" rows="2" placeholder="Enter home address" class="w-full bg-transparent text-sm font-bold text-[#111827] focus:outline-none placeholder:text-[#475569]/50 resize-none leading-relaxed">{% if data %}{{ data.address }}{% else %}{{ user.address|default:'' }}{% endif %}</textarea>
                             {% if errors.address %}
-                                <p class="text-red-500 text-xs mt-1 font-semibold">{{ errors.address }}</p>
+                                <p class="text-[#DC2626] text-xs mt-1 font-semibold">{{ errors.address }}</p>
                             {% endif %}
                         </div>
                         <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-center shrink-0 mt-0.5">
