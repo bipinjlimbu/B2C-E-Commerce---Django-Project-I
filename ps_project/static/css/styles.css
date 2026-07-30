@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .-translate-x-1\/2, .rotate-180, .-rotate-12, .-rotate-6, .scale-95, .scale-100, .scale-105, .transform, .hover\:-translate-y-0\.5, .hover\:-translate-y-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after {
+.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .-translate-x-1\/2, .rotate-180, .-rotate-12, .-rotate-6, .scale-95, .scale-100, .scale-105, .transform, .hover\:-translate-y-0\.5, .hover\:-translate-y-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:rotate-12, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -454,7 +454,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 0 #0000;
 }
 
-.blur-md, .blur-3xl, .blur-2xl, .blur-\[120px\], .blur-\[140px\], .contrast-125, .drop-shadow-xl, .drop-shadow-2xl, .grayscale, .filter, .group-hover\:grayscale-0 {
+.blur-md, .blur-3xl, .blur-2xl, .blur-\[120px\], .blur-\[140px\], .blur-lg, .contrast-125, .drop-shadow-xl, .drop-shadow-2xl, .grayscale, .filter, .group-hover\:grayscale-0 {
   --tw-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -673,6 +673,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .-right-20 {
   right: -5rem;
+}
+
+.-top-16 {
+  top: -4rem;
+}
+
+.-left-16 {
+  left: -4rem;
+}
+
+.-bottom-16 {
+  bottom: -4rem;
+}
+
+.-right-16 {
+  right: -4rem;
 }
 
 .z-\[100\] {
@@ -979,6 +995,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 350px;
 }
 
+.h-48 {
+  height: 12rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -1129,6 +1149,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[700px\] {
   width: 700px;
+}
+
+.w-48 {
+  width: 12rem;
 }
 
 .min-w-\[320px\] {
@@ -2702,6 +2726,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(241 245 249 / var(--tw-text-opacity));
 }
 
+.text-\[\#F97316\]\/60 {
+  color: rgb(249 115 22 / 0.6);
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -2777,6 +2805,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-20 {
   opacity: 0.2;
+}
+
+.opacity-25 {
+  opacity: 0.25;
 }
 
 .shadow-sm {
@@ -2872,6 +2904,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .blur-\[140px\] {
   --tw-blur: blur(140px);
+  filter: var(--tw-filter);
+}
+
+.blur-lg {
+  --tw-blur: blur(16px);
   filter: var(--tw-filter);
 }
 
@@ -3269,6 +3306,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 
+.hover\:border-\[\#DC2626\]\/40:hover {
+  border-color: rgb(220 38 38 / 0.4);
+}
+
 .hover\:bg-\[\#ea580c\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
@@ -3498,6 +3539,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   transform: var(--tw-transform);
 }
 
+.group:hover .group-hover\:rotate-12 {
+  --tw-rotate: 12deg;
+  transform: var(--tw-transform);
+}
+
 .group:hover .group-hover\:scale-110 {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -3593,8 +3639,16 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: inline;
   }
 
+  .sm\:h-36 {
+    height: 9rem;
+  }
+
   .sm\:w-auto {
     width: auto;
+  }
+
+  .sm\:w-36 {
+    width: 9rem;
   }
 
   .sm\:min-w-\[320px\] {
@@ -3707,6 +3761,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 0px;
   }
 
+  .sm\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px;
   }
@@ -3792,9 +3851,17 @@ Ensure the default browser behavior of the `hidden` attribute.
     justify-content: flex-end;
   }
 
+  .md\:justify-between {
+    justify-content: space-between;
+  }
+
   .md\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .md\:pt-0 {
+    padding-top: 0px;
   }
 
   .md\:text-left {
@@ -3936,6 +4003,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:py-28 {
     padding-top: 7rem;
     padding-bottom: 7rem;
+  }
+
+  .lg\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .lg\:pt-0 {
