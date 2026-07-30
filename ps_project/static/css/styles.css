@@ -443,7 +443,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 0 #0000;
 }
 
-.ring-1, .focus-within\:ring-1, .focus\:ring-2, .focus\:ring-1 {
+.ring-1, .focus-within\:ring-1, .focus-within\:ring-2, .focus\:ring-2, .focus\:ring-1 {
   --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
@@ -532,6 +532,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 1rem;
   bottom: 1rem;
   left: 1rem;
+}
+
+.-inset-1 {
+  top: -0.25rem;
+  right: -0.25rem;
+  bottom: -0.25rem;
+  left: -0.25rem;
 }
 
 .inset-y-0 {
@@ -1241,6 +1248,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-\[180px\] {
   max-width: 180px;
+}
+
+.max-w-\[200px\] {
+  max-width: 200px;
 }
 
 .flex-1 {
@@ -2080,6 +2091,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-to: transparent;
 }
 
+.to-\[\#FBBF24\] {
+  --tw-gradient-to: #FBBF24;
+}
+
 .bg-clip-text {
   -webkit-background-clip: text;
           background-clip: text;
@@ -2395,6 +2410,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
 }
 
 .text-left {
@@ -2811,6 +2830,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.25;
 }
 
+.opacity-40 {
+  opacity: 0.4;
+}
+
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -3138,6 +3161,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(71 85 105 / 0.5);
 }
 
+.placeholder\:text-\[\#475569\]\/40::-moz-placeholder {
+  color: rgb(71 85 105 / 0.4);
+}
+
+.placeholder\:text-\[\#475569\]\/40::placeholder {
+  color: rgb(71 85 105 / 0.4);
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
@@ -3223,6 +3254,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
+.focus-within\:ring-2:focus-within {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
 .focus-within\:ring-\[\#F97316\]:focus-within {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(249 115 22 / var(--tw-ring-opacity));
@@ -3230,6 +3267,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .focus-within\:ring-\[\#F97316\]\/30:focus-within {
   --tw-ring-color: rgb(249 115 22 / 0.3);
+}
+
+.focus-within\:ring-\[\#F97316\]\/20:focus-within {
+  --tw-ring-color: rgb(249 115 22 / 0.2);
 }
 
 .hover\:-translate-y-0\.5:hover {
@@ -3586,6 +3627,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
+}
+
+.group:hover .group-hover\:opacity-80 {
+  opacity: 0.8;
 }
 
 .group:hover .group-hover\:grayscale-0 {
