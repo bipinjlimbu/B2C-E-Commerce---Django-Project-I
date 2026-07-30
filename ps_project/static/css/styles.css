@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .-rotate-12, .-rotate-6, .scale-95, .scale-100, .scale-105, .transform, .hover\:-translate-y-0\.5, .hover\:-translate-y-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after {
+.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .-rotate-12, .-rotate-6, .scale-95, .scale-100, .scale-105, .transform, .hover\:-translate-y-0\.5, .hover\:-translate-y-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -2221,6 +2221,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 2.5rem;
 }
 
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -3276,6 +3284,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   transform: var(--tw-transform);
 }
 
+.group:hover .group-hover\:translate-x-0\.5 {
+  --tw-translate-x: 0.125rem;
+  transform: var(--tw-transform);
+}
+
+.group:hover .group-hover\:translate-x-0 {
+  --tw-translate-x: 0px;
+  transform: var(--tw-transform);
+}
+
 .group:hover .group-hover\:scale-110 {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -3580,6 +3598,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:col-span-5 {
     grid-column: span 5 / span 5;
+  }
+
+  .lg\:col-span-6 {
+    grid-column: span 6 / span 6;
   }
 
   .lg\:mx-0 {
