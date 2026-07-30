@@ -122,26 +122,6 @@
     </aside>
 
     <div class="flex-grow flex flex-col h-screen min-w-0 overflow-hidden">
-        <header class="bg-white border-b border-[#E2E8F0] px-8 py-4 flex items-center justify-between shrink-0 shadow-sm">
-            <div class="flex items-center gap-3">
-                <h2 class="text-xl font-bold text-[#111827]">
-                    {% if section == 'product-management' %}Products
-                    {% elif section == 'brand-management' %}Brands
-                    {% elif section == 'order-fulfillment' %}Orders
-                    {% elif section == 'product-reviews' %}Customer Reviews
-                    {% elif section == 'revenue-logs' %}Sales Earnings
-                    {% else %}Customers{% endif %}
-                </h2>
-            </div>
-            
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 bg-[#F8FAFC] border border-[#E2E8F0] px-3.5 py-1.5 rounded-full">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#16A34A] animate-pulse"></span>
-                    <span class="text-xs font-semibold text-[#111827]">System Active</span>
-                </div>
-            </div>
-        </header>
-
         <main class="flex-grow overflow-y-auto bg-[#F8FAFC] p-6 sm:p-8 custom-scrollbar">
             
             {% if section == 'customer-list' or not section %}
