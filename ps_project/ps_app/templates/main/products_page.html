@@ -15,7 +15,7 @@
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         <div>
-            <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Browse Catalog</h2>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Explore Products</h2>
             <p class="text-2xl lg:text-3xl font-black tracking-tight text-[#111827] uppercase">All Products</p>
         </div>
 
@@ -80,7 +80,7 @@
 
                 <div>
                     <a href="/products/" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#F97316] font-bold text-[10px] uppercase tracking-widest border border-[#E2E8F0] h-[46px] rounded-xl transition-all flex items-center justify-center w-full cursor-pointer">
-                        Reset Filters
+                        Clear Filters
                     </a>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                                     {% else %}
                                         <div class="w-full h-full flex flex-col items-center justify-center bg-[#E2E8F0]/40">
                                             <i data-lucide="camera" class="w-10 h-10 text-[#475569] group-hover:scale-110 group-hover:text-[#F97316] transition-all duration-300"></i>
-                                            <span class="text-[9px] uppercase tracking-widest text-[#475569] font-bold mt-2">No Image</span>
+                                            <span class="text-[9px] uppercase tracking-widest text-[#475569] font-bold mt-2">No Photo</span>
                                         </div>
                                     {% endif %}
                                     <span class="absolute top-3 left-3 bg-[#FFFFFF]/90 border border-[#E2E8F0] backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-[#111827] px-2.5 py-1 rounded-md shadow-sm z-10">
@@ -143,12 +143,12 @@
                                             <span class="text-[10px] font-black text-[#DC2626] bg-[#DC2626]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">Out of Stock</span>
                                         {% endif %}
                                     {% elif user.is_staff %}
-                                        <a href="/dashboard/admin/?section=product-management" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Manage Product">
+                                        <a href="/dashboard/admin/?section=product-management" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Edit Item">
                                             <i data-lucide="settings" class="w-4 h-4"></i>
                                         </a>
                                     {% else %}
                                         {% if product.stock > 0 %}
-                                            <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Log In to Buy">
+                                            <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Sign In to Buy">
                                                 <i data-lucide="log-in" class="w-4 h-4"></i>
                                             </a>
                                         {% else %}
@@ -166,9 +166,9 @@
                         <i data-lucide="package-open" class="w-8 h-8 text-[#475569]"></i>
                     </div>
                     <h3 class="text-[#111827] font-bold text-base tracking-tight">No Products Found</h3>
-                    <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">No products match your selected filters. Reset filters to see all items.</p>
-                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-[#FFFFFF] font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md cursor-pointer">
-                        Reset Filters
+                    <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">We couldn't find any items matching your selected filters. Clear your filters to see all products.</p>
+                    <a href="/products/" class="bg-[#F97316] hover:bg-[#F97316]/90 text-[#FFFFFF] font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md cursor-pointer">
+                        Clear Filters
                     </a>
                 </div>
             {% endif %}
