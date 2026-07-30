@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | PixelShot</title>
+    <title>Log In | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
@@ -14,14 +14,14 @@
     {% include 'components/_messages.html' %}
 
     <main class="flex-grow flex items-center justify-center p-4 py-12">
-        <div class="bg-white border border-[#E2E8F0] p-8 rounded-2xl shadow-sm max-w-md w-full">
+        <div class="bg-[#FFFFFF] border border-[#E2E8F0] p-8 rounded-2xl shadow-sm max-w-md w-full">
             
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-12 h-12 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl mb-3 shadow-sm">
                     <i data-lucide="camera" class="w-6 h-6 text-[#F97316]"></i>
                 </div>
                 <h1 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Welcome Back</h1>
-                <p class="text-2xl font-black tracking-tight text-[#111827] uppercase">Sign In to PixelShot</p>
+                <p class="text-2xl font-black tracking-tight text-[#111827] uppercase">Log In to PixelShot</p>
             </div>
 
             <form method="POST" class="space-y-4">
@@ -34,9 +34,9 @@
                     </label>
                     <div class="relative">
                         <input type="text" id="username" name="username" value="{{ data.username }}" 
-                            class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                            class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                         {% if errors.username %}
-                            <p class="text-red-500 text-[11px] font-medium mt-1">{{ errors.username }}</p>
+                            <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.username }}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -47,16 +47,16 @@
                         Password
                     </label>
                     <div class="relative">
-                        <input type="password" id="password" name="password" value="{{ data.password }}"    
-                            class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-white transition-all">
+                        <input type="password" id="password" name="password" value="{{ data.password }}"     
+                            class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                         {% if errors.password %}
-                            <p class="text-red-500 text-[11px] font-medium mt-1">{{ errors.password }}</p>
+                            <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.password }}</p>
                         {% endif %}
                     </div>
                 </div>
 
                 <button type="submit" 
-                    class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs uppercase tracking-widest mt-6">
+                    class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs uppercase tracking-widest mt-6 cursor-pointer">
                     <span>Log In</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
