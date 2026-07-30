@@ -706,6 +706,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 25%;
 }
 
+.top-4 {
+  top: 1rem;
+}
+
+.left-4 {
+  left: 1rem;
+}
+
 .z-\[100\] {
   z-index: 100;
 }
@@ -1605,6 +1613,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 
+.space-y-12 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(3rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(3rem * var(--tw-space-y-reverse));
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
@@ -1843,6 +1857,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(255 255 255 / 0.2);
 }
 
+.border-white\/20 {
+  border-color: rgb(255 255 255 / 0.2);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -2066,6 +2084,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-\[\#E2E8F0\]\/60 {
   background-color: rgb(226 232 240 / 0.6);
+}
+
+.bg-\[\#0B0F14\]\/50 {
+  background-color: rgb(11 15 20 / 0.5);
+}
+
+.bg-\[\#0B0F14\]\/60 {
+  background-color: rgb(11 15 20 / 0.6);
 }
 
 .bg-\[radial-gradient\(\#E2E8F0_1px\2c transparent_1px\)\] {
@@ -2467,6 +2493,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-5 {
   padding-bottom: 1.25rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
 }
 
 .text-left {
@@ -4102,6 +4132,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 3.5rem;
   }
 
+  .lg\:gap-12 {
+    gap: 3rem;
+  }
+
   .lg\:border-t-0 {
     border-top-width: 0px;
   }
@@ -4156,6 +4190,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:py-24 {
     padding-top: 6rem;
     padding-bottom: 6rem;
+  }
+
+  .lg\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .lg\:pt-0 {
