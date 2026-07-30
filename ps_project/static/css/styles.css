@@ -659,6 +659,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 50%;
 }
 
+.-top-20 {
+  top: -5rem;
+}
+
+.-left-20 {
+  left: -5rem;
+}
+
+.-bottom-20 {
+  bottom: -5rem;
+}
+
+.-right-20 {
+  right: -5rem;
+}
+
 .z-\[100\] {
   z-index: 100;
 }
@@ -2723,6 +2739,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(148 163 184 / var(--tw-placeholder-opacity));
 }
 
+.placeholder-\[\#475569\]\/50::-moz-placeholder {
+  color: rgb(71 85 105 / 0.5);
+}
+
+.placeholder-\[\#475569\]\/50::placeholder {
+  color: rgb(71 85 105 / 0.5);
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -3719,6 +3743,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 

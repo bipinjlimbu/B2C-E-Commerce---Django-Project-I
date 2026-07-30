@@ -7,65 +7,120 @@
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#475569]">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#475569] antialiased selection:bg-[#F97316] selection:text-white">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow flex items-center justify-center p-4 py-12">
-        <div class="bg-[#FFFFFF] border border-[#E2E8F0] p-8 rounded-2xl shadow-sm max-w-md w-full">
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8 py-12">
+        <div class="w-full max-w-4xl bg-[#FFFFFF] border border-[#E2E8F0] rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
             
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-12 h-12 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl mb-3 shadow-sm">
-                    <i data-lucide="camera" class="w-6 h-6 text-[#F97316]"></i>
+            <div class="lg:col-span-5 bg-[#0B0F14] text-white p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -top-20 -left-20 w-64 h-64 bg-[#F97316]/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-[#FBBF24]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#1F2937] text-[#F97316] border border-[#F97316]/30">
+                        <i data-lucide="aperture" class="w-4 h-4"></i>
+                        <span>PixelShot Store</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-white">
+                            Gear Up For Your Next Shoot
+                        </h2>
+                        <p class="text-xs sm:text-sm text-[#E2E8F0]/70 leading-relaxed">
+                            Log in to view your saved items, track orders, and get special prices on professional camera equipment.
+                        </p>
+                    </div>
                 </div>
-                <h1 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Welcome Back</h1>
-                <p class="text-2xl font-black tracking-tight text-[#111827] uppercase">Log In to PixelShot</p>
+
+                <div class="relative z-10 pt-8 mt-8 border-t border-[#1F2937] space-y-3">
+                    <div class="flex items-center gap-3 text-xs text-[#E2E8F0]/80">
+                        <div class="w-7 h-7 rounded-lg bg-[#1F2937] flex items-center justify-center text-[#F97316] shrink-0 border border-[#E2E8F0]/10">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        </div>
+                        <span>Safe and secure checkout</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-[#E2E8F0]/80">
+                        <div class="w-7 h-7 rounded-lg bg-[#1F2937] flex items-center justify-center text-[#F97316] shrink-0 border border-[#E2E8F0]/10">
+                            <i data-lucide="truck" class="w-4 h-4"></i>
+                        </div>
+                        <span>Fast delivery on all orders</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-[#E2E8F0]/80">
+                        <div class="w-7 h-7 rounded-lg bg-[#1F2937] flex items-center justify-center text-[#F97316] shrink-0 border border-[#E2E8F0]/10">
+                            <i data-lucide="award" class="w-4 h-4"></i>
+                        </div>
+                        <span>Official brand warranty</span>
+                    </div>
+                </div>
             </div>
 
-            <form method="POST" class="space-y-4">
-                {% csrf_token %}
-                
-                <div>
-                    <label for="username" class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#475569] mb-1.5">
-                        <i data-lucide="user" class="w-3.5 h-3.5 text-[#475569]"></i>
-                        Username
-                    </label>
-                    <div class="relative">
-                        <input type="text" id="username" name="username" value="{{ data.username }}" 
-                            class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
+            <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center bg-[#FFFFFF]">
+                <div class="mb-8">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#F97316] bg-[#F97316]/10 px-3 py-1 rounded-md">Welcome Back</span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111827] mt-2">Log In to Your Account</h1>
+                    <p class="text-xs sm:text-sm text-[#475569] mt-1">Please enter your account details below.</p>
+                </div>
+
+                <form method="POST" class="space-y-5">
+                    {% csrf_token %}
+                    
+                    <div>
+                        <label for="username" class="block text-xs font-bold text-[#111827] mb-2">
+                            Username
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#475569]">
+                                <i data-lucide="user" class="w-4 h-4"></i>
+                            </div>
+                            <input type="text" id="username" name="username" value="{{ data.username }}" 
+                                placeholder="Enter your username"
+                                class="block w-full pl-10 pr-4 py-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-sm font-medium text-[#111827] placeholder-[#475569]/50 focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
+                        </div>
                         {% if errors.username %}
-                            <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.username }}</p>
+                            <p class="text-[#DC2626] text-xs font-semibold mt-1.5 flex items-center gap-1">
+                                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                <span>{{ errors.username }}</span>
+                            </p>
                         {% endif %}
                     </div>
-                </div>
 
-                <div>
-                    <label for="password" class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#475569] mb-1.5">
-                        <i data-lucide="lock" class="w-3.5 h-3.5 text-[#475569]"></i>
-                        Password
-                    </label>
-                    <div class="relative">
-                        <input type="password" id="password" name="password" value="{{ data.password }}"     
-                            class="block w-full px-3 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
+                    <div>
+                        <label for="password" class="block text-xs font-bold text-[#111827] mb-2">
+                            Password
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#475569]">
+                                <i data-lucide="lock" class="w-4 h-4"></i>
+                            </div>
+                            <input type="password" id="password" name="password" value="{{ data.password }}" 
+                                placeholder="Enter your password"
+                                class="block w-full pl-10 pr-4 py-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-sm font-medium text-[#111827] placeholder-[#475569]/50 focus:outline-none focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
+                        </div>
                         {% if errors.password %}
-                            <p class="text-[#DC2626] text-[11px] font-medium mt-1">{{ errors.password }}</p>
+                            <p class="text-[#DC2626] text-xs font-semibold mt-1.5 flex items-center gap-1">
+                                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                <span>{{ errors.password }}</span>
+                            </p>
                         {% endif %}
                     </div>
+
+                    <button type="submit" 
+                        class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-[#F97316]/25 hover:shadow-xl hover:shadow-[#F97316]/35 transition-all duration-300 flex items-center justify-center space-x-2 text-sm mt-6 cursor-pointer transform hover:-translate-y-0.5">
+                        <span>Log In</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-[#E2E8F0] text-center text-xs text-[#475569]">
+                    Don't have an account? 
+                    <a href="/register/" class="text-[#111827] font-bold hover:text-[#F97316] transition-colors underline underline-offset-4 ml-1">Create an account</a>
                 </div>
-
-                <button type="submit" 
-                    class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs uppercase tracking-widest mt-6 cursor-pointer">
-                    <span>Log In</span>
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
-            </form>
-
-            <div class="mt-6 text-center text-xs text-[#475569]">
-                Don't have an account? 
-                <a href="/register/" class="text-[#111827] font-bold hover:text-[#F97316] transition-colors underline underline-offset-4">Register</a>
             </div>
+
         </div>
     </main>
 
