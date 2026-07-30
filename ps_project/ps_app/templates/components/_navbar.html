@@ -9,7 +9,7 @@
                 </a>
                 
                 <div class="hidden md:flex items-center gap-6 text-sm font-bold text-[#475569]">
-                    <a href="/products/" class="hover:text-[#F97316] transition-colors">Shop All</a>
+                    <a href="/products/" class="hover:text-[#F97316] transition-colors">All Products</a>
                     <a href="/products/?category=cameras" class="hover:text-[#F97316] transition-colors">Cameras</a>
                     <a href="/products/?category=lenses" class="hover:text-[#F97316] transition-colors">Lenses</a>
                     <a href="/products/?category=accessories" class="hover:text-[#F97316] transition-colors">Accessories</a>
@@ -18,7 +18,7 @@
 
             <div class="flex-1 max-w-md mx-6 hidden sm:block">
                 <form action="/products/" method="GET" class="relative">
-                    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search premium gear..." 
+                    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search products..." 
                         class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl pl-4 pr-9 py-1.5 text-sm text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-[#F97316] focus:bg-[#FFFFFF] transition-all">
                     <button type="submit" class="absolute inset-y-0 right-0 flex items-center pr-3 text-[#475569] hover:text-[#F97316]">
                         <i data-lucide="search" class="w-4 h-4"></i>
@@ -29,11 +29,11 @@
             <div class="flex items-center gap-4">
 
                 {% if user.is_authenticated and not user.is_staff %}
-                    <a href="/wishlist/" class="p-1.5 text-[#475569] hover:text-[#F97316] transition-colors relative">
+                    <a href="/wishlist/" class="p-1.5 text-[#475569] hover:text-[#F97316] transition-colors relative" title="Saved Items">
                         <i data-lucide="heart" class="w-5 h-5"></i>
                     </a>
 
-                    <a href="/cart/" class="p-1.5 text-[#475569] hover:text-[#F97316] transition-colors relative">
+                    <a href="/cart/" class="p-1.5 text-[#475569] hover:text-[#F97316] transition-colors relative" title="Shopping Cart">
                         <i data-lucide="shopping-bag" class="w-5 h-5"></i>
                         {% if user.is_authenticated and user.cart.items.exists %}
                             <span class="absolute top-0 right-0 w-4 h-4 bg-[#F97316] text-white text-[10px] font-black rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1 shadow-sm">
@@ -64,8 +64,8 @@
                     </div>
                 {% else %}
                     <div class="flex items-center gap-3 text-sm font-bold">
-                        <a href="/login/" class="text-[#475569] hover:text-[#111827] transition-colors px-2 py-1.5">Sign In</a>
-                        <a href="/register/" class="bg-[#F97316] text-white px-4 py-2 rounded-xl hover:bg-[#ea580c] transition-all shadow-sm">Register</a>
+                        <a href="/login/" class="text-[#475569] hover:text-[#111827] transition-colors px-2 py-1.5">Log In</a>
+                        <a href="/register/" class="bg-[#F97316] text-white px-4 py-2 rounded-xl hover:bg-[#ea580c] transition-all shadow-sm">Create Account</a>
                     </div>
                 {% endif %}
             </div>
@@ -74,18 +74,17 @@
     </div>
 </nav>
 
-<!-- Logout Confirmation Modal -->
 <div id="logoutModal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0F14]/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 px-4">
     <div id="logoutModalCard" class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 space-y-6 text-center">
         
-        <div class="w-16 h-16 bg-orange-50 border border-orange-100 rounded-2xl flex items-center justify-center mx-auto text-[#F97316] shadow-sm">
+        <div class="w-16 h-16 bg-[#F97316]/10 border border-[#F97316]/20 rounded-2xl flex items-center justify-center mx-auto text-[#F97316] shadow-sm">
             <i data-lucide="log-out" class="w-8 h-8"></i>
         </div>
 
         <div class="space-y-2">
-            <h3 class="text-xl font-black text-[#111827] tracking-tight">Confirm Logout</h3>
+            <h3 class="text-xl font-black text-[#111827] tracking-tight">Log Out</h3>
             <p class="text-xs text-[#475569] leading-relaxed">
-                Are you sure you want to log out of your account? You will need to sign back in to access your cart, wishlist, and dashboard.
+                Are you sure you want to log out? You will need to log back in to see your cart and account details.
             </p>
         </div>
 
