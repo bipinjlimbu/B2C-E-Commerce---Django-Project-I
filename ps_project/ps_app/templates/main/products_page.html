@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products | PixelShot</title>
+    <title>All Products | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
@@ -23,21 +23,21 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 items-end">
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Category</label>
-                    <select name="category" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <select name="category" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] cursor-pointer">
                         <option value="">All Categories</option>
-                        <option value="cameras" {% if request.GET.category == 'cameras' %}selected{% endif %}>Camera Bodies</option>
-                        <option value="lenses" {% if request.GET.category == 'lenses' %}selected{% endif %}>Lenses & Optics</option>
-                        <option value="stabilizers" {% if request.GET.category == 'stabilizers' %}selected{% endif %}>Gimbals & Tripods</option>
-                        <option value="lighting" {% if request.GET.category == 'lighting' %}selected{% endif %}>Studio & On-Camera Lighting</option>
-                        <option value="audio" {% if request.GET.category == 'audio' %}selected{% endif %}>Microphones & Audio Recorders</option>
-                        <option value="storage" {% if request.GET.category == 'storage' %}selected{% endif %}>Memory Cards & Drives</option>
-                        <option value="accessories" {% if request.GET.category == 'accessories' %}selected{% endif %}>Bags, Power & Rigging</option>
+                        <option value="cameras" {% if request.GET.category == 'cameras' %}selected{% endif %}>Cameras</option>
+                        <option value="lenses" {% if request.GET.category == 'lenses' %}selected{% endif %}>Lenses</option>
+                        <option value="stabilizers" {% if request.GET.category == 'stabilizers' %}selected{% endif %}>Stabilizers & Tripods</option>
+                        <option value="lighting" {% if request.GET.category == 'lighting' %}selected{% endif %}>Lighting</option>
+                        <option value="audio" {% if request.GET.category == 'audio' %}selected{% endif %}>Audio</option>
+                        <option value="storage" {% if request.GET.category == 'storage' %}selected{% endif %}>Storage</option>
+                        <option value="accessories" {% if request.GET.category == 'accessories' %}selected{% endif %}>Accessories</option>
                     </select>
                 </div>
 
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Brand</label>
-                    <select name="brand" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <select name="brand" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] cursor-pointer">
                         <option value="all">All Brands</option>
                         {% for brand in brands %}
                             <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:"i" %}selected{% endif %}>{{ brand.name }}</option>
@@ -47,7 +47,7 @@
 
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Condition</label>
-                    <select name="condition" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <select name="condition" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] cursor-pointer">
                         <option value="all">Any Condition</option>
                         <option value="new" {% if request.GET.condition == 'new' %}selected{% endif %}>Brand New</option>
                         <option value="refurbished" {% if request.GET.condition == 'refurbished' %}selected{% endif %}>Refurbished</option>
@@ -57,19 +57,19 @@
 
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Price Range</label>
-                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] cursor-pointer">
                         <option value="all">Any Price</option>
-                        <option value="0-999" {% if request.GET.price_range == '0-999' %}selected{% endif %}>Rs.0 - Rs.999</option>
-                        <option value="1000-4999" {% if request.GET.price_range == '1000-4999' %}selected{% endif %}>Rs.1,000 - Rs.4,999</option>
-                        <option value="5000-9999" {% if request.GET.price_range == '5000-9999' %}selected{% endif %}>Rs.5,000 - Rs.9,999</option>
-                        <option value="10000-49999" {% if request.GET.price_range == '10000-49999' %}selected{% endif %}>Rs.10,000 - Rs.49,999</option>
-                        <option value="50000+" {% if request.GET.price_range == '50000+' %}selected{% endif %}>Rs.50,000+</option>
+                        <option value="0-999" {% if request.GET.price_range == '0-999' %}selected{% endif %}>Rs. 0 - Rs. 999</option>
+                        <option value="1000-4999" {% if request.GET.price_range == '1000-4999' %}selected{% endif %}>Rs. 1,000 - Rs. 4,999</option>
+                        <option value="5000-9999" {% if request.GET.price_range == '5000-9999' %}selected{% endif %}>Rs. 5,000 - Rs. 9,999</option>
+                        <option value="10000-49999" {% if request.GET.price_range == '10000-49999' %}selected{% endif %}>Rs. 10,000 - Rs. 49,999</option>
+                        <option value="50000+" {% if request.GET.price_range == '50000+' %}selected{% endif %}>Rs. 50,000+</option>
                     </select>
                 </div>
 
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Sort By</label>
-                    <select name="sort" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316]">
+                    <select name="sort" onchange="this.form.submit()" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3 text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] cursor-pointer">
                         <option value="latest" {% if request.GET.sort == 'latest' %}selected{% endif %}>Newest First</option>
                         <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
                         <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div>
-                    <a href="/products/" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#F97316] font-bold text-[10px] uppercase tracking-widest border border-[#E2E8F0] h-[46px] rounded-xl transition-all flex items-center justify-center w-full">
+                    <a href="/products/" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#F97316] font-bold text-[10px] uppercase tracking-widest border border-[#E2E8F0] h-[46px] rounded-xl transition-all flex items-center justify-center w-full cursor-pointer">
                         Reset Filters
                     </a>
                 </div>
@@ -108,8 +108,8 @@
 
                                     {% if product.stock <= 0 %}
                                         <div class="absolute inset-0 bg-[#0B0F14]/30 backdrop-blur-[2px] flex items-center justify-center z-20">
-                                            <span class="bg-[#DC2626] text-white font-black text-sm uppercase tracking-widest px-5 py-2.5 rounded-xl shadow-2xl border-2 border-white -rotate-12 transform scale-105 select-none drop-shadow-xl">
-                                                Sold Out
+                                            <span class="bg-[#DC2626] text-[#FFFFFF] font-black text-sm uppercase tracking-widest px-5 py-2.5 rounded-xl shadow-2xl border-2 border-[#FFFFFF] -rotate-12 transform scale-105 select-none drop-shadow-xl">
+                                                Out of Stock
                                             </span>
                                         </div>
                                     {% endif %}
@@ -136,19 +136,19 @@
 
                                     {% if user.is_authenticated and not user.is_staff %}
                                         {% if product.stock > 0 %}
-                                            <a href="/cart/add/{{ product.id }}/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Add to Cart">
+                                            <a href="/cart/add/{{ product.id }}/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Add to Cart">
                                                 <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                                             </a>
                                         {% else %}
                                             <span class="text-[10px] font-black text-[#DC2626] bg-[#DC2626]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">Out of Stock</span>
                                         {% endif %}
                                     {% elif user.is_staff %}
-                                        <a href="/dashboard/admin/?section=product-management" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Manage Product">
+                                        <a href="/dashboard/admin/?section=product-management" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Manage Product">
                                             <i data-lucide="settings" class="w-4 h-4"></i>
                                         </a>
                                     {% else %}
                                         {% if product.stock > 0 %}
-                                            <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#1F2937] hover:text-white w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10" title="Log In to Buy">
+                                            <a href="/login/" class="bg-[#F8FAFC] hover:bg-[#F97316] text-[#111827] hover:text-[#FFFFFF] w-9 h-9 rounded-xl transition-all border border-[#E2E8F0] hover:border-[#F97316] flex items-center justify-center shadow-sm hover:shadow-lg hover:shadow-[#F97316]/20 z-10 cursor-pointer" title="Log In to Buy">
                                                 <i data-lucide="log-in" class="w-4 h-4"></i>
                                             </a>
                                         {% else %}
@@ -167,7 +167,7 @@
                     </div>
                     <h3 class="text-[#111827] font-bold text-base tracking-tight">No Products Found</h3>
                     <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">No products match your selected filters. Reset filters to see all items.</p>
-                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md">
+                    <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-[#FFFFFF] font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md cursor-pointer">
                         Reset Filters
                     </a>
                 </div>
