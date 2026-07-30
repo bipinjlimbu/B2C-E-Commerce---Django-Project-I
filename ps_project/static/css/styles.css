@@ -1551,6 +1551,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(220 38 38 / 0.2);
 }
 
+.border-\[\#DC2626\]\/30 {
+  border-color: rgb(220 38 38 / 0.3);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -2743,6 +2747,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(220 38 38 / 0.3);
 }
 
+.hover\:border-\[\#DC2626\]\/50:hover {
+  border-color: rgb(220 38 38 / 0.5);
+}
+
 .hover\:bg-\[\#ea580c\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
@@ -2816,6 +2824,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:bg-\[\#DC2626\]\/90:hover {
   background-color: rgb(220 38 38 / 0.9);
+}
+
+.hover\:bg-\[\#DC2626\]\/20:hover {
+  background-color: rgb(220 38 38 / 0.2);
 }
 
 .hover\:text-\[\#F97316\]:hover {
