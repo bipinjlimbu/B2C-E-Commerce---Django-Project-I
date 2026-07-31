@@ -662,6 +662,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: -1.5rem;
 }
 
+.-right-8 {
+  right: -2rem;
+}
+
+.-bottom-8 {
+  bottom: -2rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1308,6 +1316,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .snap-start {
   scroll-snap-align: start;
+}
+
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .grid-cols-1 {
@@ -2282,6 +2296,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-5 {
   padding-top: 1.25rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pr-3\.5 {
+  padding-right: 0.875rem;
+}
+
+.pl-12 {
+  padding-left: 3rem;
 }
 
 .text-left {
