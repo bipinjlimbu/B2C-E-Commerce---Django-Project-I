@@ -7,70 +7,125 @@
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#111827]">
+<body class="bg-[#F8FAFC] font-sans min-h-screen flex flex-col text-[#111827] antialiased">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <form method="POST" class="w-full max-w-2xl bg-white border border-[#E2E8F0] rounded-3xl overflow-hidden shadow-sm p-8 lg:p-12 space-y-8">
-            {% csrf_token %}
-            
-            <div>
-                <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Product Feedback</h2>
-                <p class="text-2xl font-black text-[#111827] tracking-tight">Write a Review</p>
-                <p class="text-xs text-[#475569] mt-2">Share your experience regarding <span class="text-[#F97316] font-bold">{{ product.name }}</span></p>
-            </div>
-
-            <div class="space-y-6">
-                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-2">Select Rating</label>
-                    <div class="flex items-center gap-1.5 bg-white border border-[#E2E8F0] p-3 rounded-xl inline-flex shadow-sm">
-                        <input type="hidden" name="rating" id="id_rating" value="5">
-                        <div class="flex items-center gap-1">
-                            <button type="button" data-star="1" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-amber-500"></i>
-                            </button>
-                            <button type="button" data-star="2" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-amber-500"></i>
-                            </button>
-                            <button type="button" data-star="3" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-amber-500"></i>
-                            </button>
-                            <button type="button" data-star="4" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-amber-500"></i>
-                            </button>
-                            <button type="button" data-star="5" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-amber-500"></i>
-                            </button>
-                        </div>
-                        <span id="rating_display" class="text-xs font-mono font-bold text-[#475569] ml-2">5 / 5</span>
-                    </div>
-                    {% if errors.rating %}
-                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.rating }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 rounded-2xl focus-within:border-[#F97316] transition-colors">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block mb-1">Your Review</label>
-                    <textarea id="id_comment" name="comment" rows="5" placeholder="What did you like or dislike about this product? Your experience helps other buyers." class="w-full bg-transparent text-sm font-medium text-[#111827] focus:outline-none placeholder-[#94A3B8] resize-none leading-relaxed">{{ data.comment|default:'' }}</textarea>
-                    {% if errors.comment %}
-                        <p class="text-red-600 text-xs mt-1 font-medium">{{ errors.comment }}</p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="flex items-center gap-3 pt-4 border-t border-[#E2E8F0]">
-                <button type="submit" class="flex-grow sm:flex-none bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider active:scale-95 shadow-sm">
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                    Submit Review
-                </button>
-                <a href="javascript:history.back()" class="flex-grow sm:flex-none bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-[#E2E8F0] active:scale-95">
-                    Cancel
+    <main class="flex-grow flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-2xl">
+            <div class="mb-6 flex items-center justify-between">
+                <a href="javascript:history.back()" class="inline-flex items-center gap-2 text-xs font-bold text-[#475569] hover:text-[#F97316] transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Back to Product</span>
                 </a>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B0F14] text-[#FBBF24] text-[10px] font-extrabold uppercase tracking-widest border border-[#1F2937]">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-[#FBBF24] fill-[#FBBF24]"></i>
+                    Verified Buyer Review
+                </span>
             </div>
-        </form>
+
+            <form method="POST" class="bg-white border border-[#E2E8F0] rounded-3xl shadow-xl overflow-hidden">
+                {% csrf_token %}
+
+                <div class="bg-[#0B0F14] p-6 sm:p-8 text-white relative overflow-hidden">
+                    <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-[#F97316]/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-[#1F2937] border border-[#E2E8F0]/10 flex items-center justify-center shrink-0 text-[#F97316]">
+                            <i data-lucide="message-square-plus" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-[#F97316] block mb-0.5">Product Feedback</span>
+                            <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">Write Your Review</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-8">
+                    <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-4 sm:p-5 rounded-2xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-[#F97316] shrink-0 shadow-sm">
+                            <i data-lucide="camera" class="w-5 h-5"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-bold uppercase tracking-wider text-[#475569]">Reviewing Item</p>
+                            <p class="text-sm sm:text-base font-extrabold text-[#111827] truncate">{{ product.name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="text-xs font-bold text-[#111827] flex items-center gap-1.5">
+                            <i data-lucide="award" class="w-4 h-4 text-[#F97316]"></i>
+                            <span>Overall Rating</span>
+                            <span class="text-[#F97316]">*</span>
+                        </label>
+                        
+                        <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <input type="hidden" name="rating" id="id_rating" value="5">
+                            
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1 bg-white border border-[#E2E8F0] p-2.5 rounded-xl shadow-sm">
+                                    <button type="button" data-star="1" class="star-btn text-[#FBBF24] hover:scale-110 transition-transform focus:outline-none">
+                                        <i data-lucide="star" class="w-6 h-6 fill-[#FBBF24]"></i>
+                                    </button>
+                                    <button type="button" data-star="2" class="star-btn text-[#FBBF24] hover:scale-110 transition-transform focus:outline-none">
+                                        <i data-lucide="star" class="w-6 h-6 fill-[#FBBF24]"></i>
+                                    </button>
+                                    <button type="button" data-star="3" class="star-btn text-[#FBBF24] hover:scale-110 transition-transform focus:outline-none">
+                                        <i data-lucide="star" class="w-6 h-6 fill-[#FBBF24]"></i>
+                                    </button>
+                                    <button type="button" data-star="4" class="star-btn text-[#FBBF24] hover:scale-110 transition-transform focus:outline-none">
+                                        <i data-lucide="star" class="w-6 h-6 fill-[#FBBF24]"></i>
+                                    </button>
+                                    <button type="button" data-star="5" class="star-btn text-[#FBBF24] hover:scale-110 transition-transform focus:outline-none">
+                                        <i data-lucide="star" class="w-6 h-6 fill-[#FBBF24]"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-[#475569]">Score:</span>
+                                <span id="rating_display" class="inline-flex items-center justify-center bg-[#0B0F14] text-[#FBBF24] font-mono font-bold text-xs px-3 py-1.5 rounded-lg">5 / 5</span>
+                            </div>
+                        </div>
+                        {% if errors.rating %}
+                            <p class="text-[#DC2626] text-xs font-medium flex items-center gap-1 mt-1">
+                                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                <span>{{ errors.rating }}</span>
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div class="space-y-3">
+                        <label for="id_comment" class="text-xs font-bold text-[#111827] flex items-center gap-1.5">
+                            <i data-lucide="file-text" class="w-4 h-4 text-[#F97316]"></i>
+                            <span>Your Experience</span>
+                            <span class="text-[#F97316]">*</span>
+                        </label>
+                        
+                        <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-4 focus-within:border-[#F97316] focus-within:bg-white transition-all shadow-sm">
+                            <textarea id="id_comment" name="comment" rows="6" placeholder="What did you like or dislike about this product? Your experience helps other photographers and creators make the right choice." class="w-full bg-transparent text-sm font-medium text-[#111827] focus:outline-none placeholder-[#475569]/50 resize-none leading-relaxed">{{ data.comment|default:'' }}</textarea>
+                        </div>
+                        {% if errors.comment %}
+                            <p class="text-[#DC2626] text-xs font-medium flex items-center gap-1 mt-1">
+                                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                <span>{{ errors.comment }}</span>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="bg-[#F8FAFC] border-t border-[#E2E8F0] p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-3">
+                    <button type="submit" class="w-full sm:flex-1 bg-[#F97316] hover:bg-[#F97316]/90 text-white font-extrabold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-md active:scale-95 cursor-pointer">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Submit Review</span>
+                    </button>
+                    <a href="javascript:history.back()" class="w-full sm:w-auto bg-white hover:bg-[#E2E8F0] text-[#111827] font-extrabold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-[#E2E8F0]">
+                        <span>Cancel</span>
+                    </a>
+                </div>
+            </form>
+        </div>
     </main>
 
     {% include 'components/_footer.html' %}
@@ -89,11 +144,11 @@
                     const btnStarValue = parseInt(btn.getAttribute('data-star'));
                     const icon = btn.querySelector('[data-lucide="star"]');
                     if (btnStarValue <= selectedRating) {
-                        icon.classList.add('fill-amber-500', 'text-amber-500');
-                        icon.classList.remove('text-[#CBD5E1]');
+                        icon.classList.add('fill-[#FBBF24]', 'text-[#FBBF24]');
+                        icon.classList.remove('text-[#E2E8F0]');
                     } else {
-                        icon.classList.remove('fill-amber-500', 'text-amber-500');
-                        icon.classList.add('text-[#CBD5E1]');
+                        icon.classList.remove('fill-[#FBBF24]', 'text-[#FBBF24]');
+                        icon.classList.add('text-[#E2E8F0]');
                     }
                 });
             });
