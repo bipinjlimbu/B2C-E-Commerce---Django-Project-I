@@ -1,82 +1,101 @@
-<div class="space-y-6">
-    <div>
-        <h2 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Feedback Hub</h2>
-        <p class="text-2xl font-black tracking-tight text-[#111827] uppercase">My Product Reviews</p>
+<div class="space-y-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-6">
+        <div>
+            <div class="flex items-center gap-2 mb-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#F97316] animate-pulse"></span>
+                <p class="text-xs font-semibold uppercase tracking-wider text-[#475569]">My Account</p>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#111827] tracking-tight">My Product Reviews</h1>
+            <p class="text-xs text-[#475569] mt-1">Manage your ratings and reviews for cameras and gear</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="bg-white border border-[#E2E8F0] px-5 py-3 rounded-2xl shadow-sm flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-[#F97316]/10 flex items-center justify-center text-[#F97316]">
+                    <i data-lucide="star" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold text-[#475569] block leading-none">Reviews Written</span>
+                    <span class="text-lg font-black text-[#111827] font-mono leading-none mt-1 block">{{ my_reviews|length }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm">
+    <div class="bg-white border border-[#E2E8F0] rounded-2xl shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-[#F8FAFC] border-b border-[#E2E8F0] text-[10px] font-bold uppercase tracking-wider text-[#475569]">
-                        <th class="py-4 px-6">Product</th>
-                        <th class="py-4 px-6">Rating</th>
-                        <th class="py-4 px-6">Review</th>
-                        <th class="py-4 px-6">Date</th>
-                        <th class="py-4 px-6 text-right">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-[#E2E8F0] text-xs">
+            <table class="w-full text-left border-collapse min-w-[750px]">
+                {% if my_reviews %}
+                    <thead>
+                        <tr class="bg-[#F8FAFC] border-b border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-[#475569]">
+                            <th class="py-4 px-6">Product</th>
+                            <th class="py-4 px-6">Rating</th>
+                            <th class="py-4 px-6 max-w-xs">My Review</th>
+                            <th class="py-4 px-6">Date</th>
+                            <th class="py-4 px-6 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tbody class="divide-y divide-[#E2E8F0] text-sm text-[#475569]">
                     {% for review in my_reviews %}
-                        <tr class="hover:bg-[#F8FAFC]/50 transition-colors">
-                            <td class="py-4 px-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-white border border-[#E2E8F0] rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0 shadow-sm">
+                        <tr class="hover:bg-[#F8FAFC] transition-colors">
+                            <td class="py-4 px-6 align-middle">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl overflow-hidden flex items-center justify-center p-1 shrink-0">
                                         {% if review.product.product_image %}
-                                            <img src="{{ review.product.product_image.url }}" alt="{{ review.product.name }}" class="w-full h-full object-cover rounded-md">
+                                            <img src="{{ review.product.product_image.url }}" alt="{{ review.product.name }}" class="w-full h-full object-contain rounded-lg">
                                         {% else %}
-                                            <i data-lucide="image" class="w-5 h-5 text-[#94A3B8]"></i>
+                                            <i data-lucide="camera" class="w-5 h-5 text-[#475569]"></i>
                                         {% endif %}
                                     </div>
-                                    <span class="font-bold text-[#111827] uppercase tracking-tight line-clamp-1 max-w-[180px]">
-                                        {{ review.product.name }}
-                                    </span>
+                                    <div>
+                                        <span class="font-bold text-[#111827] text-sm block leading-snug max-w-[200px] truncate">
+                                            {{ review.product.name }}
+                                        </span>
+                                    </div>
                                 </div>
                             </td>
 
-                            <td class="py-4 px-6 whitespace-nowrap">
-                                <div class="inline-flex items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] px-2.5 py-1 rounded-lg">
+                            <td class="py-4 px-6 align-middle whitespace-nowrap">
+                                <div class="inline-flex items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] px-3 py-1.5 rounded-xl">
                                     {% for i in '12345' %}
                                         {% if forloop.counter <= review.rating %}
-                                            <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500 fill-amber-500"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-[#FBBF24] fill-[#FBBF24]"></i>
                                         {% else %}
-                                            <i data-lucide="star" class="w-3.5 h-3.5 text-[#CBD5E1]"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-[#E2E8F0] fill-[#E2E8F0]"></i>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                             </td>
 
-                            <td class="py-4 px-6 max-w-xs sm:max-w-md">
+                            <td class="py-4 px-6 align-middle max-w-xs">
                                 <p class="text-[#475569] text-xs leading-relaxed line-clamp-2">
                                     {{ review.comment }}
                                 </p>
                             </td>
 
-                            <td class="py-4 px-6 font-mono text-[#475569] text-[11px] whitespace-nowrap">
+                            <td class="py-4 px-6 align-middle font-mono text-xs text-[#475569] font-medium whitespace-nowrap">
                                 {{ review.created_at|date:"Y-m-d" }}
                             </td>
 
-                            <td class="py-4 px-6 text-right whitespace-nowrap">
+                            <td class="py-4 px-6 align-middle text-right whitespace-nowrap">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="/review/edit/{{review.id}}" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] border border-[#E2E8F0] text-[#475569] hover:text-[#111827] h-8 w-8 rounded-lg transition-all flex items-center justify-center active:scale-95" title="Edit Review">
-                                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                                    <a href="/review/edit/{{review.id}}" class="w-9 h-9 rounded-xl bg-white hover:bg-[#F8FAFC] border border-[#E2E8F0] text-[#475569] hover:text-[#111827] flex items-center justify-center transition-all shadow-sm" title="Edit Review">
+                                        <i data-lucide="pencil" class="w-4 h-4"></i>
                                     </a>
-                                    <button type="button" onclick="openDeleteReviewModal('{{ review.id }}')" class="bg-[#F8FAFC] hover:bg-red-50 border border-[#E2E8F0] hover:border-red-200 text-[#475569] hover:text-red-600 h-8 w-8 rounded-lg transition-all flex items-center justify-center active:scale-95 cursor-pointer" title="Delete Review">
-                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                    <button type="button" onclick="openDeleteReviewModal('{{ review.id }}')" class="w-9 h-9 rounded-xl bg-white hover:bg-[#DC2626]/10 border border-[#E2E8F0] hover:border-[#DC2626]/30 text-[#475569] hover:text-[#DC2626] flex items-center justify-center transition-all shadow-sm cursor-pointer" title="Delete Review">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="5" class="py-12 text-center">
-                                <div class="flex flex-col items-center justify-center">
-                                    <div class="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center mb-4 shadow-sm text-[#475569]">
-                                        <i data-lucide="star-off" class="w-6 h-6"></i>
-                                    </div>
-                                    <h3 class="text-sm font-black text-[#111827] uppercase tracking-wider mb-1">No Reviews Found</h3>
-                                    <p class="text-xs text-[#475569] max-w-xs font-medium">You haven't submitted any product reviews yet.</p>
+                            <td colspan="5" class="py-16 px-6 text-center bg-white">
+                                <div class="w-14 h-14 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-4 text-[#F97316]">
+                                    <i data-lucide="message-square" class="w-7 h-7"></i>
                                 </div>
+                                <h3 class="text-base font-bold text-[#111827] mb-1">No product reviews yet</h3>
+                                <p class="text-xs text-[#475569] max-w-sm mx-auto">Reviews you leave on cameras, lenses, and accessories will appear here.</p>
                             </td>
                         </tr>
                     {% endfor %}
@@ -86,26 +105,26 @@
     </div>
 </div>
 
-<div id="deleteReviewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0F14]/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 px-4">
-    <div id="deleteReviewModalCard" class="bg-[#FFFFFF] border border-[#E2E8F0] rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 space-y-6 text-center">
+<div id="deleteReviewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0F14]/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-200 px-4">
+    <div id="deleteReviewModalCard" class="bg-white border border-[#E2E8F0] rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-xl transform scale-95 transition-all duration-200 space-y-6 text-center">
         
-        <div class="w-16 h-16 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-center mx-auto text-red-600 shadow-sm">
-            <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+        <div class="w-14 h-14 bg-[#DC2626]/10 border border-[#DC2626]/20 rounded-2xl flex items-center justify-center mx-auto text-[#DC2626]">
+            <i data-lucide="alert-triangle" class="w-7 h-7"></i>
         </div>
 
         <div class="space-y-2">
-            <h3 class="text-xl font-black text-[#111827] tracking-tight">Confirm Review Deletion</h3>
+            <h3 class="text-xl font-bold text-[#111827]">Delete Review</h3>
             <p class="text-xs text-[#475569] leading-relaxed">
                 Are you sure you want to delete this product review? This action cannot be undone.
             </p>
         </div>
 
         <div class="grid grid-cols-2 gap-3 pt-2">
-            <button type="button" onclick="closeDeleteReviewModal()" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-bold py-3 px-4 rounded-xl border border-[#E2E8F0] transition-all text-xs uppercase tracking-widest cursor-pointer">
+            <button type="button" onclick="closeDeleteReviewModal()" class="bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#111827] font-semibold py-3 px-4 rounded-xl border border-[#E2E8F0] transition-all text-xs cursor-pointer">
                 Cancel
             </button>
-            <a id="confirmDeleteReviewBtn" href="#" class="bg-[#DC2626] hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all text-xs uppercase tracking-widest flex items-center justify-center gap-1.5">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <a id="confirmDeleteReviewBtn" href="#" class="bg-[#DC2626] hover:bg-[#DC2626]/90 text-white font-semibold py-3 px-4 rounded-xl shadow-sm transition-all text-xs flex items-center justify-center gap-2">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
                 <span>Delete</span>
             </a>
         </div>

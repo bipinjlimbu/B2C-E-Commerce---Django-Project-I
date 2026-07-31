@@ -1092,6 +1092,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-width: 700px;
 }
 
+.min-w-\[750px\] {
+  min-width: 750px;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -1343,6 +1347,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-2\.5 {
   gap: 0.625rem;
+}
+
+.gap-3\.5 {
+  gap: 0.875rem;
 }
 
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
