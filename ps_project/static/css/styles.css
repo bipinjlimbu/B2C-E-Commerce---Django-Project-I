@@ -1892,6 +1892,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(220 38 38 / 0.05);
 }
 
+.bg-\[\#16A34A\]\/5 {
+  background-color: rgb(22 163 74 / 0.05);
+}
+
 .bg-gradient-to-tr {
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -2702,6 +2706,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .shadow-\[\#DC2626\]\/30 {
   --tw-shadow-color: rgb(220 38 38 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\#16A34A\]\/30 {
+  --tw-shadow-color: rgb(22 163 74 / 0.3);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
