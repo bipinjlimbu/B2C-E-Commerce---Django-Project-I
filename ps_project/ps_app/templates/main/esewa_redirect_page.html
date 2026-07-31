@@ -3,22 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Gateway | PixelShot</title>
+    <title>Connecting to Payment | PixelShot</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-[#F8FAFC] flex items-center justify-center min-h-screen font-sans">
-    <div class="text-center px-6">
-        <div class="relative w-24 h-24 mx-auto mb-8">
+<body class="bg-[#F8FAFC] text-[#111827] font-sans min-h-screen flex items-center justify-center p-4 antialiased selection:bg-[#F97316] selection:text-white">
+
+    <div class="max-w-md w-full bg-white border border-[#E2E8F0] rounded-3xl p-8 sm:p-10 shadow-xl text-center space-y-6 relative overflow-hidden">
+        
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#F97316]/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-[#FBBF24]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="flex items-center justify-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-xl bg-[#0B0F14] flex items-center justify-center text-[#F97316]">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+            </div>
+            <span class="font-extrabold text-base tracking-tight text-[#0B0F14]">Pixel<span class="text-[#F97316]">Shot</span></span>
+        </div>
+
+        <div class="relative w-28 h-28 mx-auto my-6 flex items-center justify-center">
             <div class="absolute inset-0 border-4 border-[#E2E8F0] rounded-full"></div>
             <div class="absolute inset-0 border-4 border-[#F97316] border-t-transparent rounded-full animate-spin"></div>
-            <div class="absolute inset-4 bg-[#F97316]/10 rounded-full flex items-center justify-center border border-[#F97316]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#F97316] animate-pulse"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            
+            <div class="w-20 h-20 bg-[#F8FAFC] border border-[#E2E8F0] rounded-full flex items-center justify-center shadow-inner">
+                <i data-lucide="shield-check" class="w-9 h-9 text-[#F97316] animate-pulse"></i>
             </div>
         </div>
 
-        <h2 class="text-[#111827] font-black uppercase italic tracking-[0.2em] text-2xl mb-2">Initiating <span class="text-[#F97316]">Gateway</span></h2>
-        <p class="text-[#475569] text-[11px] font-bold uppercase tracking-widest italic opacity-70">Connecting to payment terminal...</p>
+        <div class="space-y-2">
+            <h1 class="text-xl sm:text-2xl font-black text-[#111827] tracking-tight">
+                Transferring to Payment
+            </h1>
+            <p class="text-xs font-semibold text-[#475569] leading-relaxed max-w-xs mx-auto">
+                Please wait a moment while we connect you to complete your purchase safely.
+            </p>
+        </div>
+
+        {% if amount %}
+        <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-4 flex items-center justify-between text-xs font-medium">
+            <span class="text-[#475569]">Total Payment</span>
+            <span class="text-base font-extrabold text-[#111827]">Rs. {{ amount }}</span>
+        </div>
+        {% endif %}
+
+        <div class="pt-2 border-t border-[#E2E8F0] flex items-center justify-center gap-4 text-[11px] text-[#475569] font-medium">
+            <div class="flex items-center gap-1.5">
+                <i data-lucide="lock" class="w-3.5 h-3.5 text-[#16A34A]"></i>
+                <span>256-Bit Encrypted</span>
+            </div>
+            <span class="text-[#E2E8F0]">•</span>
+            <div class="flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-[#F97316]"></i>
+                <span>Official Gateway</span>
+            </div>
+        </div>
+
+        <p class="text-[10px] text-[#475569]/70 italic">
+            Do not refresh or close this window.
+        </p>
 
         <form id="esewa_form" action="{{ esewa_url }}" method="POST">
             <input type="hidden" name="amount" value="{{ amount }}">
@@ -33,13 +75,16 @@
             <input type="hidden" name="signed_field_names" value="total_amount,transaction_uuid,product_code">
             <input type="hidden" name="signature" value="{{ signature }}">
         </form>
+
     </div>
 
+    <script src="{% static 'js/lucide.min.js' %}"></script>
     <script>
+        lucide.createIcons();
         window.onload = function() {
             setTimeout(function() {
                 document.getElementById('esewa_form').submit();
-            }, 800); 
+            }, 800);
         };
     </script>
 </body>

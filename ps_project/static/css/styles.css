@@ -934,6 +934,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.75rem;
 }
 
+.h-28 {
+  height: 7rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -1072,6 +1076,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[15\%\] {
   width: 15%;
+}
+
+.w-28 {
+  width: 7rem;
 }
 
 .min-w-\[320px\] {
@@ -1876,6 +1884,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(249 115 22 / 0.2);
 }
 
+.bg-\[\#F97316\]\/5 {
+  background-color: rgb(249 115 22 / 0.05);
+}
+
 .bg-gradient-to-tr {
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -2553,6 +2565,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-\[\#475569\]\/40 {
   color: rgb(71 85 105 / 0.4);
+}
+
+.text-\[\#0B0F14\] {
+  --tw-text-opacity: 1;
+  color: rgb(11 15 20 / var(--tw-text-opacity));
+}
+
+.text-\[\#475569\]\/70 {
+  color: rgb(71 85 105 / 0.7);
 }
 
 .underline {
@@ -3533,6 +3554,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
