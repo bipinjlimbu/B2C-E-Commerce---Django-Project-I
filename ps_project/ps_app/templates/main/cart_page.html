@@ -7,149 +7,230 @@
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-[#F8FAFC] text-[#111827] font-sans min-h-screen flex flex-col">
+<body class="bg-[#F8FAFC] text-[#111827] font-sans min-h-screen flex flex-col antialiased">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <div class="mb-10">
-            <h1 class="text-xs font-bold uppercase tracking-widest text-[#F97316] mb-1">Your Selection</h1>
-            <p class="text-2xl lg:text-3xl font-black tracking-tight text-[#111827]">Shopping Cart</p>
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-14">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-[#E2E8F0] gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0F14] text-[#FBBF24] text-xs font-semibold tracking-wide mb-3">
+                    <i data-lucide="camera" class="w-3.5 h-3.5 text-[#F97316]"></i>
+                    <span>PixelShot Studio Gear</span>
+                </div>
+                <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111827]">
+                    Shopping Cart
+                </h1>
+            </div>
+            <div class="flex items-center gap-6 text-xs text-[#475569] font-medium">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-[#16A34A]"></div>
+                    <span>In Stock Guaranteed</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-[#F97316]"></i>
+                    <span>Official Warranty</span>
+                </div>
+            </div>
         </div>
 
         {% if cart_items %}
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <div class="lg:col-span-2 space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <div class="lg:col-span-7 xl:col-span-8 space-y-4">
                     {% for item in cart_items %}
-                        <div class="bg-white border border-[#E2E8F0] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-5 hover:border-[#F97316]/40 transition-all shadow-sm">
-                            <div class="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
-                                
-                                <!-- FULL-FILL IMAGE THUMBNAIL CARD -->
-                                <div class="w-20 h-20 aspect-square bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl overflow-hidden flex items-center justify-center shrink-0">
+                        <div class="bg-white border border-[#E2E8F0] rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-5 hover:border-[#F97316]/50 hover:shadow-md transition-all duration-200 group">
+                            
+                            <div class="flex items-center gap-4 sm:gap-5 flex-1 min-w-0">
+                                <div class="w-20 h-20 sm:w-24 sm:h-24 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl overflow-hidden flex items-center justify-center shrink-0 relative group-hover:border-[#F97316]/30 transition-colors">
                                     {% if item.product.product_image %}
-                                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover">
+                                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300">
                                     {% else %}
-                                        <i data-lucide="camera" class="w-6 h-6 text-[#94A3B8]"></i>
+                                        <i data-lucide="camera" class="w-8 h-8 text-[#475569]/40"></i>
                                     {% endif %}
                                 </div>
 
-                                <div class="space-y-1 text-center sm:text-left">
-                                    <span class="text-[9px] font-mono font-bold uppercase tracking-widest text-[#F97316] bg-[#F97316]/10 border border-[#F97316]/20 px-2 py-0.5 rounded-md">
+                                <div class="space-y-1.5 flex-1 min-w-0">
+                                    <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-[#F97316] bg-[#F97316]/10 border border-[#F97316]/20 px-2.5 py-0.5 rounded-full">
                                         {{ item.product.get_category_display }}
                                     </span>
-                                    <h3 class="font-bold text-[#111827] text-sm tracking-tight line-clamp-1 mt-1">
+                                    <h3 class="font-bold text-[#111827] text-base leading-snug truncate">
                                         {{ item.product.name }}
                                     </h3>
-                                    <p class="text-xs font-mono font-black text-[#475569]">
-                                        Rs. {{ item.product.price|floatformat:2 }}
-                                    </p>
+                                    <div class="flex items-baseline gap-1.5 text-xs text-[#475569]">
+                                        <span>Unit Price:</span>
+                                        <span class="font-semibold text-[#111827]">Rs. {{ item.product.price|floatformat:2 }}</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-[#E2E8F0] pt-4 sm:pt-0">
+                            <div class="flex items-center justify-between sm:justify-end gap-5 border-t sm:border-t-0 border-[#E2E8F0] pt-4 sm:pt-0">
                                 <div class="flex items-center border border-[#E2E8F0] rounded-xl overflow-hidden bg-[#F8FAFC]">
-                                    <a href="/cart/decrease/{{ item.product.id }}/" class="w-8 h-8 flex items-center justify-center text-[#475569] hover:text-[#111827] hover:bg-[#E2E8F0] transition-colors">
+                                    <a href="/cart/decrease/{{ item.product.id }}/" class="w-9 h-9 flex items-center justify-center text-[#475569] hover:text-[#111827] hover:bg-[#E2E8F0] transition-colors">
                                         <i data-lucide="minus" class="w-3.5 h-3.5"></i>
                                     </a>
-                                    <span class="w-10 text-center font-mono text-xs font-bold text-[#111827]">
+                                    <span class="w-10 text-center font-bold text-xs text-[#111827]">
                                         {{ item.quantity }}
                                     </span>
-                                    <a href="/cart/increase/{{ item.product.id }}/" class="w-8 h-8 flex items-center justify-center text-[#475569] hover:text-[#111827] hover:bg-[#E2E8F0] transition-colors">
+                                    <a href="/cart/increase/{{ item.product.id }}/" class="w-9 h-9 flex items-center justify-center text-[#475569] hover:text-[#111827] hover:bg-[#E2E8F0] transition-colors">
                                         <i data-lucide="plus" class="w-3.5 h-3.5"></i>
                                     </a>
                                 </div>
 
-                                <div class="flex items-center gap-4">
-                                    <div class="text-right hidden sm:block">
-                                        <span class="text-[9px] font-mono text-[#475569] block uppercase">Subtotal</span>
-                                        <span class="font-mono text-sm font-black text-[#111827]">Rs. {{ item.total_price|floatformat:2 }}</span>
-                                    </div>
-                                    <a href="/cart/remove/{{ item.product.id }}/" class="w-9 h-9 bg-[#F8FAFC] hover:bg-red-50 border border-[#E2E8F0] hover:border-red-200 text-[#475569] hover:text-red-500 rounded-xl transition-all flex items-center justify-center shadow-sm" title="Remove item">
-                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                    </a>
+                                <div class="text-right min-w-[100px]">
+                                    <span class="text-[10px] text-[#475569] block uppercase tracking-wider font-semibold">Subtotal</span>
+                                    <span class="text-base font-extrabold text-[#111827]">Rs. {{ item.total_price|floatformat:2 }}</span>
                                 </div>
+
+                                <a href="/cart/remove/{{ item.product.id }}/" class="w-9 h-9 bg-[#F8FAFC] hover:bg-red-50 border border-[#E2E8F0] hover:border-red-200 text-[#475569] hover:text-[#DC2626] rounded-xl transition-all flex items-center justify-center shrink-0" title="Remove item">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                </a>
                             </div>
+
                         </div>
                     {% endfor %}
-                </div>
 
-                <div class="bg-white border border-[#E2E8F0] rounded-2xl p-6 space-y-6 lg:sticky lg:top-24 shadow-sm">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-[#475569] border-b border-[#E2E8F0] pb-3">Order Summary</h2>
-                    
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-[#475569] font-medium">Subtotal</span>
-                            <span class="font-mono font-bold text-[#111827]">Rs. {{ total_price|floatformat:2 }}</span>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-[#475569] font-medium">Delivery</span>
-                            <span class="font-mono font-bold text-emerald-600 uppercase">Free</span>
-                        </div>
-                        <div class="border-t border-[#E2E8F0] pt-3 flex justify-between items-baseline">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#111827]">Total</span>
-                            <span class="font-mono text-xl font-black text-[#111827]">Rs. {{ total_price|floatformat:2 }}</span>
-                        </div>
-                    </div>
-
-                    <form method="POST" action="/payment/initiate/" class="space-y-4 pt-2">
-                        {% csrf_token %}
-                        <input type="hidden" name="total_amount" value="{{ total_price }}">
-                        <input type="hidden" name="payment_method" id="id_payment_method" value="esewa">
-                        
-                        <div id="checkout_fields" class="hidden space-y-4 border-t border-[#E2E8F0] pt-4 transition-all duration-300">
-                            <div class="space-y-1.5 relative">
-                                <label class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block">Payment Gateway</label>
-                                
-                                <button type="button" id="custom_dropdown_btn" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3.5 flex items-center justify-between text-xs font-bold text-[#111827] uppercase tracking-wider focus:outline-none focus:border-[#F97316] transition-colors">
-                                    <span id="selected_option_text">eSewa Wallet</span>
-                                    <i data-lucide="chevron-down" id="dropdown_arrow" class="w-4 h-4 text-[#475569] transition-transform duration-200"></i>
-                                </button>
-
-                                <div id="custom_dropdown_menu" class="hidden absolute left-0 right-0 mt-1.5 bg-white border border-[#E2E8F0] rounded-xl overflow-hidden shadow-lg z-50 divide-y divide-[#E2E8F0]">
-                                    <div data-value="esewa" class="dropdown-item p-3.5 text-xs font-bold text-[#111827] hover:bg-[#F8FAFC] cursor-pointer uppercase tracking-wider transition-colors">
-                                        eSewa Wallet
-                                    </div>
-                                    <div data-value="cod" class="dropdown-item p-3.5 text-xs font-bold text-[#111827] hover:bg-[#F8FAFC] cursor-pointer uppercase tracking-wider transition-colors">
-                                        Cash On Delivery (COD)
-                                    </div>
-                                </div>
+                    <div class="bg-[#1F2937] text-white rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border border-[#1F2937]">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-[#F97316]/20 flex items-center justify-center text-[#F97316] shrink-0">
+                                <i data-lucide="truck" class="w-5 h-5"></i>
                             </div>
-
-                            <div class="space-y-1.5">
-                                <label for="shipping_address" class="text-[10px] font-bold uppercase tracking-widest text-[#475569] block">Shipping Address</label>
-                                <div id="address_container" class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3.5 focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316]/30 transition-all duration-200">
-                                    <input type="text" id="shipping_address" name="shipping_address" required placeholder="Street, City, Sector Location" class="w-full bg-transparent text-xs font-semibold text-[#111827] focus:outline-none placeholder-[#94A3B8]">
-                                </div>
-                                <p id="client_address_error" class="text-[11px] font-bold text-red-600 tracking-wide mt-1 uppercase hidden">Required: Delivery shipping address missing.</p>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Free Express Delivery</h4>
+                                <p class="text-xs text-[#E2E8F0]/70">All high-value camera orders include complimentary insured delivery.</p>
                             </div>
                         </div>
-
-                        <button type="button" id="action_button" class="w-full bg-[#F97316] hover:bg-[#ea580c] text-white font-bold py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer">
-                            <i data-lucide="shield-check" class="w-4 h-4"></i>
-                            <span id="button_text">Proceed to Checkout</span>
-                        </button>
-                        
-                        <a href="/products/" class="w-full bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#111827] font-bold py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-[#E2E8F0]">
-                            Continue Shopping
+                        <a href="/products/" class="text-xs font-bold text-[#FBBF24] hover:text-white flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>Browse Gear</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                         </a>
-                    </form>
+                    </div>
                 </div>
+
+                <div class="lg:col-span-5 xl:col-span-4">
+                    <div class="bg-white border border-[#E2E8F0] rounded-2xl p-6 lg:p-7 space-y-6 lg:sticky lg:top-24">
+                        
+                        <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
+                            <h2 class="text-sm font-bold uppercase tracking-wider text-[#111827] flex items-center gap-2">
+                                <i data-lucide="receipt" class="w-4 h-4 text-[#F97316]"></i>
+                                Order Summary
+                            </h2>
+                            <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0]">
+                                Ready for Checkout
+                            </span>
+                        </div>
+                        
+                        <div class="space-y-3.5 text-xs">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#475569] font-medium">Subtotal</span>
+                                <span class="font-bold text-[#111827] text-sm">Rs. {{ total_price|floatformat:2 }}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#475569] font-medium">Insured Delivery</span>
+                                <span class="font-bold text-[#16A34A] uppercase tracking-wider bg-[#16A34A]/10 px-2 py-0.5 rounded-md text-[11px]">Free</span>
+                            </div>
+                            <div class="border-t border-[#E2E8F0] pt-4 flex justify-between items-baseline">
+                                <span class="text-sm font-bold text-[#111827]">Total Amount</span>
+                                <span class="text-2xl font-black text-[#111827]">Rs. {{ total_price|floatformat:2 }}</span>
+                            </div>
+                        </div>
+
+                        <form method="POST" action="/payment/initiate/" class="space-y-4 pt-1">
+                            {% csrf_token %}
+                            <input type="hidden" name="total_amount" value="{{ total_price }}">
+                            <input type="hidden" name="payment_method" id="id_payment_method" value="esewa">
+                            
+                            <div id="checkout_fields" class="hidden space-y-4 border-t border-[#E2E8F0] pt-5 transition-all duration-300">
+                                
+                                <div class="space-y-2 relative">
+                                    <label class="text-xs font-bold uppercase tracking-wider text-[#475569] block">
+                                        Payment Method
+                                    </label>
+                                    
+                                    <button type="button" id="custom_dropdown_btn" class="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3.5 flex items-center justify-between text-xs font-bold text-[#111827] focus:outline-none focus:border-[#F97316] transition-colors">
+                                        <div class="flex items-center gap-2">
+                                            <i data-lucide="wallet" class="w-4 h-4 text-[#F97316]"></i>
+                                            <span id="selected_option_text">eSewa Wallet</span>
+                                        </div>
+                                        <i data-lucide="chevron-down" id="dropdown_arrow" class="w-4 h-4 text-[#475569] transition-transform duration-200"></i>
+                                    </button>
+
+                                    <div id="custom_dropdown_menu" class="hidden absolute left-0 right-0 mt-1.5 bg-white border border-[#E2E8F0] rounded-xl overflow-hidden shadow-xl z-50 divide-y divide-[#E2E8F0]">
+                                        <div data-value="esewa" class="dropdown-item p-3.5 text-xs font-bold text-[#111827] hover:bg-[#F8FAFC] cursor-pointer flex items-center justify-between transition-colors">
+                                            <span>eSewa Wallet</span>
+                                            <i data-lucide="check" class="w-3.5 h-3.5 text-[#16A34A]"></i>
+                                        </div>
+                                        <div data-value="cod" class="dropdown-item p-3.5 text-xs font-bold text-[#111827] hover:bg-[#F8FAFC] cursor-pointer flex items-center justify-between transition-colors">
+                                            <span>Cash On Delivery (COD)</span>
+                                            <i data-lucide="banknote" class="w-3.5 h-3.5 text-[#475569]"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="shipping_address" class="text-xs font-bold uppercase tracking-wider text-[#475569] block">
+                                        Shipping Address
+                                    </label>
+                                    <div id="address_container" class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-3.5 focus-within:border-[#F97316] focus-within:ring-2 focus-within:ring-[#F97316]/20 transition-all duration-200">
+                                        <input type="text" id="shipping_address" name="shipping_address" required placeholder="House No, Street Name, City, Region" class="w-full bg-transparent text-xs font-semibold text-[#111827] focus:outline-none placeholder-[#475569]/50">
+                                    </div>
+                                    <p id="client_address_error" class="text-xs font-bold text-[#DC2626] mt-1 hidden flex items-center gap-1">
+                                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 shrink-0"></i>
+                                        <span>Please provide a valid shipping address.</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <button type="button" id="action_button" class="w-full bg-[#F97316] hover:bg-[#F97316]/90 text-white font-extrabold py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                <span id="button_text">Proceed to Checkout</span>
+                            </button>
+                            
+                            <a href="/products/" class="w-full bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#475569] hover:text-[#111827] font-bold py-3.5 px-6 rounded-xl text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border border-[#E2E8F0]">
+                                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                Continue Shopping
+                            </a>
+                        </form>
+
+                        <div class="border-t border-[#E2E8F0] pt-4 grid grid-cols-3 gap-2 text-center text-[10px] text-[#475569] font-semibold">
+                            <div class="flex flex-col items-center gap-1">
+                                <i data-lucide="lock" class="w-3.5 h-3.5 text-[#16A34A]"></i>
+                                <span>100% Secure</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-[#F97316]"></i>
+                                <span>Easy Returns</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-[#FBBF24]"></i>
+                                <span>Verified Gear</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         {% else %}
-            <div class="flex flex-col items-center justify-center text-center py-24 border border-dashed border-[#E2E8F0] rounded-3xl bg-white shadow-sm">
-                <div class="w-16 h-16 bg-[#F8FAFC] rounded-2xl flex items-center justify-center border border-[#E2E8F0] mb-4">
-                    <i data-lucide="shopping-bag" class="w-7 h-7 text-[#94A3B8]"></i>
+            <div class="max-w-lg mx-auto flex flex-col items-center justify-center text-center py-20 px-6 border border-dashed border-[#E2E8F0] rounded-3xl bg-white shadow-sm my-8">
+                <div class="w-20 h-20 bg-[#F8FAFC] rounded-3xl flex items-center justify-center border border-[#E2E8F0] mb-6 relative">
+                    <i data-lucide="shopping-bag" class="w-9 h-9 text-[#475569]"></i>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#F97316]"></span>
                 </div>
-                <h3 class="text-[#111827] font-bold text-base tracking-tight">Your Cart is Empty</h3>
-                <p class="text-xs text-[#475569] mt-1 max-w-xs leading-relaxed mb-6">You haven't added any items to your cart yet. Browse our store to discover products.</p>
-                <a href="/products/" class="bg-[#F97316] hover:bg-[#ea580c] text-white font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                    Return to Shop
+                <h2 class="text-2xl font-extrabold text-[#111827] tracking-tight">Your Cart is Empty</h2>
+                <p class="text-xs text-[#475569] mt-2 leading-relaxed mb-8 max-w-sm">
+                    Looks like you haven't added any cameras or photography gear yet. Explore our latest collection to get started!
+                </p>
+                <a href="/products/" class="bg-[#F97316] hover:bg-[#F97316]/90 text-white font-bold px-7 py-4 rounded-xl text-xs uppercase tracking-widest transition-all flex items-center gap-2.5 shadow-md">
+                    <i data-lucide="camera" class="w-4 h-4"></i>
+                    <span>Explore Products</span>
                 </a>
             </div>
         {% endif %}
+
     </main>
 
     {% include 'components/_footer.html' %}
@@ -204,7 +285,7 @@
                 if (shippingInput.value.trim() === "") {
                     shippingInput.focus();
                     addressContainer.classList.remove('border-[#E2E8F0]');
-                    addressContainer.classList.add('border-red-600', 'ring-1', 'ring-red-600/30');
+                    addressContainer.classList.add('border-[#DC2626]', 'ring-2', 'ring-[#DC2626]/20');
                     clientAddressError.classList.remove('hidden');
                 } else {
                     this.closest('form').submit();
@@ -214,7 +295,7 @@
 
         shippingInput.addEventListener('input', function() {
             if (this.value.trim() !== "") {
-                addressContainer.classList.remove('border-red-600', 'ring-1', 'ring-red-600/30');
+                addressContainer.classList.remove('border-[#DC2626]', 'ring-2', 'ring-[#DC2626]/20');
                 addressContainer.classList.add('border-[#E2E8F0]');
                 clientAddressError.classList.add('hidden');
             }
