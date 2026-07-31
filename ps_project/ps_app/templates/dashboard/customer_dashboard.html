@@ -52,7 +52,11 @@
                         <i data-lucide="clock" class="w-4 h-4"></i>
                         <span>Pending Orders</span>
                     </div>
+                    {% if pending_orders.count > 0 %}
+                            <span class="bg-[#FBBF24] text-[#111827] text-xs font-bold px-2 py-0.5 rounded-full"> {{ pending_orders.count }}</span>
+                    {% endif %}
                 </a>
+
 
                 <a href="?section=my-orders" class="flex items-center justify-between px-3.5 py-3 rounded-xl {% if section == 'my-orders' %}bg-[#F97316] text-white font-semibold shadow-lg shadow-[#F97316]/20{% else %}text-gray-400 hover:bg-[#1F2937] hover:text-white transition-all{% endif %} text-sm">
                     <div class="flex items-center gap-3">
