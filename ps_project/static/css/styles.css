@@ -650,6 +650,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 1rem;
 }
 
+.right-3 {
+  right: 0.75rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -682,6 +686,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .mt-8 {
@@ -802,6 +811,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .aspect-square {
   aspect-ratio: 1 / 1;
+}
+
+.aspect-\[4\/3\] {
+  aspect-ratio: 4 / 3;
 }
 
 .h-64 {
@@ -1134,6 +1147,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-\[180px\] {
   max-width: 180px;
+}
+
+.max-w-xl {
+  max-width: 36rem;
 }
 
 .flex-1 {
@@ -1827,6 +1844,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(31 41 55 / 0.1);
 }
 
+.bg-white\/90 {
+  background-color: rgb(255 255 255 / 0.9);
+}
+
 .bg-gradient-to-tr {
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -1887,6 +1908,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .stroke-\[3\] {
   stroke-width: 3;
+}
+
+.stroke-\[1\.5\] {
+  stroke-width: 1.5;
 }
 
 .object-contain {
@@ -2991,6 +3016,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(251 191 36 / 0.5);
 }
 
+.hover\:border-\[\#DC2626\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity));
+}
+
 .hover\:bg-\[\#ea580c\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
@@ -3071,6 +3101,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:bg-\[\#F8FAFC\]\/50:hover {
   background-color: rgb(248 250 252 / 0.5);
+}
+
+.hover\:bg-\[\#DC2626\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .hover\:text-\[\#F97316\]:hover {
@@ -3598,6 +3633,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .lg\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .lg\:pt-0 {
